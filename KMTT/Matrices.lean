@@ -2,7 +2,7 @@ import Mathlib
 --import Graph.SimpleGraph
 namespace SimpleGraph
 
-#print SimpleGraph.lapMatrix
+#print SimpleGraph.lapMatrix 
 #print SimpleGraph.incMatrix    --need to understand
 #print SimpleGraph.adjMatrix
 
