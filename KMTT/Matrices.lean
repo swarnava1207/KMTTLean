@@ -2,34 +2,96 @@ import Mathlib
 --import Graph.SimpleGraph
 
 import Mathlib.Data.Sym.Sym2
+#print Quot.lift
+#print Sym2
+def Sym2.toProd' (s : Sym2 ℕ) : ℕ × ℕ :=
+  Quot.lift
+    (fun (a, b) => if a < b then (a, b) else (b, a))
+    (by
+      intro (a, b) (c, d)
+      simp
+      intro h
+      apply Or.elim h
+      · intro h₁
+        simp [h₁]
+      · intro h₂
+        simp [h₂]
+        if h' : c < d then
+          simp [h']
+          have h'' : ¬ d < c := by
+            simp [Nat.le_of_lt, h']
+          simp [h'']
+        else
+          simp [h']
+          if h'' : d < c then
+            simp [h'']
+          else
+            intro h'''
+            cases h'''
+            case refl => simp
+            case step h_new => simp [h',h'']
+                               rename_i m
+                               cases Nat.lt_trichotomy c m
+                               case inl hlt =>
+                                apply And.intro
+                                · simp [hlt] at h'
+                                  revert h' h''
+                                  omega
+                                · simp [hlt] at h'
+                                  revert h' h''
+                                  omega
+                               case inr hge =>
+                                  cases hge
+                                  case inl heq =>
+                                    simp [heq] at h'
+                                  case inr hgt =>
+                                    apply And.intro
+                                    · simp [hgt] at h'
+                                      revert h' h''
+                                      omega
+                                    · simp [hgt] at h'
+                                      revert h' h''
+                                      omega) s
 
-def Sym2.toProd {α : Type} (s : Sym2 α) : α × α :=
-  
+
+
+def Sym2.toProd {α : Type} [LinearOrder α] (s : Sym2 α) : α × α :=
+  Quot.lift
+    (fun (a, b) => if a < b then (a, b) else (b, a))
+    (by sorry) s
+
+
+
+
 
 open SimpleGraph
 
 #print Sym2
-
+#print SimpleGraph
 #print SimpleGraph.lapMatrix
 #print SimpleGraph.incMatrix    --need to understand
 #print SimpleGraph.adjMatrix
 
 #print incMatrix
-
-#moogle "Sym2 α to α × α?"
+#print SimpleGraph.Adj
+--#moogle "Sym2 α to α × α?"
 
 
 
 
 
 variable {V : Type} [DecidableEq V]
-def SimpleGraph.Edges (G : SimpleGraph V) : Set (V × V) :=
-  { e | G.Adj e.1 e.2 }
-
-def IncidenceMatrix {V : Type} [DecidableEq V] (G : SimpleGraph V) : Matrix V (Sym2 V) Int :=
-  fun v e => if v = e.1 then 1 else if v = e.2 then -1 else 0
+def SimpleGraph.Edges [LinearOrder V] (G : SimpleGraph V) : Set (Sym2 V) :=
+  {e : Sym2 V | G.Adj e.toProd.1 e.toProd.2}
 
 #print Matrix
+
+def SimpleGraph.IncidenceMatrix {V : Type} [DecidableEq V][LinearOrder V](G : SimpleGraph V) : Matrix V G.Edges Int :=
+  fun v e =>
+    let (a, b) := Sym2.toProd e
+    if v = a then 1
+    else if v = b then -1
+    else 0
 
 def I {n : Nat} : Matrix (Fin n) (Fin n) Int := 1
 
@@ -86,10 +148,6 @@ noncomputable def Matrix.rowBlocks {n m : ℕ} (N : Matrix (Fin n) (Fin m) Int) 
 noncomputable def Matrix.colBlocks {n m : ℕ } (N : Matrix (Fin n) (Fin m) Int) (s : Finset (Fin n)) : Matrix (Fin s.card) (Fin m) Int
   := by rw [← @zero_to_n_minus_one_card_eq_n m] ; exact submatrix' N s (zero_to_n_minus_one m)
 
-/-
-typeclass instance problem is stuck, it is often due to metavariables
-  Fintype (?m.30343 s)
--/
 
 theorem CauchyBinet {m n : Nat} (M : Matrix (Fin m) (Fin n) Int) (N : Matrix (Fin n) (Fin m) Int) :
   (M * N).det = ∑ s ∈ all_subsets_of_size n m,
@@ -100,4 +158,7 @@ theorem CauchyBinet {m n : Nat} (M : Matrix (Fin m) (Fin n) Int) (N : Matrix (Fi
 #check Nat.pos_of_ne_zero
 #check Finset.erase
 
-lemma inc_incT_eq_lap {n : ℕ} (G : SimpleGraph (Fin n)) [HMul ]
+lemma inc_incT_eq_lap {n : ℕ} (G : SimpleGraph (Fin n))[DecidableRel G.Adj]
+  :
+  G.IncidenceMatrix * G.IncidenceMatrix.transpose = (G.lapMatrix : Matrix (Fin n) (Fin n) ℤ) :=
+    by sorry
