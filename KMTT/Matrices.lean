@@ -4,9 +4,7 @@ import Mathlib
 import Mathlib.Data.Sym.Sym2
 
 def Sym2.toProd {α : Type} (s : Sym2 α) : α × α :=
-  match s with
-  | Sym2.mk a b => (a, b)
-
+  
 
 open SimpleGraph
 

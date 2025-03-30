@@ -11,8 +11,9 @@ variable {m n : ℕ} (A : Matrix (Fin n) (Fin m) ℤ ) (B : Matrix (Fin m) (Fin 
 --
 -- Helper lemma for index arithmetic.
 lemma sub_lt_helper {a b c : ℕ} (hb : 0 < b ∨ b = 0) (h : a < b + c) : a - b < c :=
-by
-  
+  by sorry
+
+
 #print Fin
 -- Definition of block matrix constructor.
 def ofBlock {α : Type*} [Zero α] {m n p q : ℕ}
