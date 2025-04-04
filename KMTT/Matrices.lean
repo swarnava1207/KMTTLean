@@ -60,7 +60,7 @@ def Sym2.toProd {α : Type} [LinearOrder α] (s : Sym2 α) : α × α :=
     (fun (a, b) => if a < b then (a, b) else (b, a))
     (by sorry) s
 
-
+#check le_or_gt
 
 
 
@@ -80,22 +80,28 @@ open SimpleGraph
 
 
 
-variable {V : Type} [DecidableEq V]
+variable {V : Type} [DecidableEq V] [Fintype V]
 def SimpleGraph.Edges [LinearOrder V] (G : SimpleGraph V) : Set (Sym2 V) :=
   {e : Sym2 V | G.Adj e.toProd.1 e.toProd.2}
+-- edges are finite
+noncomputable instance fin_edges [LinearOrder V] (G : SimpleGraph V) : Fintype (SimpleGraph.Edges G) :=
+  by
+    unfold SimpleGraph.Edges
+    apply Fintype.ofFinite
+
 
 #print Matrix
 
-def SimpleGraph.IncidenceMatrix {V : Type} [DecidableEq V][LinearOrder V](G : SimpleGraph V) : Matrix V G.Edges Int :=
+def SimpleGraph.IncidenceMatrix {V : Type} [DecidableEq V][LinearOrder V](G : SimpleGraph V) : Matrix V G.Edges ℚ :=
   fun v e =>
     let (a, b) := Sym2.toProd e
     if v = a then 1
     else if v = b then -1
     else 0
 
-def I {n : Nat} : Matrix (Fin n) (Fin n) Int := 1
+def I {n : Nat} : Matrix (Fin n) (Fin n) ℚ := 1
 
-alias Inc := IncidenceMatrix
+alias SimpleGraph.Inc := SimpleGraph.IncidenceMatrix
 alias L := lapMatrix
 alias A := adjMatrix
 
@@ -125,8 +131,8 @@ def all_subsets_of_size (n m : ℕ) : Finset (Finset (Fin m)) :=
 
 #synth Fintype (Fin 3) -- Fin.fintype 3
 
-lemma toprove_cauchybinet {m n : Nat} (A : Matrix (Fin n) (Fin m) Int) (B : Matrix (Fin m) (Fin n) Int) :
-  ∀ a : Int, a^m * (a • (I) + A * B).det = a^n * (a • (I) + B * A).det := by
+lemma toprove_cauchybinet {m n : Nat} (A : Matrix (Fin n) (Fin m) ℚ) (B : Matrix (Fin m) (Fin n) ℚ) :
+  ∀ a : ℚ, a^m * (a • (I) + A * B).det = a^n * (a • (I) + B * A).det := by
   sorry
 /-
 ⊢ {α : Type u_1} → (p : α → Prop) → [inst : DecidablePred p] → (l : Finset α) → (∃! a, a ∈ l ∧ p a) → α
@@ -140,16 +146,16 @@ def zero_to_n_minus_one (n : Nat) : Finset (Fin n) := Finset.univ
 theorem zero_to_n_minus_one_card_eq_n {n : ℕ} : (zero_to_n_minus_one n).card = n := by
   simp [zero_to_n_minus_one, Finset.card_univ]
 
-noncomputable def Matrix.rowBlocks {n m : ℕ} (N : Matrix (Fin n) (Fin m) Int) (s : Finset (Fin m)) : Matrix (Fin n) (Fin s.card) Int
+noncomputable def Matrix.rowBlocks {n m : ℕ} (N : Matrix (Fin n) (Fin m) ℚ) (s : Finset (Fin m)) : Matrix (Fin n) (Fin s.card) ℚ
         := by rw [← @zero_to_n_minus_one_card_eq_n n] ; exact submatrix' N (zero_to_n_minus_one n) s
 
 
 
-noncomputable def Matrix.colBlocks {n m : ℕ } (N : Matrix (Fin n) (Fin m) Int) (s : Finset (Fin n)) : Matrix (Fin s.card) (Fin m) Int
+noncomputable def Matrix.colBlocks {n m : ℕ } (N : Matrix (Fin n) (Fin m) ℚ) (s : Finset (Fin n)) : Matrix (Fin s.card) (Fin m) ℚ
   := by rw [← @zero_to_n_minus_one_card_eq_n m] ; exact submatrix' N s (zero_to_n_minus_one m)
 
 
-theorem CauchyBinet {m n : Nat} (M : Matrix (Fin m) (Fin n) Int) (N : Matrix (Fin n) (Fin m) Int) :
+theorem CauchyBinet {m n : Nat} (M : Matrix (Fin m) (Fin n) ℚ) (N : Matrix (Fin n) (Fin m) ℚ) :
   (M * N).det = ∑ s ∈ all_subsets_of_size n m,
   (Matrix.colBlocks M s).det * (Matrix.rowBlocks N s).det :=
   by sorry
@@ -160,5 +166,9 @@ theorem CauchyBinet {m n : Nat} (M : Matrix (Fin m) (Fin n) Int) (N : Matrix (Fi
 
 lemma inc_incT_eq_lap {n : ℕ} (G : SimpleGraph (Fin n))[DecidableRel G.Adj]
   :
-  G.IncidenceMatrix * G.IncidenceMatrix.transpose = (G.lapMatrix : Matrix (Fin n) (Fin n) ℤ) :=
+  G.Inc * G.Inc.transpose = (G.lapMatrix ℚ : Matrix (Fin n) (Fin n) ℚ) :=
     by sorry
+
+
+
+#synth AddGroupWithOne ℚ

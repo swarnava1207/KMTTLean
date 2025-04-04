@@ -1,8 +1,10 @@
 import Mathlib
+import KMTT.Matrices
 open Matrix
 
 
-variable {m n : ℕ} (A : Matrix (Fin n) (Fin m) ℤ ) (B : Matrix (Fin m) (Fin n) ℤ )
+
+variable {m n : ℕ} (A : Matrix (Fin n) (Fin m) ℚ ) (B : Matrix (Fin m) (Fin n) ℚ )
 
 -- Main theorem: Cauchy–Binet–type determinant identity for rectangular matrices.
 -- For A : n×m and B : m×n and any nonzero a ∈ \Z, we have
@@ -40,25 +42,38 @@ else
       ⟨j - n, sub_lt_helper (Or.symm (Nat.eq_zero_or_pos n)) j.is_lt⟩ ;
     D i' j'
 
+#leansearch "Scalar matrices are invertible?"
 #check Matrix.fromBlocks₁₁Invertible
-def I {m : ℕ}: Matrix (Fin m) (Fin m) ℤ := 1
+abbrev I {m : ℕ}: Matrix (Fin m) (Fin m) ℚ := 1
+#print Field
 
-theorem toprove_cauchybinet (a : ℤ) (ha : a ≠ 0)  :
+#moogle "non-zero rationals are invertible."
+instance inv_scalar (a : ℚ) (ha : a ≠ 0) : Invertible (a • (1 :(Matrix (Fin m) (Fin m) ℚ)) ) :=
+  by sorry
+instance inv_rat (a : ℚ) (ha : a ≠ 0) : Invertible a :=
+  by exact invertibleOfNonzero ha
+
+theorem toprove_cauchybinet (a : ℚ) (ha : a ≠ 0)  :
   a^m * (a • I + A * B).det = a^n * (a • I + B * A).det :=
 by
-  let M : Matrix (Fin n ⊕ Fin m) (Fin n ⊕ Fin m) ℤ := fromBlocks (a • 1) (-A) (B) (a • 1)
-  have inv_I {m : ℕ} : (a • (@I m))⁻¹ = (1/a) • 1 :=
+  let M : Matrix (Fin n ⊕ Fin m) (Fin n ⊕ Fin m) ℚ := fromBlocks (a • 1) (-A) (B) (a • 1)
+  have inv_I {m : ℕ} : (a • ((1 :(Matrix (Fin m) (Fin m) ℚ))))⁻¹ = (1/a) • 1 :=
   by
+    let i : Invertible a := by
+      apply inv_rat a ha
     -- Standard fact: (a•I)⁻¹ = (1/a)•I over a field when a ≠ 0.
-    --apply @inv_smul inferInstance inferInstance inferInstance I a inferInstance
-    sorry
+    simp [inv_smul 1 a]
 
-  have det_M₁ : det M = a^m * det ((a • I) + A * B) :=
-    by rw [det_fromBlocks₂₂]
+
+  have det_M₁ : det M = a^m * det ((a • 1) + A * B) :=
+    by
+    let i : Invertible (a • (1 :(Matrix (Fin m) (Fin m) ℚ))) := by
+      apply inv_scalar a ha
+    rw [det_fromBlocks₂₂]
   /- Factor out the scalar from the bloc\Z in the second determinant.
      Note that for an m×m matrix M, det ((1/a) • M) = (1/a)^m * det M.
   -/
-  have det_scale : ∀ (M : Matrix (Fin m) (Fin m) ℤ), det ((1/a) • M) = (1/a)^m * det M :=
+  have det_scale : ∀ (M : Matrix (Fin m) (Fin m) ℚ), det ((1/a) • M) = (1/a)^m * det M :=
     fun M => by rw [det_smul]; simp
 
   have det_M₁' : det M = a^n * det ((a • I) +  B * A) :=

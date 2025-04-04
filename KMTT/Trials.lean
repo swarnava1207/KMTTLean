@@ -27,6 +27,30 @@ variable [DecidableEq m] [CommRing R]
 
 open Nat
 
+
+#print SimpleGraph.lapMatrix
+#print SimpleGraph.incMatrix
+#print SimpleGraph.adjMatrix
+
+
+def Sym2.toProd {α : Type} [LinearOrder α] (s : Sym2 α) : α × α :=
+  Quot.lift
+    (fun (a, b) => if a < b then (a, b) else (b, a))
+    (by sorry) s
+
+  variable {V : Type} [DecidableEq V]
+def SimpleGraph.Edges [LinearOrder V] (G : SimpleGraph V) : Set (Sym2 V) :=
+  {e : Sym2 V | G.Adj e.toProd.1 e.toProd.2}
+
+#print Matrix
+
+def SimpleGraph.IncidenceMatrix {V : Type} [DecidableEq V][LinearOrder V](G : SimpleGraph V) : Matrix V G.Edges Int :=
+  fun v e =>
+    let (a, b) := Sym2.toProd e
+    if v = a then 1
+    else if v = b then -1
+    else 0
+
 /-- Cauchy-Binet, https://en.wikipedia.org/wiki/Cauchy%E2%80%93Binet_formula -/
 theorem Matrix.det_mul' (A : Matrix m n R) (B : Matrix n m R) :
     det (A * B) = ∑ f : Function.Embedding.ModPerm m n,
@@ -39,6 +63,28 @@ theorem Matrix.det_mul' (A : Matrix m n R) (B : Matrix n m R) :
           rw [← Int.cast_mul, Int.units_coe_mul_self, Int.cast_one, one_mul]) := by
   -- real proof starts here
   sorry
+alias SimpleGraph.Inc := SimpleGraph.IncidenceMatrix
+
+/-- Define a submatrix of a matrix by removing the first row and column. -/
+def Matrix.minorFirst {n m : ℕ} {α : Type} [Zero α] (A : Matrix (Fin (n + 1)) (Fin (m + 1)) α) : Matrix (Fin n) (Fin m) α :=
+  fun i j => A (Fin.succ i) (Fin.succ j)
+
+
+/-- For a graph on vertices `Fin (n+1)` (with a suitable ordering) and with its edges
+carrying a `Fintype` and `LinearOrder` structure (so that they are identified with `Fin (m+1)`),
+we define the minor of the incidence matrix by removing the first vertex and first edge.
+Typically such a minor is used in statements relating to the number of spanning trees. -/
+def SimpleGraph.IncMinor {n m : ℕ}
+  (G : SimpleGraph (Fin (n + 1)))
+  [LinearOrder (Fin (n + 1))]
+  [Fintype { e : Sym2 (Fin (n + 1)) // G.Adj e.toProd.1 e.toProd.2 }]
+  [LinearOrder { e : Sym2 (Fin (n + 1)) // G.Adj e.toProd.1 e.toProd.2 }]
+  (h : Fintype.card { e : Sym2 (Fin (n + 1)) // G.Adj e.toProd.1 e.toProd.2 } = m + 1) :
+  Matrix (Fin n) (Fin m) Int :=
+  by sorry
+
+lemma reduced_inc_inc_T_eq_reduced_lap {n : ℕ} (G : SimpleGraph (Fin n.succ)) :
+  G.IncMinor * G.IncMinor.transpose = G.lapMatrix := by sorry
 
 
 
