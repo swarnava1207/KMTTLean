@@ -1,9 +1,5 @@
 import Mathlib
-import KMTT.Matrices
 open Matrix
-
-
-
 variable {m n : ℕ} (A : Matrix (Fin n) (Fin m) ℚ ) (B : Matrix (Fin m) (Fin n) ℚ )
 
 -- Main theorem: Cauchy–Binet–type determinant identity for rectangular matrices.
@@ -42,12 +38,13 @@ else
       ⟨j - n, sub_lt_helper (Or.symm (Nat.eq_zero_or_pos n)) j.is_lt⟩ ;
     D i' j'
 
-#leansearch "Scalar matrices are invertible?"
+--#leansearch "Scalar matrices are invertible?"
 #check Matrix.fromBlocks₁₁Invertible
 abbrev I {m : ℕ}: Matrix (Fin m) (Fin m) ℚ := 1
 #print Field
-
+#print Invertible
 #moogle "non-zero rationals are invertible."
+
 instance inv_scalar (a : ℚ) (ha : a ≠ 0) : Invertible (a • (1 :(Matrix (Fin m) (Fin m) ℚ)) ) :=
   by sorry
 instance inv_rat (a : ℚ) (ha : a ≠ 0) : Invertible a :=
@@ -70,6 +67,9 @@ by
     let i : Invertible (a • (1 :(Matrix (Fin m) (Fin m) ℚ))) := by
       apply inv_scalar a ha
     rw [det_fromBlocks₂₂]
+    simp [inv_I, det_smul, det_smul]
+    apply Or.inl
+
   /- Factor out the scalar from the bloc\Z in the second determinant.
      Note that for an m×m matrix M, det ((1/a) • M) = (1/a)^m * det M.
   -/

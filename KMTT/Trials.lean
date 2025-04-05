@@ -69,6 +69,8 @@ alias SimpleGraph.Inc := SimpleGraph.IncidenceMatrix
 def Matrix.minorFirst {n m : ℕ} {α : Type} [Zero α] (A : Matrix (Fin (n + 1)) (Fin (m + 1)) α) : Matrix (Fin n) (Fin m) α :=
   fun i j => A (Fin.succ i) (Fin.succ j)
 
+def SimpleGraph.IncMinor {n : ℕ} (G : SimpleGraph (Fin (n + 1))) 
+
 
 /-- For a graph on vertices `Fin (n+1)` (with a suitable ordering) and with its edges
 carrying a `Fintype` and `LinearOrder` structure (so that they are identified with `Fin (m+1)`),
@@ -83,8 +85,7 @@ def SimpleGraph.IncMinor {n m : ℕ}
   Matrix (Fin n) (Fin m) Int :=
   by sorry
 
-lemma reduced_inc_inc_T_eq_reduced_lap {n : ℕ} (G : SimpleGraph (Fin n.succ)) :
-  G.IncMinor * G.IncMinor.transpose = G.lapMatrix := by sorry
+
 
 
 

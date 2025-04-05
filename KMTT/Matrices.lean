@@ -4,7 +4,58 @@ import Mathlib
 import Mathlib.Data.Sym.Sym2
 #print Quot.lift
 #print Sym2
-def Sym2.toProd' (s : Sym2 ℕ) : ℕ × ℕ :=
+-- def Sym2.toProd' (s : Sym2 ℕ) : ℕ × ℕ :=
+--   Quot.lift
+--     (fun (a, b) => if a < b then (a, b) else (b, a))
+--     (by
+--       intro (a, b) (c, d)
+--       simp
+--       intro h
+--       apply Or.elim h
+--       · intro h₁
+--         simp [h₁]
+--       · intro h₂
+--         simp [h₂]
+--         if h' : c < d then
+--           simp [h']
+--           have h'' : ¬ d < c := by
+--             simp [Nat.le_of_lt, h']
+--           simp [h'']
+--         else
+--           simp [h']
+--           if h'' : d < c then
+--             simp [h'']
+--           else
+--             intro h'''
+--             cases h'''
+--             case refl => simp
+--             case step h_new => simp [h',h'']
+--                                rename_i m
+--                                cases Nat.lt_trichotomy c m
+--                                case inl hlt =>
+--                                 apply And.intro
+--                                 · simp [hlt] at h'
+--                                   revert h' h''
+--                                   omega
+--                                 · simp [hlt] at h'
+--                                   revert h' h''
+--                                   omega
+--                                case inr hge =>
+--                                   cases hge
+--                                   case inl heq =>
+--                                     simp [heq] at h'
+--                                   case inr hgt =>
+--                                     apply And.intro
+--                                     · simp [hgt] at h'
+--                                       revert h' h''
+--                                       omega
+--                                     · simp [hgt] at h'
+--                                       revert h' h''
+--                                       omega) s
+
+
+
+def Sym2.toProd {α : Type} [LinearOrder α] (s : Sym2 α) : α × α :=
   Quot.lift
     (fun (a, b) => if a < b then (a, b) else (b, a))
     (by
@@ -19,7 +70,7 @@ def Sym2.toProd' (s : Sym2 ℕ) : ℕ × ℕ :=
         if h' : c < d then
           simp [h']
           have h'' : ¬ d < c := by
-            simp [Nat.le_of_lt, h']
+            simp [le_of_lt, h']
           simp [h'']
         else
           simp [h']
@@ -27,43 +78,19 @@ def Sym2.toProd' (s : Sym2 ℕ) : ℕ × ℕ :=
             simp [h'']
           else
             intro h'''
-            cases h'''
-            case refl => simp
-            case step h_new => simp [h',h'']
-                               rename_i m
-                               cases Nat.lt_trichotomy c m
-                               case inl hlt =>
-                                apply And.intro
-                                · simp [hlt] at h'
-                                  revert h' h''
-                                  omega
-                                · simp [hlt] at h'
-                                  revert h' h''
-                                  omega
-                               case inr hge =>
-                                  cases hge
-                                  case inl heq =>
-                                    simp [heq] at h'
-                                  case inr hgt =>
-                                    apply And.intro
-                                    · simp [hgt] at h'
-                                      revert h' h''
-                                      omega
-                                    · simp [hgt] at h'
-                                      revert h' h''
-                                      omega) s
-
-
-
-def Sym2.toProd {α : Type} [LinearOrder α] (s : Sym2 α) : α × α :=
-  Quot.lift
-    (fun (a, b) => if a < b then (a, b) else (b, a))
-    (by sorry) s
+            apply And.intro
+            · apply le_antisymm
+              · exact h'''
+              · revert h'
+                simp
+            · apply le_antisymm
+              · revert h'
+                simp
+              · exact h''') s
 
 #check le_or_gt
 
-
-
+#check PartialOrder
 open SimpleGraph
 
 #print Sym2
@@ -77,13 +104,22 @@ open SimpleGraph
 --#moogle "Sym2 α to α × α?"
 
 
+#print Decidable
 
-
-
-variable {V : Type} [DecidableEq V] [Fintype V]
-def SimpleGraph.Edges [LinearOrder V] (G : SimpleGraph V) : Set (Sym2 V) :=
+variable {V : Type} [DecidableEq V] [Fintype V][LinearOrder V]
+instance {v₁ v₂ : V}{G : SimpleGraph V}: Decidable (G.Adj v₁ v₂) :=
+  by sorry
+instance decide_edge {G : SimpleGraph V} : DecidablePred (fun (e : Sym2 V) ↦ G.Adj e.toProd.1 e.toProd.2) :=
+  fun e =>
+    if h : G.Adj e.toProd.1 e.toProd.2 then
+      isTrue h
+    else
+      isFalse h
+def SimpleGraph.Edges (G : SimpleGraph V) : Finset (Sym2 V) :=
   {e : Sym2 V | G.Adj e.toProd.1 e.toProd.2}
 -- edges are finite
+
+
 noncomputable instance fin_edges [LinearOrder V] (G : SimpleGraph V) : Fintype (SimpleGraph.Edges G) :=
   by
     unfold SimpleGraph.Edges
@@ -92,7 +128,7 @@ noncomputable instance fin_edges [LinearOrder V] (G : SimpleGraph V) : Fintype (
 
 #print Matrix
 
-def SimpleGraph.IncidenceMatrix {V : Type} [DecidableEq V][LinearOrder V](G : SimpleGraph V) : Matrix V G.Edges ℚ :=
+def SimpleGraph.IncidenceMatrix {V : Type} [DecidableEq V][Fintype V][LinearOrder V](G : SimpleGraph V) : Matrix V G.Edges ℚ :=
   fun v e =>
     let (a, b) := Sym2.toProd e
     if v = a then 1
@@ -160,6 +196,17 @@ theorem CauchyBinet {m n : Nat} (M : Matrix (Fin m) (Fin n) ℚ) (N : Matrix (Fi
   (Matrix.colBlocks M s).det * (Matrix.rowBlocks N s).det :=
   by sorry
 
+#print Finset.equivFin
+
+def SimpleGraph.IncMinor {n : ℕ} (G : SimpleGraph (Fin (n + 1))) (m := G.Edges.card)
+        : Matrix (Fin n) (Fin (m -1)) ℚ :=
+    let edge := G.Edges.choose (fun e => e.toProd.1 = 0) (by simp; sorry)
+    let f_set := G.Edges.equivFin
+    
+
+
+
+    sorry
 #check Finset.card_erase_le
 #check Nat.pos_of_ne_zero
 #check Finset.erase
