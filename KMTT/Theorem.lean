@@ -53,7 +53,12 @@ instance inv_rat (a : ℚ) (ha : a ≠ 0) : Invertible a :=
 theorem toprove_cauchybinet (a : ℚ) (ha : a ≠ 0)  :
   a^m * (a • I + A * B).det = a^n * (a • I + B * A).det :=
 by
-  let M : Matrix (Fin n ⊕ Fin m) (Fin n ⊕ Fin m) ℚ := fromBlocks (a • 1) (-A) (B) (a • 1)
+  let M₁ : Matrix (Fin n ⊕ Fin m) (Fin n ⊕ Fin m) ℚ := fromBlocks (a • 1) (-a • A) (B) (a • 1)
+  let M₂ : Matrix (Fin m ⊕ Fin n) (Fin m ⊕ Fin n) ℚ := fromBlocks (a • 1) (B) (-a • A) (a • 1)
+  have det_M₁_M₂ : det M₁ = det M₂ :=
+    by
+      simp
+
   have inv_I {m : ℕ} : (a • ((1 :(Matrix (Fin m) (Fin m) ℚ))))⁻¹ = (1/a) • 1 :=
   by
     let i : Invertible a := by
@@ -62,13 +67,23 @@ by
     simp [inv_smul 1 a]
 
 
-  have det_M₁ : det M = a^m * det ((a • 1) + A * B) :=
+  have det_M₁ : det M₁ = a^m * det ((a • 1) + A * B) :=
     by
     let i : Invertible (a • (1 :(Matrix (Fin m) (Fin m) ℚ))) := by
       apply inv_scalar a ha
     rw [det_fromBlocks₂₂]
     simp [inv_I, det_smul, det_smul]
     apply Or.inl
+    aesop
+
+  have det_M₂ : det M₂ = a^n * det ((a • 1) + B * A) :=
+    by
+    let i : Invertible (a • (1 :(Matrix (Fin n) (Fin n) ℚ))) := by
+      apply inv_scalar a ha
+    rw [det_fromBlocks₂₂]
+    simp [inv_I, det_smul, det_smul]
+    apply Or.inl
+    aesop
 
   /- Factor out the scalar from the bloc\Z in the second determinant.
      Note that for an m×m matrix M, det ((1/a) • M) = (1/a)^m * det M.
@@ -76,7 +91,8 @@ by
   have det_scale : ∀ (M : Matrix (Fin m) (Fin m) ℚ), det ((1/a) • M) = (1/a)^m * det M :=
     fun M => by rw [det_smul]; simp
 
-  have det_M₁' : det M = a^n * det ((a • I) +  B * A) :=
-    by sorry
+
+
+
 
   rw [← det_M₁, det_M₁']
