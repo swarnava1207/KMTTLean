@@ -42,3 +42,8 @@ def subsets {α : Type} (s : Set α) (n : Nat) : Set (Set α) :=
 
 def spanningtrees {V : Type} [DecidableEq V] (G : SimpleGraph V) : Set (SimpleGraph V) :=
   { T | SimpleGraph.tree T ∧ T.Vertices = G.Vertices ∧ T.Edges ⊆ G.Edges }
+
+def g₂ : SimpleGraph (Fin 3) :=
+  ⟨ fun n m => n = m + 1 ∨ n = m - 1,sorry,sorry⟩
+
+#eval (spanningtrees g₂).cardinality

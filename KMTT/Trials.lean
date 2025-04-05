@@ -26,13 +26,24 @@ noncomputable instance : Fintype (Function.Embedding.ModPerm m n) := by
 variable [DecidableEq m] [CommRing R]
 
 open Nat
+/-- Cauchy-Binet, https://en.wikipedia.org/wiki/Cauchy%E2%80%93Binet_formula -/
+theorem Matrix.det_mul' (A : Matrix m n R) (B : Matrix n m R) :
+    det (A * B) = ∑ f : Function.Embedding.ModPerm m n,
+      f.liftOn
+        (fun f => det (A.submatrix id f) * det (B.submatrix f id))
+        (by
+          rintro f g ⟨σ, rfl⟩; revert σ; rw [DomMulAct.mk.surjective.forall]; intro σ
+          show (A.submatrix id ⇑g |>.submatrix id ⇑σ).det * (B.submatrix g id |>.submatrix σ id).det = (A.submatrix id ⇑g).det * (B.submatrix (⇑g) id).det
+          rw [det_permute', det_permute, mul_mul_mul_comm]
+          rw [← Int.cast_mul, Int.units_coe_mul_self, Int.cast_one, one_mul]) := by
+  -- real proof starts here
+  sorry
+
 
 
 #print SimpleGraph.lapMatrix
 #print SimpleGraph.incMatrix
 #print SimpleGraph.adjMatrix
-
-
 def Sym2.toProd {α : Type} [LinearOrder α] (s : Sym2 α) : α × α :=
   Quot.lift
     (fun (a, b) => if a < b then (a, b) else (b, a))
@@ -50,26 +61,13 @@ def SimpleGraph.IncidenceMatrix {V : Type} [DecidableEq V][LinearOrder V](G : Si
     if v = a then 1
     else if v = b then -1
     else 0
-
-/-- Cauchy-Binet, https://en.wikipedia.org/wiki/Cauchy%E2%80%93Binet_formula -/
-theorem Matrix.det_mul' (A : Matrix m n R) (B : Matrix n m R) :
-    det (A * B) = ∑ f : Function.Embedding.ModPerm m n,
-      f.liftOn
-        (fun f => det (A.submatrix id f) * det (B.submatrix f id))
-        (by
-          rintro f g ⟨σ, rfl⟩; revert σ; rw [DomMulAct.mk.surjective.forall]; intro σ
-          show (A.submatrix id ⇑g |>.submatrix id ⇑σ).det * (B.submatrix g id |>.submatrix σ id).det = (A.submatrix id ⇑g).det * (B.submatrix (⇑g) id).det
-          rw [det_permute', det_permute, mul_mul_mul_comm]
-          rw [← Int.cast_mul, Int.units_coe_mul_self, Int.cast_one, one_mul]) := by
-  -- real proof starts here
-  sorry
 alias SimpleGraph.Inc := SimpleGraph.IncidenceMatrix
 
 /-- Define a submatrix of a matrix by removing the first row and column. -/
 def Matrix.minorFirst {n m : ℕ} {α : Type} [Zero α] (A : Matrix (Fin (n + 1)) (Fin (m + 1)) α) : Matrix (Fin n) (Fin m) α :=
   fun i j => A (Fin.succ i) (Fin.succ j)
 
-def SimpleGraph.IncMinor {n : ℕ} (G : SimpleGraph (Fin (n + 1))) 
+def SimpleGraph.IncMinor {n : ℕ} (G : SimpleGraph (Fin (n + 1)))
 
 
 /-- For a graph on vertices `Fin (n+1)` (with a suitable ordering) and with its edges

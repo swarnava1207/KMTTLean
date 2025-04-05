@@ -98,25 +98,34 @@ open SimpleGraph
 #print SimpleGraph.lapMatrix
 #print SimpleGraph.incMatrix    --need to understand
 #print SimpleGraph.adjMatrix
-
+#print SimpleGraph.edgeSet
 #print incMatrix
 #print SimpleGraph.Adj
 --#moogle "Sym2 α to α × α?"
-
-
+#print Finset.toList
+#print Finset
 #print Decidable
 
+
 variable {V : Type} [DecidableEq V] [Fintype V][LinearOrder V]
-instance {v₁ v₂ : V}{G : SimpleGraph V}: Decidable (G.Adj v₁ v₂) :=
-  by sorry
-instance decide_edge {G : SimpleGraph V} : DecidablePred (fun (e : Sym2 V) ↦ G.Adj e.toProd.1 e.toProd.2) :=
-  fun e =>
-    if h : G.Adj e.toProd.1 e.toProd.2 then
-      isTrue h
-    else
-      isFalse h
-def SimpleGraph.Edges (G : SimpleGraph V) : Finset (Sym2 V) :=
-  {e : Sym2 V | G.Adj e.toProd.1 e.toProd.2}
+-- instance {v₁ v₂ : V}{G : SimpleGraph V}: Decidable (G.Adj v₁ v₂) :=
+--   by sorry
+-- instance decide_edge {G : SimpleGraph V} : DecidablePred (fun (e : Sym2 V) ↦ G.Adj e.toProd.1 e.toProd.2) :=
+--   fun e =>
+--     if h : G.Adj e.toProd.1 e.toProd.2 then
+--       isTrue h
+--     else
+--       isFalse h
+
+
+
+noncomputable def SimpleGraph.Edges (G : SimpleGraph V) [DecidableRel G.Adj] : List (Sym2 V) :=
+  /-
+  invalid pattern, constructor or constant marked with '[match_pattern]' expected
+  -/
+  List.filter (fun e => e ∈ G.edgeSet) (Finset.sym2 Finset.univ).toList-- complete this
+
+
 -- edges are finite
 
 
@@ -167,9 +176,6 @@ def all_subsets_of_size (n m : ℕ) : Finset (Finset (Fin m)) :=
 
 #synth Fintype (Fin 3) -- Fin.fintype 3
 
-lemma toprove_cauchybinet {m n : Nat} (A : Matrix (Fin n) (Fin m) ℚ) (B : Matrix (Fin m) (Fin n) ℚ) :
-  ∀ a : ℚ, a^m * (a • (I) + A * B).det = a^n * (a • (I) + B * A).det := by
-  sorry
 /-
 ⊢ {α : Type u_1} → (p : α → Prop) → [inst : DecidablePred p] → (l : Finset α) → (∃! a, a ∈ l ∧ p a) → α
 -/
@@ -191,10 +197,6 @@ noncomputable def Matrix.colBlocks {n m : ℕ } (N : Matrix (Fin n) (Fin m) ℚ)
   := by rw [← @zero_to_n_minus_one_card_eq_n m] ; exact submatrix' N s (zero_to_n_minus_one m)
 
 
-theorem CauchyBinet {m n : Nat} (M : Matrix (Fin m) (Fin n) ℚ) (N : Matrix (Fin n) (Fin m) ℚ) :
-  (M * N).det = ∑ s ∈ all_subsets_of_size n m,
-  (Matrix.colBlocks M s).det * (Matrix.rowBlocks N s).det :=
-  by sorry
 
 #print Finset.equivFin
 
@@ -202,7 +204,7 @@ def SimpleGraph.IncMinor {n : ℕ} (G : SimpleGraph (Fin (n + 1))) (m := G.Edges
         : Matrix (Fin n) (Fin (m -1)) ℚ :=
     let edge := G.Edges.choose (fun e => e.toProd.1 = 0) (by simp; sorry)
     let f_set := G.Edges.equivFin
-    
+
 
 
 
