@@ -123,13 +123,13 @@ noncomputable def SimpleGraph.Edges (G : SimpleGraph V) [DecidableRel G.Adj] : L
   /-
   invalid pattern, constructor or constant marked with '[match_pattern]' expected
   -/
-  List.filter (fun e => e ∈ G.edgeSet) (Finset.sym2 Finset.univ).toList-- complete this
+  List.filter (fun e => e ∈ G.edgeSet) (Finset.sym2 Finset.univ).toList
 
 
 -- edges are finite
 
 
-noncomputable instance fin_edges [LinearOrder V] (G : SimpleGraph V) : Fintype (SimpleGraph.Edges G) :=
+noncomputable instance fin_edges [LinearOrder V] (G : SimpleGraph V)[DecidableRel G.Adj] : Fintype (SimpleGraph.Edges G) :=
   by
     unfold SimpleGraph.Edges
     apply Fintype.ofFinite
@@ -137,9 +137,10 @@ noncomputable instance fin_edges [LinearOrder V] (G : SimpleGraph V) : Fintype (
 
 #print Matrix
 
-def SimpleGraph.IncidenceMatrix {V : Type} [DecidableEq V][Fintype V][LinearOrder V](G : SimpleGraph V) : Matrix V G.Edges ℚ :=
+noncomputable def SimpleGraph.IncidenceMatrix {V : Type} [DecidableEq V][Fintype V][LinearOrder V](G : SimpleGraph V)[DecidableRel G.Adj]
+  : Matrix V (Fin (G.Edges.length)) ℚ :=
   fun v e =>
-    let (a, b) := Sym2.toProd e
+    let (a, b) := Sym2.toProd (G.Edges.get e)
     if v = a then 1
     else if v = b then -1
     else 0
@@ -196,19 +197,41 @@ noncomputable def Matrix.rowBlocks {n m : ℕ} (N : Matrix (Fin n) (Fin m) ℚ) 
 noncomputable def Matrix.colBlocks {n m : ℕ } (N : Matrix (Fin n) (Fin m) ℚ) (s : Finset (Fin n)) : Matrix (Fin s.card) (Fin m) ℚ
   := by rw [← @zero_to_n_minus_one_card_eq_n m] ; exact submatrix' N s (zero_to_n_minus_one m)
 
+def List.remove {α : Type} (l : List α) (i : ℕ) (h : i < l.length) : List α :=
+  match l with
+  | [] => []
+  | x :: xs =>
+    if i = 0 then xs
+    else x :: List.remove xs (i - 1) (by aesop ; simp)
+#eval List.remove [1,2,3,4]
+
+theorem remove_length {α : Type} (l : List α) (i : ℕ) :
+  (List.remove l i).length = l.length - 1 := by
+  induction l with
+  | nil => simp; unfold List.remove; simp
+  | cons x xs ih =>
+    by_cases h : i = 0
+    · simp [h]
+    · simp [h, ih]
 
 
 #print Finset.equivFin
+#print List.choose
 
-def SimpleGraph.IncMinor {n : ℕ} (G : SimpleGraph (Fin (n + 1))) (m := G.Edges.card)
-        : Matrix (Fin n) (Fin (m -1)) ℚ :=
-    let edge := G.Edges.choose (fun e => e.toProd.1 = 0) (by simp; sorry)
-    let f_set := G.Edges.equivFin
+noncomputable def SimpleGraph.IncMinor {n : ℕ} (G : SimpleGraph (Fin (n + 1))) [DecidableRel G.Adj]
+        : Matrix (Fin n) (Fin (G.Edges.length - 1)) ℚ :=
+        let edge_filter : List (Sym2 (Fin (n + 1))) :=
+          G.Edges.remove nat_lit
+        --let m : ℕ := edge_filter.length
+        have m_eq : edge_filter.length = G.Edges.length - 1 := by
 
+        fun i j =>
+          let e := edge_filter.get (by rw [m_eq]; exact j)
+          let (a, b) := Sym2.toProd e
+          if i = a then 1
+          else if i = b then -1
+          else 0
 
-
-
-    sorry
 #check Finset.card_erase_le
 #check Nat.pos_of_ne_zero
 #check Finset.erase
