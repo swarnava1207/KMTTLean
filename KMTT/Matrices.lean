@@ -201,18 +201,22 @@ def List.remove {α : Type} (l : List α) (i : ℕ) (h : i < l.length) : List α
   match l with
   | [] => []
   | x :: xs =>
-    if i = 0 then xs
-    else x :: List.remove xs (i - 1) (by aesop ; simp)
-#eval List.remove [1,2,3,4]
+    if h' : i = 0 then xs
+    else x :: List.remove xs (i - 1) (by
+    simp_all only [length_cons]
+    ; omega )
 
-theorem remove_length {α : Type} (l : List α) (i : ℕ) :
-  (List.remove l i).length = l.length - 1 := by
+#eval List.remove [1,2,3,4] 2 (by simp)
+
+theorem remove_length {α : Type} (l : List α) (i : ℕ) (h : i < l.length) :
+  (List.remove l i h).length = l.length - 1 := by
   induction l with
   | nil => simp; unfold List.remove; simp
   | cons x xs ih =>
-    by_cases h : i = 0
-    · simp [h]
-    · simp [h, ih]
+      simp
+      if h' : i = 0 then aesop
+      else
+
 
 
 #print Finset.equivFin
@@ -221,7 +225,7 @@ theorem remove_length {α : Type} (l : List α) (i : ℕ) :
 noncomputable def SimpleGraph.IncMinor {n : ℕ} (G : SimpleGraph (Fin (n + 1))) [DecidableRel G.Adj]
         : Matrix (Fin n) (Fin (G.Edges.length - 1)) ℚ :=
         let edge_filter : List (Sym2 (Fin (n + 1))) :=
-          G.Edges.remove nat_lit
+          G.Edges.remove n (by simp)
         --let m : ℕ := edge_filter.length
         have m_eq : edge_filter.length = G.Edges.length - 1 := by
 
