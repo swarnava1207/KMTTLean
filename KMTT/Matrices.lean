@@ -4,54 +4,28 @@ import Mathlib
 import Mathlib.Data.Sym.Sym2
 #print Quot.lift
 #print Sym2
--- def Sym2.toProd' (s : Sym2 ℕ) : ℕ × ℕ :=
---   Quot.lift
---     (fun (a, b) => if a < b then (a, b) else (b, a))
---     (by
---       intro (a, b) (c, d)
---       simp
---       intro h
---       apply Or.elim h
---       · intro h₁
---         simp [h₁]
---       · intro h₂
---         simp [h₂]
---         if h' : c < d then
---           simp [h']
---           have h'' : ¬ d < c := by
---             simp [Nat.le_of_lt, h']
---           simp [h'']
---         else
---           simp [h']
---           if h'' : d < c then
---             simp [h'']
---           else
---             intro h'''
---             cases h'''
---             case refl => simp
---             case step h_new => simp [h',h'']
---                                rename_i m
---                                cases Nat.lt_trichotomy c m
---                                case inl hlt =>
---                                 apply And.intro
---                                 · simp [hlt] at h'
---                                   revert h' h''
---                                   omega
---                                 · simp [hlt] at h'
---                                   revert h' h''
---                                   omega
---                                case inr hge =>
---                                   cases hge
---                                   case inl heq =>
---                                     simp [heq] at h'
---                                   case inr hgt =>
---                                     apply And.intro
---                                     · simp [hgt] at h'
---                                       revert h' h''
---                                       omega
---                                     · simp [hgt] at h'
---                                       revert h' h''
---                                       omega) s
+
+
+#check le_or_gt
+
+#check PartialOrder
+open SimpleGraph
+
+#print Sym2
+#print SimpleGraph
+#print SimpleGraph.lapMatrix
+#print SimpleGraph.incMatrix    --need to understand
+#print SimpleGraph.adjMatrix
+#print SimpleGraph.edgeSet
+#print incMatrix
+#print SimpleGraph.Adj
+--#moogle "Sym2 α to α × α?"
+#print Finset.toList
+#print Finset
+#print Decidable
+
+
+variable {V : Type} [DecidableEq V] [Fintype V][LinearOrder V]
 
 
 
@@ -88,52 +62,9 @@ def Sym2.toProd {α : Type} [LinearOrder α] (s : Sym2 α) : α × α :=
                 simp
               · exact h''') s
 
-#check le_or_gt
-
-#check PartialOrder
-open SimpleGraph
-
-#print Sym2
-#print SimpleGraph
-#print SimpleGraph.lapMatrix
-#print SimpleGraph.incMatrix    --need to understand
-#print SimpleGraph.adjMatrix
-#print SimpleGraph.edgeSet
-#print incMatrix
-#print SimpleGraph.Adj
---#moogle "Sym2 α to α × α?"
-#print Finset.toList
-#print Finset
-#print Decidable
-
-
-variable {V : Type} [DecidableEq V] [Fintype V][LinearOrder V]
--- instance {v₁ v₂ : V}{G : SimpleGraph V}: Decidable (G.Adj v₁ v₂) :=
---   by sorry
--- instance decide_edge {G : SimpleGraph V} : DecidablePred (fun (e : Sym2 V) ↦ G.Adj e.toProd.1 e.toProd.2) :=
---   fun e =>
---     if h : G.Adj e.toProd.1 e.toProd.2 then
---       isTrue h
---     else
---       isFalse h
-
-
-
+/-- **To be removed** -/
 noncomputable def SimpleGraph.Edges (G : SimpleGraph V) [DecidableRel G.Adj] : List (Sym2 V) :=
-  /-
-  invalid pattern, constructor or constant marked with '[match_pattern]' expected
-  -/
   List.filter (fun e => e ∈ G.edgeSet) (Finset.sym2 Finset.univ).toList
-
-
--- edges are finite
-
-
-noncomputable instance fin_edges [LinearOrder V] (G : SimpleGraph V)[DecidableRel G.Adj] : Fintype (SimpleGraph.Edges G) :=
-  by
-    unfold SimpleGraph.Edges
-    apply Fintype.ofFinite
-
 
 #print Matrix
 
@@ -145,9 +76,12 @@ noncomputable def SimpleGraph.IncidenceMatrix {V : Type} [DecidableEq V][Fintype
     else if v = b then -1
     else 0
 
+alias SimpleGraph.Inc := SimpleGraph.IncidenceMatrix
+
+
 def I {n : Nat} : Matrix (Fin n) (Fin n) ℚ := 1
 
-alias SimpleGraph.Inc := SimpleGraph.IncidenceMatrix
+--alias SimpleGraph.Inc := SimpleGraph.IncidenceMatrix
 alias L := lapMatrix
 alias A := adjMatrix
 
@@ -210,25 +144,41 @@ def List.remove {α : Type} (l : List α) (i : ℕ) (h : i < l.length) : List α
 
 theorem remove_length {α : Type} (l : List α) (i : ℕ) (h : i < l.length) :
   (List.remove l i h).length = l.length - 1 := by
-  induction l with
-  | nil => simp; unfold List.remove; simp
+  induction l generalizing i with
+  | nil =>
+    simp only [List.length_nil] at h
+    exact absurd h (Nat.not_lt_zero i)
   | cons x xs ih =>
+    simp only [List.remove]
+    split_ifs with h_i_eq_zero
+    · simp only [List.length_cons, Nat.add_succ_sub_one, Nat.zero_add]
+      rfl
+    · simp only [List.length_cons, Nat.add_succ_sub_one, Nat.zero_add]
+      rw [ih (i - 1)]
       simp
-      if h' : i = 0 then aesop
-      else
-
+      match xs with
+      | [] => aesop
+      | y :: ys => simp
 
 
 #print Finset.equivFin
 #print List.choose
 
+-- def SimpleGraph.degree (G : SimpleGraph V) (v : V) : ℕ
+--   := G.degMatrix v v
+
 noncomputable def SimpleGraph.IncMinor {n : ℕ} (G : SimpleGraph (Fin (n + 1))) [DecidableRel G.Adj]
         : Matrix (Fin n) (Fin (G.Edges.length - 1)) ℚ :=
-        let edge_filter : List (Sym2 (Fin (n + 1))) :=
-          G.Edges.remove n (by simp)
+        let m : ℕ := G.Edges.length
+        if h' : m = 0 then
+          fun i j => 0
+        else
+          let edge_filter : List (Sym2 (Fin (n + 1))) :=
+            G.Edges.remove (m-1) (by simp [m]; omega)
         --let m : ℕ := edge_filter.length
         have m_eq : edge_filter.length = G.Edges.length - 1 := by
-
+          simp [edge_filter]
+          apply remove_length
         fun i j =>
           let e := edge_filter.get (by rw [m_eq]; exact j)
           let (a, b) := Sym2.toProd e
@@ -239,11 +189,43 @@ noncomputable def SimpleGraph.IncMinor {n : ℕ} (G : SimpleGraph (Fin (n + 1)))
 #check Finset.card_erase_le
 #check Nat.pos_of_ne_zero
 #check Finset.erase
+#check SimpleGraph
+#check SimpleGraph.lapMatrix
+
+#check SimpleGraph.degree
+#moogle "Sum of an indicator function."
+#check Finset.sum_boole
+
+theorem inc_incT_diag_degree (G : SimpleGraph V) [DecidableRel G.Adj] :
+    ∀ v, (G.Inc * G.Inc.transpose) v v = G.degree v := by
+  intro v
+  simp only [Matrix.mul_apply, Matrix.transpose_apply]
+  let p (x : Fin (G.Edges.length)) : Prop := G.Inc v x * G.Inc v x = 1
+  ]
+
+
+
+
 
 lemma inc_incT_eq_lap {n : ℕ} (G : SimpleGraph (Fin n))[DecidableRel G.Adj]
-  :
-  G.Inc * G.Inc.transpose = (G.lapMatrix ℚ : Matrix (Fin n) (Fin n) ℚ) :=
-    by sorry
+  : G.Inc * G.Inc.transpose = (G.lapMatrix ℚ : Matrix (Fin n) (Fin n) ℚ) := by
+
+  apply Matrix.ext; intro i j
+  simp only [Matrix.mul_apply, Matrix.transpose_apply, SimpleGraph.Inc]
+  by_cases h_diag : i = j
+  · simp [h_diag]
+    have h₁ : G.lapMatrix ℚ j j = G.degree j := by
+      simp [SimpleGraph.lapMatrix]
+      simp [SimpleGraph.degMatrix]
+    rw [h₁]
+    sorry
+  · sorry
+
+
+
+
+
+
 
 
 
