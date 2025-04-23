@@ -12,7 +12,7 @@ involving group actions on embeddings.
 ## Main Results
 
 * `toprove_cauchybinet` : Identity involving determinants of `aI + AB` and `aI + BA`
-* `Matrix.det_mul'` : Cauchy-Binet formula for general rings
+* `Matrix.Cauchy_Binet` : Cauchy-Binet formula for general rings
 * `Function.Embedding.ModPerm` : Choice of `m` elements from `n` up to permutation
 * `inv_scalar`, `inv_rat` : Invertibility of scaled identity matrices
 -/
@@ -103,7 +103,7 @@ variable [DecidableEq m] [CommRing R]
 The determinant of a product of non-square matrices can be expressed as a sum over
 certain minors of the factors. See <https://en.wikipedia.org/wiki/Cauchy%E2%80%93Binet_formula>.
 -/
-theorem Matrix.det_mul' (A : Matrix m n R) (B : Matrix n m R) :
+theorem Matrix.Cauchy_Binet (A : Matrix m n R) (B : Matrix n m R) :
     det (A * B) =
       ∑ f : Function.Embedding.ModPerm m n,
         f.liftOn

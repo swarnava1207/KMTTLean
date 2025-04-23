@@ -31,11 +31,7 @@ of matrix identities related to graph theory.
 
 These constructions are useful for combinatorics, spectral graph theory, and matrix-tree theorem formulations.
 -/
-
-
-
 variable {V : Type} [DecidableEq V] [Fintype V][LinearOrder V]
-
 -- Converts a Sym2 (unordered pair) to an ordered pair using a linear order
 def Sym2.toProd {α : Type} [LinearOrder α] (s : Sym2 α) : α × α :=
   Quot.lift
@@ -166,7 +162,10 @@ noncomputable def SimpleGraph.IncMinor {n : ℕ} (G : SimpleGraph (Fin (n + 1)))
           if i = a then 1
           else if i = b then -1
           else 0
-
+-- The monor of the Laplacian matrix of a graph (removes last row and column)
+def SimpleGraph.Lapminor {n : ℕ} (G : SimpleGraph (Fin (n + 1))) [DecidableRel G.Adj]
+        : Matrix (Fin n) (Fin n) ℚ :=
+        fun i j => G.lapMatrix ℚ i j
 -- A predicate: is there a non-zero entry in Inc for edge (a,b)?
 def non_zero_iff_incident (G : SimpleGraph V) [DecidableRel G.Adj]
   : (Sym2 V) → Prop
@@ -198,3 +197,4 @@ lemma inc_incT_eq_lap {n : ℕ} (G : SimpleGraph (Fin n))[DecidableRel G.Adj]
   · sorry
 
 #check Finset.sum_ite_eq
+#moogle "minor of laplacian matrix of a simplegraph."

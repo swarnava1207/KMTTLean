@@ -70,17 +70,15 @@ structure SpanningTree {V : Type} [DecidableEq V] [Fintype V] (G : SimpleGraph V
   (isSpanning : tree.Vertices = G.Vertices ∧ tree.Edges ⊆ G.Edges)
 
 /-- The set of all spanning trees of a graph `G` that span its vertex set and use only its edges. -/
-def spanningtrees {V : Type} [DecidableEq V] [Fintype V]
+def SimpleGraph.spanningtrees {V : Type} [DecidableEq V] [Fintype V]
     (G : SimpleGraph V) [DecidableRel G.Adj] : Set (SimpleGraph V) :=
   { T | ∃a : SpanningTree G, a.tree = T}
 
 noncomputable instance {V : Type} [DecidableEq V] [Fintype V]
-    (G : SimpleGraph V) [DecidableRel G.Adj] : Fintype (spanningtrees G) :=
-    setFintype (spanningtrees G)
+    (G : SimpleGraph V) [DecidableRel G.Adj] : Fintype (G.spanningtrees) :=
+    setFintype (G.spanningtrees)
 
 /-- The number of spanning trees of a graph `G` is the cardinality of the set of all spanning trees. -/
-noncomputable def numSpanningTrees {V : Type} [DecidableEq V] [Fintype V]
+noncomputable def SimpleGraph.numSpanningTrees {V : Type} [DecidableEq V] [Fintype V]
     (G : SimpleGraph V) [DecidableRel G.Adj] : Nat :=
-  Set.cardinality (spanningtrees G)
-
-
+  Set.cardinality (G.spanningtrees)
