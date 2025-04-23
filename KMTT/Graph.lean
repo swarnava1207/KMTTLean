@@ -24,7 +24,7 @@ including enumeration and verification of spanning structures.
 -/
 
 variable {V : Type} [DecidableEq V] [Fintype V]
-
+open Classical
 namespace SimpleGraph
 
 /-- A graph is *acyclic* if it contains no nontrivial closed walks (cycles). -/
@@ -74,15 +74,13 @@ def spanningtrees {V : Type} [DecidableEq V] [Fintype V]
     (G : SimpleGraph V) [DecidableRel G.Adj] : Set (SimpleGraph V) :=
   { T | ∃a : SpanningTree G, a.tree = T}
 
-instance {V : Type} [DecidableEq V] [Fintype V]
+noncomputable instance {V : Type} [DecidableEq V] [Fintype V]
     (G : SimpleGraph V) [DecidableRel G.Adj] : Fintype (spanningtrees G) :=
-    sorry
-    
+    setFintype (spanningtrees G)
+
 /-- The number of spanning trees of a graph `G` is the cardinality of the set of all spanning trees. -/
-def numSpanningTrees {V : Type} [DecidableEq V] [Fintype V]
+noncomputable def numSpanningTrees {V : Type} [DecidableEq V] [Fintype V]
     (G : SimpleGraph V) [DecidableRel G.Adj] : Nat :=
   Set.cardinality (spanningtrees G)
 
-#synth Fintype (SimpleGraph (Fin 3))
 
-#moogle "Subgraph of a finite graph is finite."

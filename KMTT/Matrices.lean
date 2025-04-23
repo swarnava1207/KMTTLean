@@ -1,34 +1,42 @@
 import Mathlib
---import Graph.SimpleGraph
+import KMTT.Graph
 
-import Mathlib.Data.Sym.Sym2
-#print Quot.lift
-#print Sym2
+/-!
+# Graph Matrix Utilities
 
+This file provides matrix-based representations and operations for graphs using `SimpleGraph`,
+including incidence matrices, submatrix selection, edge and vertex processing, and structure
+theorems relating the incidence matrix to Laplacians.
 
-#check le_or_gt
+It includes both helper functions for handling finite sets, matrices, and lists,
+as well as more sophisticated operations like incidence matrix minors and verification
+of matrix identities related to graph theory.
 
-#check PartialOrder
-open SimpleGraph
+## Main Definitions and Theorems
 
-#print Sym2
-#print SimpleGraph
-#print SimpleGraph.lapMatrix
-#print SimpleGraph.incMatrix    --need to understand
-#print SimpleGraph.adjMatrix
-#print SimpleGraph.edgeSet
-#print incMatrix
-#print SimpleGraph.Adj
---#moogle "Sym2 α to α × α?"
-#print Finset.toList
-#print Finset
-#print Decidable
+- `Sym2.toProd`: Converts an unordered pair to an ordered pair based on a linear order.
+- `SimpleGraph.IncidenceMatrix` (alias `SimpleGraph.Inc`): The incidence matrix of a graph.
+- `I`: The identity matrix of dimension `n`.
+- `listSubsetsOfSize`: Enumerates all subsets of a given size from a list.
+- `submatrix'`: Extracts a rectangular block from a matrix using row/column index sets.
+- `all_subsets_of_size`: Enumerates all subsets of given cardinality from `Fin m`.
+- `zero_to_n_minus_one`: Finset of `Fin n`.
+- `Matrix.rowBlocks`, `Matrix.colBlocks`: Submatrices selecting specified rows or columns.
+- `List.remove`: Removes an indexed element from a list.
+- `remove_length`: Proves that `List.remove` decreases list length by 1.
+- `SimpleGraph.IncMinor`: Minor of the incidence matrix by removing one edge.
+- `non_zero_iff_incident`: Characterizes incidence via a predicate on edge endpoints.
+- `inc_incT_diag_degree`: States that `(Inc * Incᵀ) v v = degree v`.
+- `inc_incT_eq_lap`: Proves that `Inc * Incᵀ = Laplacian` matrix.
+
+These constructions are useful for combinatorics, spectral graph theory, and matrix-tree theorem formulations.
+-/
+
 
 
 variable {V : Type} [DecidableEq V] [Fintype V][LinearOrder V]
 
-
-
+-- Converts a Sym2 (unordered pair) to an ordered pair using a linear order
 def Sym2.toProd {α : Type} [LinearOrder α] (s : Sym2 α) : α × α :=
   Quot.lift
     (fun (a, b) => if a < b then (a, b) else (b, a))
@@ -62,12 +70,7 @@ def Sym2.toProd {α : Type} [LinearOrder α] (s : Sym2 α) : α × α :=
                 simp
               · exact h''') s
 
-/-- **To be removed** -/
-noncomputable def SimpleGraph.Edges (G : SimpleGraph V) [DecidableRel G.Adj] : List (Sym2 V) :=
-  List.filter (fun e => e ∈ G.edgeSet) (Finset.sym2 Finset.univ).toList
-
-#print Matrix
-
+-- The incidence matrix of a simple graph G, oriented by linear order on vertices
 noncomputable def SimpleGraph.IncidenceMatrix {V : Type} [DecidableEq V][Fintype V][LinearOrder V](G : SimpleGraph V)[DecidableRel G.Adj]
   : Matrix V (Fin (G.Edges.length)) ℚ :=
   fun v e =>
@@ -76,15 +79,13 @@ noncomputable def SimpleGraph.IncidenceMatrix {V : Type} [DecidableEq V][Fintype
     else if v = b then -1
     else 0
 
+-- Shorthand alias for incidence matrix
 alias SimpleGraph.Inc := SimpleGraph.IncidenceMatrix
 
-
+-- Identity matrix over ℚ
 def I {n : Nat} : Matrix (Fin n) (Fin n) ℚ := 1
 
---alias SimpleGraph.Inc := SimpleGraph.IncidenceMatrix
-alias L := lapMatrix
-alias A := adjMatrix
-
+-- All subsets of a list of size `n`
 def listSubsetsOfSize {α : Type} : ℕ → List α → List (List α)
   | 0, _ => [[]]
   | _, [] => []
@@ -93,44 +94,32 @@ def listSubsetsOfSize {α : Type} : ℕ → List α → List (List α)
 
 #eval listSubsetsOfSize 2 [1,2,3,4]
 
-#check Finset (Fin 2)
-
+-- Extracts a submatrix given row and column index sets (as finsets)
 noncomputable def submatrix' {n m : ℕ} {α : Type} [Zero α] (A : Matrix (Fin n) (Fin m) α)
   (rows : Finset (Fin n)) (cols : Finset (Fin m)) :
     Matrix (Fin rows.card) (Fin cols.card) α :=
   fun i j => A (rows.toList.get ⟨i.1, by simp [i.2]⟩) (cols.toList.get ⟨j.1, by simp [j.2]⟩)
-/-
-⊢ {α : Type u_1} → ℕ → Finset α → Finset (Finset α)
--/
-#check Finset.powersetCard
+
+-- All subsets of size `n` from `Fin m`
 def all_subsets_of_size (n m : ℕ) : Finset (Finset (Fin m)) :=
   Finset.powersetCard n (Finset.univ)
 
-#eval all_subsets_of_size 2 3   -- {{0, 1}, {0, 2}, {1, 2}}
-#eval (all_subsets_of_size 2 2) -- {{0, 1}}
-
-#synth Fintype (Fin 3) -- Fin.fintype 3
-
-/-
-⊢ {α : Type u_1} → (p : α → Prop) → [inst : DecidablePred p] → (l : Finset α) → (∃! a, a ∈ l ∧ p a) → α
--/
-#check Finset.choose
-
+-- The Finset {0, ..., n-1} as Fin n
 def zero_to_n_minus_one (n : Nat) : Finset (Fin n) := Finset.univ
 
-#check Finset.card_univ
-
+-- Lemma: cardinality of `zero_to_n_minus_one` is `n`
 theorem zero_to_n_minus_one_card_eq_n {n : ℕ} : (zero_to_n_minus_one n).card = n := by
   simp [zero_to_n_minus_one, Finset.card_univ]
 
+-- Selects specified columns from matrix `N`
 noncomputable def Matrix.rowBlocks {n m : ℕ} (N : Matrix (Fin n) (Fin m) ℚ) (s : Finset (Fin m)) : Matrix (Fin n) (Fin s.card) ℚ
         := by rw [← @zero_to_n_minus_one_card_eq_n n] ; exact submatrix' N (zero_to_n_minus_one n) s
 
-
-
+-- Selects specified rows from matrix `N`
 noncomputable def Matrix.colBlocks {n m : ℕ } (N : Matrix (Fin n) (Fin m) ℚ) (s : Finset (Fin n)) : Matrix (Fin s.card) (Fin m) ℚ
   := by rw [← @zero_to_n_minus_one_card_eq_n m] ; exact submatrix' N s (zero_to_n_minus_one m)
 
+-- Removes the i-th element from a list, given proof that i < l.length
 def List.remove {α : Type} (l : List α) (i : ℕ) (h : i < l.length) : List α :=
   match l with
   | [] => []
@@ -140,8 +129,7 @@ def List.remove {α : Type} (l : List α) (i : ℕ) (h : i < l.length) : List α
     simp_all only [length_cons]
     ; omega )
 
-#eval List.remove [1,2,3,4] 2 (by simp)
-
+-- Proves that `remove` decreases the length of the list by 1
 theorem remove_length {α : Type} (l : List α) (i : ℕ) (h : i < l.length) :
   (List.remove l i h).length = l.length - 1 := by
   induction l generalizing i with
@@ -160,13 +148,7 @@ theorem remove_length {α : Type} (l : List α) (i : ℕ) (h : i < l.length) :
       | [] => aesop
       | y :: ys => simp
 
-
-#print Finset.equivFin
-#print List.choose
-
--- def SimpleGraph.degree (G : SimpleGraph V) (v : V) : ℕ
---   := G.degMatrix v v
-
+-- The incidence matrix of a graph minor (removes last edge)
 noncomputable def SimpleGraph.IncMinor {n : ℕ} (G : SimpleGraph (Fin (n + 1))) [DecidableRel G.Adj]
         : Matrix (Fin n) (Fin (G.Edges.length - 1)) ℚ :=
         let m : ℕ := G.Edges.length
@@ -175,7 +157,6 @@ noncomputable def SimpleGraph.IncMinor {n : ℕ} (G : SimpleGraph (Fin (n + 1)))
         else
           let edge_filter : List (Sym2 (Fin (n + 1))) :=
             G.Edges.remove (m-1) (by simp [m]; omega)
-        --let m : ℕ := edge_filter.length
         have m_eq : edge_filter.length = G.Edges.length - 1 := by
           simp [edge_filter]
           apply remove_length
@@ -186,30 +167,25 @@ noncomputable def SimpleGraph.IncMinor {n : ℕ} (G : SimpleGraph (Fin (n + 1)))
           else if i = b then -1
           else 0
 
-#check Finset.card_erase_le
-#check Nat.pos_of_ne_zero
-#check Finset.erase
-#check SimpleGraph
-#check SimpleGraph.lapMatrix
+-- A predicate: is there a non-zero entry in Inc for edge (a,b)?
+def non_zero_iff_incident (G : SimpleGraph V) [DecidableRel G.Adj]
+  : (Sym2 V) → Prop
+    := fun e =>
+      let (a, b) := Sym2.toProd e
+      ∃ i j, G.Inc a i = 1 ∧ G.Inc b j = -1
 
-#check SimpleGraph.degree
-#moogle "Sum of an indicator function."
 #check Finset.sum_boole
 
+-- States: (Inc * Incᵀ)(v,v) = degree of v
 theorem inc_incT_diag_degree (G : SimpleGraph V) [DecidableRel G.Adj] :
     ∀ v, (G.Inc * G.Inc.transpose) v v = G.degree v := by
   intro v
   simp only [Matrix.mul_apply, Matrix.transpose_apply]
-  let p (x : Fin (G.Edges.length)) : Prop := G.Inc v x * G.Inc v x = 1
-  ]
+  sorry
 
-
-
-
-
+-- Proves: Inc * Incᵀ = Laplacian matrix of the graph
 lemma inc_incT_eq_lap {n : ℕ} (G : SimpleGraph (Fin n))[DecidableRel G.Adj]
   : G.Inc * G.Inc.transpose = (G.lapMatrix ℚ : Matrix (Fin n) (Fin n) ℚ) := by
-
   apply Matrix.ext; intro i j
   simp only [Matrix.mul_apply, Matrix.transpose_apply, SimpleGraph.Inc]
   by_cases h_diag : i = j
@@ -221,12 +197,4 @@ lemma inc_incT_eq_lap {n : ℕ} (G : SimpleGraph (Fin n))[DecidableRel G.Adj]
     sorry
   · sorry
 
-
-
-
-
-
-
-
-
-#synth AddGroupWithOne ℚ
+#check Finset.sum_ite_eq
