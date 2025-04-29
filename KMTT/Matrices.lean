@@ -31,6 +31,7 @@ of matrix identities related to graph theory.
 
 These constructions are useful for combinatorics, spectral graph theory, and matrix-tree theorem formulations.
 -/
+open Classical
 variable {V : Type} [DecidableEq V] [Fintype V][LinearOrder V]
 -- Converts a Sym2 (unordered pair) to an ordered pair using a linear order
 def Sym2.toProd {α : Type} [LinearOrder α] (s : Sym2 α) : α × α :=
@@ -65,6 +66,25 @@ def Sym2.toProd {α : Type} [LinearOrder α] (s : Sym2 α) : α × α :=
               · revert h'
                 simp
               · exact h''') s
+theorem Sym2.toProd_mem {α : Type}[LinearOrder α] (s : Sym2 α) :
+    s.toProd.1 ∈ s ∧ s.toProd.2 ∈ s := by
+       apply And.intro
+       · sorry
+       · sorry
+
+
+
+set_option linter.unusedSectionVars false
+lemma edge_exist_adj  (G : SimpleGraph V) [DecidableRel G.Adj] (v w : V)
+  : G.Adj v w ↔ Sym2.mk (v , w) ∈  G.Edges := by
+  apply Iff.intro
+  · intro h
+    simp [SimpleGraph.Edges]
+    assumption
+  · intro h
+    simp [SimpleGraph.Edges] at h
+    assumption
+
 
 -- The incidence matrix of a simple graph G, oriented by linear order on vertices
 noncomputable def SimpleGraph.IncidenceMatrix {V : Type} [DecidableEq V][Fintype V][LinearOrder V](G : SimpleGraph V)[DecidableRel G.Adj]
@@ -175,12 +195,63 @@ def non_zero_iff_incident (G : SimpleGraph V) [DecidableRel G.Adj]
 
 #check Finset.sum_boole
 
+
+noncomputable def adjEdge (v: V) {G: SimpleGraph V} [DecidableRel G.Adj] : (Fin G.Edges.length)  → Bool :=
+  fun e =>
+    let (a, b) := Sym2.toProd (G.Edges.get e)
+    if a = v then true
+    else if b = v then true
+    else false
+#check bool_to_prop
+def bool_to_prop' {α : Type} (p : α → Bool) : α → Prop :=
+  fun x => p x = true
+
+theorem adj_prop (v : V) (G : SimpleGraph V) [DecidableRel G.Adj] :
+    ∀ x :  (Fin G.Edges.length), G.Inc v x * (G.Inc v x) = if adjEdge v x then 1 else 0 := by
+  intro x
+  simp only [Matrix.mul_apply, SimpleGraph.Inc]
+  simp [adjEdge]
+  simp [SimpleGraph.IncidenceMatrix]
+  aesop
+
+noncomputable def SimpleGraph.EdgesIncident {G : SimpleGraph V} [DecidableRel G.Adj] (v : V) :
+  Finset (Fin G.Edges.length) :=
+  Finset.filter (bool_to_prop' (adjEdge v)) (Finset.univ : Finset (Fin G.Edges.length))
+#print SimpleGraph.neighborFinset
+#check Sym2
+
+lemma Sym2.equality_left {v w : V} (h : v = w) : ∀ x : V, s(v,x) = s(w, x) := by
+  simp [h]
+lemma Sym2.equality_right {v w : V} (h : v = w) : ∀ x : V, s(x,v) = s(x, w) := by
+  simp [h]
+#print SimpleGraph
+noncomputable def edge_vertex_bijection (G : SimpleGraph V) [DecidableRel G.Adj] (v : V) :
+   Fin G.Edges.length → V :=
+   fun e =>
+     let (a, b) := Sym2.toProd (G.Edges.get e)
+     if a = v then b
+     else
+
+
 -- States: (Inc * Incᵀ)(v,v) = degree of v
 theorem inc_incT_diag_degree (G : SimpleGraph V) [DecidableRel G.Adj] :
     ∀ v, (G.Inc * G.Inc.transpose) v v = G.degree v := by
   intro v
   simp only [Matrix.mul_apply, Matrix.transpose_apply]
+  simp [adj_prop]
+  unfold SimpleGraph.degree
   sorry
+
+#check Finset.card_bijective
+
+@[simp]lemma not_adj_zero (G : SimpleGraph V)[DecidableRel G.Adj]{v w : V} (h_ne : v ≠ w)
+  (h_adj : ¬ G.Adj v w) :
+  ∀ e : Fin (G.Edges.length), G.IncidenceMatrix v e * (G.IncidenceMatrix w e) = 0 := by sorry
+
+@[simp]lemma adj_minus_one (G : SimpleGraph V)[DecidableRel G.Adj]{v w : V}
+  (h_ne : v ≠ w)(h_adj : G.Adj v w) :
+  ∀ e , G.IncidenceMatrix v e * (G.IncidenceMatrix w e) = if (G.Edges.get e) = Sym2.mk (v ,w) then -1 else 0
+    := by sorry
 
 -- Proves: Inc * Incᵀ = Laplacian matrix of the graph
 lemma inc_incT_eq_lap {n : ℕ} (G : SimpleGraph (Fin n))[DecidableRel G.Adj]
@@ -193,8 +264,18 @@ lemma inc_incT_eq_lap {n : ℕ} (G : SimpleGraph (Fin n))[DecidableRel G.Adj]
       simp [SimpleGraph.lapMatrix]
       simp [SimpleGraph.degMatrix]
     rw [h₁]
-    sorry
-  · sorry
+    apply inc_incT_diag_degree
+  · by_cases h:G.Adj i j
+    · let h' := adj_minus_one G h_diag h
+      simp[h',Finset.sum_ite_eq]
+      rw [Finset.sum_ite_eq]
+      sorry
+    · let h' := not_adj_zero G h_diag h
+      simp [h']
+      simp [SimpleGraph.lapMatrix]
+      simp [SimpleGraph.degMatrix, h_diag,h]
 
 #check Finset.sum_ite_eq
+#moogle "Fin sum to Finset sum."
+#loogle (∑ ?x, _), (∑ ?x ∈ Fin ?s, _)
 #moogle "minor of laplacian matrix of a simplegraph."

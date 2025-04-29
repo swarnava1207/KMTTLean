@@ -218,3 +218,12 @@ by
   have cb := Matrix.det_mul' (SimpleGraph.IncidenceMatrix G).transpose (SimpleGraph.IncidenceMatrix G)
   rw [cb]
   rw [spanning_tree_sum_eq]
+
+
+noncomputable def SimpleGraph.IncidenceMatrix {V : Type} [DecidableEq V][Fintype V][LinearOrder V](G : SimpleGraph V)[DecidableRel G.Adj]
+  : Matrix V (Fin (G.Edges.length)) ℚ :=
+  fun v e =>
+    let (a, b) := Sym2.toProd (G.Edges.get e)
+    if v = a then 1
+    else if v = b then -1
+    else 0
