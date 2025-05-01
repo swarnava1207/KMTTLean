@@ -57,7 +57,7 @@ noncomputable def Edges (G : SimpleGraph V) [DecidableRel G.Adj] : List (Sym2 V)
 
 end SimpleGraph
 
--- Converts a Sym2 (unordered pair) to an ordered pair using a linear order
+/-- Converts a Sym2 (unordered pair) to an ordered pair using a linear order -/
 /- `Thanks to Professor Siddhartha Gadgil` -/
 def Sym2.toProd {α : Type} [LinearOrder α] (s : Sym2 α) : α × α :=
   Quot.lift
@@ -92,7 +92,7 @@ def Sym2.toProd {α : Type} [LinearOrder α] (s : Sym2 α) : α × α :=
                 simp
               · exact h''') s
 
--- Proves that the elements of the ordered pair produced by `Sym2.toProd` are members of the original unordered pair.
+/-- Proves that the elements of the ordered pair produced by `Sym2.toProd` are members of the original unordered pair. -/
 /- `Thanks to Professor Siddhartha Gadgil` -/
 theorem Sym2.toProd_mem {α : Type}[LinearOrder α] (s : Sym2 α) :
     s.toProd.1 ∈ s ∧ s.toProd.2 ∈ s := by
@@ -102,15 +102,15 @@ theorem Sym2.toProd_mem {α : Type}[LinearOrder α] (s : Sym2 α) :
       by_cases p:a < b <;> simp [p, Sym2.toProd]
 
 set_option linter.unusedSectionVars false
--- Lemma showing that equality `v = w` allows substitution on the left side within `Sym2.mk`.
+/-- Lemma showing that equality `v = w` allows substitution on the left side within `Sym2.mk`. -/
 lemma Sym2.equality_left {v w : V} (h : v = w) : ∀ x : V, s(v,x) = s(w, x) := by
   simp [h]
 
--- Lemma showing that equality `v = w` allows substitution on the right side within `Sym2.mk`.
+/-- Lemma showing that equality `v = w` allows substitution on the right side within `Sym2.mk`. -/
 lemma Sym2.equality_right {v w : V} (h : v = w) : ∀ x : V, s(x,v) = s(x, w) := by
   simp [h]
 
--- Establishes the equivalence between adjacency `G.Adj v w` and the corresponding edge `Sym2.mk (v , w)` being in the graph's edge set `G.Edges`.
+/-- Establishes the equivalence between adjacency `G.Adj v w` and the corresponding edge `Sym2.mk (v , w)` being in the graph's edge set `G.Edges`. -/
 lemma SimpleGraph.edge_exist_adj  (G : SimpleGraph V) [DecidableRel G.Adj] (v w : V)
   : G.Adj v w ↔ Sym2.mk (v , w) ∈  G.Edges := by
   apply Iff.intro
@@ -121,7 +121,7 @@ lemma SimpleGraph.edge_exist_adj  (G : SimpleGraph V) [DecidableRel G.Adj] (v w 
     simp [SimpleGraph.Edges] at h
     assumption
 
--- Checks if an edge (specified by its index `e`) is incident to vertex `v`. Returns `true` if incident, `false` otherwise.
+/-- Checks if an edge (specified by its index `e`) is incident to vertex `v`. Returns `true` if incident, `false` otherwise. -/
 noncomputable def adjEdge (v: V) {G: SimpleGraph V} [DecidableRel G.Adj] : (Fin G.Edges.length)  → Bool :=
   fun e =>
     let (a, b) := Sym2.toProd (G.Edges.get e)
@@ -129,12 +129,12 @@ noncomputable def adjEdge (v: V) {G: SimpleGraph V} [DecidableRel G.Adj] : (Fin 
     else if b = v then true
     else false
 
--- Converts a function `p : α → Bool` into a predicate `α → Prop`.
+/-- Converts a function `p : α → Bool` into a predicate `α → Prop`. -/
 def bool_to_prop' {α : Type} (p : α → Bool) : α → Prop :=
   fun x => p x = true
 
 
--- Defines the Finset of edge indices incident to a given vertex `v`.
+/-- Defines the Finset of edge indices incident to a given vertex `v`. -/
 noncomputable def SimpleGraph.EdgesIncident {G : SimpleGraph V} [DecidableRel G.Adj] (v : V) :
   Finset (Fin G.Edges.length) :=
   Finset.filter (bool_to_prop' (adjEdge v)) (Finset.univ : Finset (Fin G.Edges.length))

@@ -17,34 +17,34 @@ could not get to formalise the Cauchy-Binet theorem, so these forms are not used
 - `Matrix.colBlocks` : Given a matrix and a set of rows, it returns the submatrix corresponding to those rows.
 -/
 
--- This function generates all subsets of a given size from a list.
+/-- This function generates all subsets of a given size from a list. -/
 def listSubsetsOfSize {α : Type} : ℕ → List α → List (List α)
   | 0, _ => [[]]
   | _, [] => []
   | (m+1), x :: xs =>
       (listSubsetsOfSize m xs).map (fun ys => x :: ys) ++ listSubsetsOfSize (m+1) xs
 
--- Extracts a submatrix given row and column index sets (as finsets)
+/-- Extracts a submatrix given row and column index sets (as finsets) -/
 noncomputable def submatrix' {n m : ℕ} {α : Type} [Zero α] (A : Matrix (Fin n) (Fin m) α)
   (rows : Finset (Fin n)) (cols : Finset (Fin m)) :
     Matrix (Fin rows.card) (Fin cols.card) α :=
   fun i j => A (rows.toList.get ⟨i.1, by simp [i.2]⟩) (cols.toList.get ⟨j.1, by simp [j.2]⟩)
 
--- All subsets of size `n` from `Fin m`
+/-- All subsets of size `n` from `Fin m` -/
 def all_subsets_of_size (n m : ℕ) : Finset (Finset (Fin m)) :=
   Finset.powersetCard n (Finset.univ)
 
--- The Finset {0, ..., n-1} as Fin n
+/-- The Finset {0, ..., n-1} as Fin n -/
 def zero_to_n_minus_one (n : Nat) : Finset (Fin n) := Finset.univ
 
--- Lemma: cardinality of `zero_to_n_minus_one` is `n`
+/-- Lemma: cardinality of `zero_to_n_minus_one` is `n` -/
 theorem zero_to_n_minus_one_card_eq_n {n : ℕ} : (zero_to_n_minus_one n).card = n := by
   simp [zero_to_n_minus_one, Finset.card_univ]
 
--- Selects specified columns from matrix `N`
+/-- Selects specified columns from matrix `N` -/
 noncomputable def Matrix.rowBlocks {n m : ℕ} (N : Matrix (Fin n) (Fin m) ℚ) (s : Finset (Fin m)) : Matrix (Fin n) (Fin s.card) ℚ
         := by rw [← @zero_to_n_minus_one_card_eq_n n] ; exact submatrix' N (zero_to_n_minus_one n) s
 
--- Selects specified rows from matrix `N`
+/-- Selects specified rows from matrix `N` -/
 noncomputable def Matrix.colBlocks {n m : ℕ } (N : Matrix (Fin n) (Fin m) ℚ) (s : Finset (Fin n)) : Matrix (Fin s.card) (Fin m) ℚ
   := by rw [← @zero_to_n_minus_one_card_eq_n m] ; exact submatrix' N s (zero_to_n_minus_one m)

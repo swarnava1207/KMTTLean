@@ -128,7 +128,7 @@ theorem Matrix.Cauchy_Binet (A : Matrix m n R) (B : Matrix n m R) :
   sorry
 
 
--- Proves that the product of the incidence matrix `Inc` and its transpose `Incᵀ` equals the Laplacian matrix of the graph `G`.
+/-- Proves that the product of the incidence matrix `Inc` and its transpose `Incᵀ` equals the Laplacian matrix of the graph `G`. -/
 lemma inc_incT_eq_lap {n : ℕ} (G : SimpleGraph (Fin n))[DecidableRel G.Adj]
   : G.Inc * G.Inc.transpose = (G.lapMatrix ℚ : Matrix (Fin n) (Fin n) ℚ) := by
   apply Matrix.ext; intro i j
@@ -153,7 +153,7 @@ lemma inc_incT_eq_lap {n : ℕ} (G : SimpleGraph (Fin n))[DecidableRel G.Adj]
           simp [SimpleGraph.lapMatrix, SimpleGraph.degMatrix, h_diag, h, SimpleGraph.adjMatrix]
       rw[h_lap_nonadj]
 
--- Theorem showing that the product of the Minor of the incidence matrix and its transpose equals the minor of the Laplacian matrix.
+/-- Theorem showing that the product of the Minor of the incidence matrix and its transpose equals the minor of the Laplacian matrix. -/
 lemma inc_minor_incT_eq_lap_minor {n : ℕ} (G : SimpleGraph (Fin (n + 1)))[DecidableRel G.Adj]
   : G.IncMinor * G.IncMinor.transpose = (G.Lapminor : Matrix (Fin n) (Fin n) ℚ) := by
     sorry

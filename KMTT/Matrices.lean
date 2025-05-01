@@ -31,7 +31,7 @@ variable {V : Type} [DecidableEq V] [Fintype V][LinearOrder V]
 
 
 
--- The incidence matrix of a simple graph G, oriented by the linear order on vertices.
+/-- The incidence matrix of a simple graph G, oriented by the linear order on vertices. -/
 noncomputable def SimpleGraph.IncidenceMatrix {V : Type} [DecidableEq V][Fintype V][LinearOrder V](G : SimpleGraph V)[DecidableRel G.Adj]
   : Matrix V (Fin (G.Edges.length)) ℚ :=
   fun v e =>
@@ -40,15 +40,15 @@ noncomputable def SimpleGraph.IncidenceMatrix {V : Type} [DecidableEq V][Fintype
     else if v = b then -1
     else 0
 
--- Shorthand alias for `SimpleGraph.IncidenceMatrix`.
+/-- Shorthand alias for `SimpleGraph.IncidenceMatrix`. -/
 alias SimpleGraph.Inc := SimpleGraph.IncidenceMatrix
 
 
--- Defines the identity matrix of size `n x n` over the rationals `ℚ`.
+/-- Defines the identity matrix of size `n x n` over the rationals `ℚ`. -/
 def I {n : Nat} : Matrix (Fin n) (Fin n) ℚ := 1
 
 
--- Removes the i-th element from a list, given proof that i < l.length.
+/-- Removes the i-th element from a list, given proof that i < l.length. -/
 def List.remove {α : Type} (l : List α) (i : ℕ) (h : i < l.length) : List α :=
   match l with
   | [] => []
@@ -58,7 +58,7 @@ def List.remove {α : Type} (l : List α) (i : ℕ) (h : i < l.length) : List α
     simp_all only [length_cons]
     ; omega )
 
--- Proves that `List.remove` decreases the length of the list by exactly 1.
+/-- Proves that `List.remove` decreases the length of the list by exactly 1. -/
 theorem remove_length {α : Type} (l : List α) (i : ℕ) (h : i < l.length) :
   (List.remove l i h).length = l.length - 1 := by
   induction l generalizing i with
@@ -77,7 +77,7 @@ theorem remove_length {α : Type} (l : List α) (i : ℕ) (h : i < l.length) :
       | [] => aesop
       | y :: ys => simp
 
--- The incidence matrix of a graph minor obtained by removing the last edge from the edge list.
+/-- The incidence matrix of a graph minor obtained by removing the last edge from the edge list. -/
 noncomputable def SimpleGraph.IncMinor {n : ℕ} (G : SimpleGraph (Fin (n + 1))) [DecidableRel G.Adj]
         : Matrix (Fin n) (Fin (G.Edges.length - 1)) ℚ :=
         let m : ℕ := G.Edges.length
@@ -96,19 +96,19 @@ noncomputable def SimpleGraph.IncMinor {n : ℕ} (G : SimpleGraph (Fin (n + 1)))
           else if i = b then -1
           else 0
 
--- The minor of the Laplacian matrix of a graph, obtained by removing the last row and column.
+/-- The minor of the Laplacian matrix of a graph, obtained by removing the last row and column. -/
 def SimpleGraph.Lapminor {n : ℕ} (G : SimpleGraph (Fin (n + 1))) [DecidableRel G.Adj]
         : Matrix (Fin n) (Fin n) ℚ :=
         fun i j => G.lapMatrix ℚ i j
 
--- A predicate checking if an edge `e` corresponds to non-zero entries in the incidence matrix `G.Inc`.
+/-- A predicate checking if an edge `e` corresponds to non-zero entries in the incidence matrix `G.Inc`. -/
 def non_zero_iff_incident (G : SimpleGraph V) [DecidableRel G.Adj]
   : (Sym2 V) → Prop
     := fun e =>
       let (a, b) := Sym2.toProd e
       ∃ i j, G.Inc a i = 1 ∧ G.Inc b j = -1
 
--- Shows that the square of the incidence matrix entry `G.Inc v x` is 1 if edge `x` is incident to vertex `v`, and 0 otherwise.
+/-- Shows that the square of the incidence matrix entry `G.Inc v x` is 1 if edge `x` is incident to vertex `v`, and 0 otherwise. -/
 theorem adj_prop (v : V) (G : SimpleGraph V) [DecidableRel G.Adj] :
     ∀ x :  (Fin G.Edges.length), G.Inc v x * (G.Inc v x) = if adjEdge v x then 1 else 0 := by
   intro x
@@ -117,7 +117,7 @@ theorem adj_prop (v : V) (G : SimpleGraph V) [DecidableRel G.Adj] :
   simp [SimpleGraph.IncidenceMatrix]
   aesop
 
--- Maps an edge index `e` incident to vertex `v` to the other vertex of the edge. If not incident, returns `v`.
+/-- Maps an edge index `e` incident to vertex `v` to the other vertex of the edge. If not incident, returns `v`. -/
 noncomputable def edge_vertex_bijection (G : SimpleGraph V) [DecidableRel G.Adj] (v : V) :
     Fin G.Edges.length → V :=
     fun e =>
@@ -128,7 +128,7 @@ noncomputable def edge_vertex_bijection (G : SimpleGraph V) [DecidableRel G.Adj]
 
 
 
--- States that the diagonal entry `(v,v)` of the matrix product `Inc * Incᵀ` equals the degree of vertex `v`.
+/-- States that the diagonal entry `(v,v)` of the matrix product `Inc * Incᵀ` equals the degree of vertex `v`. -/
 theorem inc_incT_diag_degree (G : SimpleGraph V) [DecidableRel G.Adj] :
     ∀ v, (G.Inc * G.Inc.transpose) v v = G.degree v := by
   intro v
@@ -137,7 +137,7 @@ theorem inc_incT_diag_degree (G : SimpleGraph V) [DecidableRel G.Adj] :
   unfold SimpleGraph.degree
   sorry -- Proof needs completion
 
--- Shows that for distinct non-adjacent vertices `v, w`, the product of their corresponding entries in any column `e` of the incidence matrix is 0.
+/-- Shows that for distinct non-adjacent vertices `v, w`, the product of their corresponding entries in any column `e` of the incidence matrix is 0. -/
 @[simp]lemma not_adj_zero (G : SimpleGraph V)[DecidableRel G.Adj]{v w : V} (h_ne : v ≠ w)
   (h_adj : ¬ G.Adj v w) :
   ∀ e : Fin (G.Edges.length), G.IncidenceMatrix v e * (G.IncidenceMatrix w e) = 0 := by
@@ -163,11 +163,11 @@ theorem inc_incT_diag_degree (G : SimpleGraph V) [DecidableRel G.Adj] :
   · sorry -- Proof needs completion: handle case a ≠ v
 
 
--- Shows that for distinct adjacent vertices `v, w`, the product `Inc v e * Inc w e` is -1 if edge `e` is `s(v,w)`, and 0 otherwise.
+/-- Shows that for distinct adjacent vertices `v, w`, the product `Inc v e * Inc w e` is -1 if edge `e` is `s(v,w)`, and 0 otherwise. -/
 @[simp]lemma adj_minus_one (G : SimpleGraph V)[DecidableRel G.Adj]{v w : V}
   (h_ne : v ≠ w)(h_adj : G.Adj v w) :
   ∀ e , G.IncidenceMatrix v e * (G.IncidenceMatrix w e) = if (G.Edges.get e) = Sym2.mk (v ,w) then -1 else 0
     := by sorry -- Proof needs completion
 
--- Defines a function that always returns -1 of type `ℚ`.
+/-- Defines a function that always returns -1 of type `ℚ`. -/
 def neg_id {α : Type} (v : α) : ℚ := -1

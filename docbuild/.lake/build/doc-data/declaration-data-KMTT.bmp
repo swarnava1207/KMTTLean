@@ -1,1 +1,1 @@
-{"name":"KMTT","instances":[],"imports":["Init","KMTT.Basic","Mathlib"],"declarations":[]}
+{"name":"KMTT","instances":[],"imports":["Init","KMTT.Basic","KMTT.Graph","KMTT.Matrices","KMTT.Theorem","KMTT.Stuff","KMTT.Main","Mathlib"],"declarations":[]}
