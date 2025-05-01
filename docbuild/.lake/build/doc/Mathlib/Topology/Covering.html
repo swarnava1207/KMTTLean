@@ -1,0 +1,512 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../.././style.css"></link><link rel="icon" href="../.././favicon.svg"></link><link rel="mask-icon" href="../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../.././/declarations/declaration-data.bmp" as="image"></link><title>Mathlib.Topology.Covering</title><script defer="true" src="../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../.././";</script><script>const MODULE_NAME="Mathlib.Topology.Covering";</script><script type="module" src="../.././jump-src.js"></script><script type="module" src="../.././search.js"></script><script type="module" src="../.././expand-nav.js"></script><script type="module" src="../.././how-about.js"></script><script type="module" src="../.././instances.js"></script><script type="module" src="../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span>Documentation</span></h1><h2 class="header_filename break_within"><span class="name">Mathlib</span>.<span class="name">Topology</span>.<span class="name">Covering</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="../.././Init.html">Init</a></li><li><a href="../.././Mathlib/Topology/IsLocalHomeomorph.html">Mathlib.Topology.IsLocalHomeomorph</a></li><li><a href="../.././Mathlib/Topology/FiberBundle/Basic.html">Mathlib.Topology.FiberBundle.Basic</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-Mathlib.Topology.Covering" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#IsEvenlyCovered"><span class="name">IsEvenlyCovered</span></a></div><div class="nav_link"><a class="break_within" href="#IsEvenlyCovered.toTrivialization"><span class="name">IsEvenlyCovered</span>.<span class="name">toTrivialization</span></a></div><div class="nav_link"><a class="break_within" href="#IsEvenlyCovered.mem_toTrivialization_baseSet"><span class="name">IsEvenlyCovered</span>.<span class="name">mem_toTrivialization_baseSet</span></a></div><div class="nav_link"><a class="break_within" href="#IsEvenlyCovered.toTrivialization_apply"><span class="name">IsEvenlyCovered</span>.<span class="name">toTrivialization_apply</span></a></div><div class="nav_link"><a class="break_within" href="#IsEvenlyCovered.continuousAt"><span class="name">IsEvenlyCovered</span>.<span class="name">continuousAt</span></a></div><div class="nav_link"><a class="break_within" href="#IsEvenlyCovered.to_isEvenlyCovered_preimage"><span class="name">IsEvenlyCovered</span>.<span class="name">to_isEvenlyCovered_preimage</span></a></div><div class="nav_link"><a class="break_within" href="#IsCoveringMapOn"><span class="name">IsCoveringMapOn</span></a></div><div class="nav_link"><a class="break_within" href="#IsCoveringMapOn.mk"><span class="name">IsCoveringMapOn</span>.<span class="name">mk</span></a></div><div class="nav_link"><a class="break_within" href="#IsCoveringMapOn.continuousAt"><span class="name">IsCoveringMapOn</span>.<span class="name">continuousAt</span></a></div><div class="nav_link"><a class="break_within" href="#IsCoveringMapOn.continuousOn"><span class="name">IsCoveringMapOn</span>.<span class="name">continuousOn</span></a></div><div class="nav_link"><a class="break_within" href="#IsCoveringMapOn.isLocalHomeomorphOn"><span class="name">IsCoveringMapOn</span>.<span class="name">isLocalHomeomorphOn</span></a></div><div class="nav_link"><a class="break_within" href="#IsCoveringMap"><span class="name">IsCoveringMap</span></a></div><div class="nav_link"><a class="break_within" href="#isCoveringMap_iff_isCoveringMapOn_univ"><span class="name">isCoveringMap_iff_isCoveringMapOn_univ</span></a></div><div class="nav_link"><a class="break_within" href="#IsCoveringMap.isCoveringMapOn"><span class="name">IsCoveringMap</span>.<span class="name">isCoveringMapOn</span></a></div><div class="nav_link"><a class="break_within" href="#IsCoveringMap.mk"><span class="name">IsCoveringMap</span>.<span class="name">mk</span></a></div><div class="nav_link"><a class="break_within" href="#IsCoveringMap.continuous"><span class="name">IsCoveringMap</span>.<span class="name">continuous</span></a></div><div class="nav_link"><a class="break_within" href="#IsCoveringMap.isLocalHomeomorph"><span class="name">IsCoveringMap</span>.<span class="name">isLocalHomeomorph</span></a></div><div class="nav_link"><a class="break_within" href="#IsCoveringMap.isOpenMap"><span class="name">IsCoveringMap</span>.<span class="name">isOpenMap</span></a></div><div class="nav_link"><a class="break_within" href="#IsCoveringMap.isQuotientMap"><span class="name">IsCoveringMap</span>.<span class="name">isQuotientMap</span></a></div><div class="nav_link"><a class="break_within" href="#IsCoveringMap.quotientMap"><span class="name">IsCoveringMap</span>.<span class="name">quotientMap</span></a></div><div class="nav_link"><a class="break_within" href="#IsCoveringMap.isSeparatedMap"><span class="name">IsCoveringMap</span>.<span class="name">isSeparatedMap</span></a></div><div class="nav_link"><a class="break_within" href="#IsCoveringMap.eq_of_comp_eq"><span class="name">IsCoveringMap</span>.<span class="name">eq_of_comp_eq</span></a></div><div class="nav_link"><a class="break_within" href="#IsCoveringMap.const_of_comp"><span class="name">IsCoveringMap</span>.<span class="name">const_of_comp</span></a></div><div class="nav_link"><a class="break_within" href="#IsCoveringMap.eqOn_of_comp_eqOn"><span class="name">IsCoveringMap</span>.<span class="name">eqOn_of_comp_eqOn</span></a></div><div class="nav_link"><a class="break_within" href="#IsCoveringMap.constOn_of_comp"><span class="name">IsCoveringMap</span>.<span class="name">constOn_of_comp</span></a></div><div class="nav_link"><a class="break_within" href="#IsFiberBundle.isCoveringMap"><span class="name">IsFiberBundle</span>.<span class="name">isCoveringMap</span></a></div><div class="nav_link"><a class="break_within" href="#FiberBundle.isCoveringMap"><span class="name">FiberBundle</span>.<span class="name">isCoveringMap</span></a></div></nav><main>
+<div class="mod_doc"><h1 class="markdown-heading" id="Covering-Maps">Covering Maps <a class="hover-link" href="#Covering-Maps">#</a></h1><p>This file defines covering maps.</p><h2 class="markdown-heading" id="Main-definitions">Main definitions <a class="hover-link" href="#Main-definitions">#</a></h2><ul>
+<li><code><a href="../.././Mathlib/Topology/Covering.html#IsEvenlyCovered">IsEvenlyCovered</a> f x I</code>: A point <code>x</code> is evenly covered by <code>f : E → X</code> with fiber <code>I</code> if <code>I</code> is
+discrete and there is a <code><a href="../.././Mathlib/Topology/FiberBundle/Trivialization.html#Trivialization">Trivialization</a></code> of <code>f</code> at <code>x</code> with fiber <code>I</code>.</li>
+<li><code><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMap">IsCoveringMap</a> f</code>: A function <code>f : E → X</code> is a covering map if every point <code>x</code> is evenly
+covered by <code>f</code> with fiber <code>f ⁻¹' {x}</code>. The fibers <code>f ⁻¹' {x}</code> must be discrete, but if <code>X</code> is
+not connected, then the fibers <code>f ⁻¹' {x}</code> are not necessarily isomorphic. Also, <code>f</code> is not
+assumed to be surjective, so the fibers are even allowed to be empty.</li>
+</ul></div><div class="decl" id="IsEvenlyCovered"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L28-L30">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsEvenlyCovered"><span class="name">IsEvenlyCovered</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">X</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">I</span> : <a href="../.././foundational_types.html">Type</a> u_3)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">I</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><a href="../.././foundational_types.html">Prop</a></div></div><p>A point <code>x : X</code> is evenly covered by <code>f : E → X</code> if <code>x</code> has an evenly covered neighborhood.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsEvenlyCovered">IsEvenlyCovered</a> <span class="fn">f</span> <span class="fn">x</span> <span class="fn">I</span></span> <a href="../.././Init/Prelude.html#Eq">=</a> (<span class="fn"><a href="../.././Mathlib/Topology/Order.html#DiscreteTopology">DiscreteTopology</a> <span class="fn">I</span></span> <a href="../.././Init/Prelude.html#And">∧</a> <span class="fn">∃ (<span class="fn">t</span> : <span class="fn"><a href="../.././Mathlib/Topology/FiberBundle/Trivialization.html#Trivialization">Trivialization</a> <span class="fn">I</span> <span class="fn">f</span></span>), <span class="fn">x</span> <a href="../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn">t</span>.<a href="../.././Mathlib/Topology/FiberBundle/Trivialization.html#Trivialization.baseSet">baseSet</a></span></span>)</li></ul></details><details id="instances-for-list-IsEvenlyCovered" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="IsEvenlyCovered.toTrivialization"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L36-L40">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsEvenlyCovered.toTrivialization"><span class="name">IsEvenlyCovered</span>.<span class="name">toTrivialization</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">X</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">I</span> : <a href="../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">I</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsEvenlyCovered">IsEvenlyCovered</a> <span class="fn">f</span> <span class="fn">x</span> <span class="fn">I</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../.././Mathlib/Topology/FiberBundle/Trivialization.html#Trivialization">Trivialization</a> <span class="fn">(↑(<span class="fn">f</span> <a href="../.././Mathlib/Data/Set/Operations.html#Set.preimage">⁻¹'</a> <a href="../.././Init/Core.html#Singleton.singleton">{</a><span class="fn">x</span><a href="../.././Init/Core.html#Singleton.singleton">}</a>))</span> <span class="fn">f</span></span></div></div><p>If <code>x</code> is evenly covered by <code>f</code>, then we can construct a trivialization of <code>f</code> at <code>x</code>.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn">h</span>.<a href="../.././Mathlib/Topology/Covering.html#IsEvenlyCovered.toTrivialization">toTrivialization</a></span> <a href="../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn"><span class="fn">(<a href="../.././Init/Classical.html#Classical.choose">Classical.choose</a> <span class="fn">⋯</span>)</span>.<a href="../.././Mathlib/Topology/FiberBundle/Trivialization.html#Trivialization.transFiberHomeomorph">transFiberHomeomorph</a></span> <span class="fn"><span class="fn">(<span class="fn"><span class="fn">(<a href="../.././Init/Classical.html#Classical.choose">Classical.choose</a> <span class="fn">⋯</span>)</span>.<a href="../.././Mathlib/Topology/FiberBundle/Trivialization.html#Trivialization.preimageSingletonHomeomorph">preimageSingletonHomeomorph</a></span> <span class="fn">⋯</span>)</span>.<a href="../.././Mathlib/Topology/Homeomorph/Defs.html#Homeomorph.symm">symm</a></span></span></li></ul></details><details id="instances-for-list-IsEvenlyCovered.toTrivialization" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="IsEvenlyCovered.mem_toTrivialization_baseSet"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L42-L44">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsEvenlyCovered.mem_toTrivialization_baseSet"><span class="name">IsEvenlyCovered</span>.<span class="name">mem_toTrivialization_baseSet</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">X</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">I</span> : <a href="../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">I</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsEvenlyCovered">IsEvenlyCovered</a> <span class="fn">f</span> <span class="fn">x</span> <span class="fn">I</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">x</span> <a href="../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn"><span class="fn">h</span>.<a href="../.././Mathlib/Topology/Covering.html#IsEvenlyCovered.toTrivialization">toTrivialization</a></span>.<a href="../.././Mathlib/Topology/FiberBundle/Trivialization.html#Trivialization.baseSet">baseSet</a></span></div></div></div></div><div class="decl" id="IsEvenlyCovered.toTrivialization_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L46-L54">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsEvenlyCovered.toTrivialization_apply"><span class="name">IsEvenlyCovered</span>.<span class="name">toTrivialization_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">E</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">I</span> : <a href="../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">I</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsEvenlyCovered">IsEvenlyCovered</a> <span class="fn">f</span> <span class="fn">(<span class="fn">f</span> <span class="fn">x</span>)</span> <span class="fn">I</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">↑<span class="fn"><span class="fn">h</span>.<a href="../.././Mathlib/Topology/Covering.html#IsEvenlyCovered.toTrivialization">toTrivialization</a></span></span> <span class="fn">x</span>)</span>.2</span> <a href="../.././Init/Prelude.html#Eq">=</a> <span class="fn">⟨<span class="fn">x</span>, <span class="fn">⋯</span>⟩</span></div></div></div></div><div class="decl" id="IsEvenlyCovered.continuousAt"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L56-L59">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsEvenlyCovered.continuousAt"><span class="name">IsEvenlyCovered</span>.<span class="name">continuousAt</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">E</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">I</span> : <a href="../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">I</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsEvenlyCovered">IsEvenlyCovered</a> <span class="fn">f</span> <span class="fn">(<span class="fn">f</span> <span class="fn">x</span>)</span> <span class="fn">I</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../.././Mathlib/Topology/Defs/Filter.html#ContinuousAt">ContinuousAt</a> <span class="fn">f</span> <span class="fn">x</span></span></div></div></div></div><div class="decl" id="IsEvenlyCovered.to_isEvenlyCovered_preimage"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L61-L66">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsEvenlyCovered.to_isEvenlyCovered_preimage"><span class="name">IsEvenlyCovered</span>.<span class="name">to_isEvenlyCovered_preimage</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">X</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">I</span> : <a href="../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">I</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsEvenlyCovered">IsEvenlyCovered</a> <span class="fn">f</span> <span class="fn">x</span> <span class="fn">I</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsEvenlyCovered">IsEvenlyCovered</a> <span class="fn">f</span> <span class="fn">x</span> <span class="fn">↑(<span class="fn">f</span> <a href="../.././Mathlib/Data/Set/Operations.html#Set.preimage">⁻¹'</a> <a href="../.././Init/Core.html#Singleton.singleton">{</a><span class="fn">x</span><a href="../.././Init/Core.html#Singleton.singleton">}</a>)</span></span></div></div></div></div><div class="decl" id="IsCoveringMapOn"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L70-L73">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsCoveringMapOn"><span class="name">IsCoveringMapOn</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn"><a href="../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">X</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../.././foundational_types.html">Prop</a></div></div><p>A covering map is a continuous function <code>f : E → X</code> with discrete fibers such that each point
+of <code>X</code> has an evenly covered neighborhood.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMapOn">IsCoveringMapOn</a> <span class="fn">f</span> <span class="fn">s</span></span> <a href="../.././Init/Prelude.html#Eq">=</a> <span class="fn">∀ <span class="fn">x</span> ∈ <span class="fn">s</span>, <span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsEvenlyCovered">IsEvenlyCovered</a> <span class="fn">f</span> <span class="fn">x</span> <span class="fn">↑(<span class="fn">f</span> <a href="../.././Mathlib/Data/Set/Operations.html#Set.preimage">⁻¹'</a> <a href="../.././Init/Core.html#Singleton.singleton">{</a><span class="fn">x</span><a href="../.././Init/Core.html#Singleton.singleton">}</a>)</span></span></span></li></ul></details><details id="instances-for-list-IsCoveringMapOn" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="IsCoveringMapOn.mk"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L77-L80">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsCoveringMapOn.mk"><span class="name">IsCoveringMapOn</span>.<span class="name">mk</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn"><a href="../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">X</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn">X</span> → <a href="../.././foundational_types.html">Type</a> u_3</span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn">(<span class="fn">x</span> : <span class="fn">X</span>) → <span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">(<span class="fn">F</span> <span class="fn">x</span>)</span></span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn">hF</span> : <span class="fn">∀ (<span class="fn">x</span> : <span class="fn">X</span>), <span class="fn"><a href="../.././Mathlib/Topology/Order.html#DiscreteTopology">DiscreteTopology</a> <span class="fn">(<span class="fn">F</span> <span class="fn">x</span>)</span></span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn">(<span class="fn">x</span> : <span class="fn">X</span>) → <span class="fn"><span class="fn">x</span> <a href="../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span> → <span class="fn"><a href="../.././Mathlib/Topology/FiberBundle/Trivialization.html#Trivialization">Trivialization</a> <span class="fn">(<span class="fn">F</span> <span class="fn">x</span>)</span> <span class="fn">f</span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn">∀ (<span class="fn">x</span> : <span class="fn">X</span>) (<span class="fn">hx</span> : <span class="fn">x</span> <a href="../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span>), <span class="fn">x</span> <a href="../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn">(<span class="fn">e</span> <span class="fn">x</span> <span class="fn">hx</span>)</span>.<a href="../.././Mathlib/Topology/FiberBundle/Trivialization.html#Trivialization.baseSet">baseSet</a></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMapOn">IsCoveringMapOn</a> <span class="fn">f</span> <span class="fn">s</span></span></div></div></div></div><div class="decl" id="IsCoveringMapOn.continuousAt"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L84-L86">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsCoveringMapOn.continuousAt"><span class="name">IsCoveringMapOn</span>.<span class="name">continuousAt</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">X</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMapOn">IsCoveringMapOn</a> <span class="fn">f</span> <span class="fn">s</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">E</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hx</span> : <span class="fn"><span class="fn">f</span> <span class="fn">x</span></span> <a href="../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../.././Mathlib/Topology/Defs/Filter.html#ContinuousAt">ContinuousAt</a> <span class="fn">f</span> <span class="fn">x</span></span></div></div></div></div><div class="decl" id="IsCoveringMapOn.continuousOn"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L88-L89">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsCoveringMapOn.continuousOn"><span class="name">IsCoveringMapOn</span>.<span class="name">continuousOn</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">X</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMapOn">IsCoveringMapOn</a> <span class="fn">f</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../.././Mathlib/Topology/Defs/Filter.html#ContinuousOn">ContinuousOn</a> <span class="fn">f</span> (<span class="fn">f</span> <a href="../.././Mathlib/Data/Set/Operations.html#Set.preimage">⁻¹'</a> <span class="fn">s</span>)</span></div></div></div></div><div class="decl" id="IsCoveringMapOn.isLocalHomeomorphOn"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L91-L114">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsCoveringMapOn.isLocalHomeomorphOn"><span class="name">IsCoveringMapOn</span>.<span class="name">isLocalHomeomorphOn</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">X</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMapOn">IsCoveringMapOn</a> <span class="fn">f</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../.././Mathlib/Topology/IsLocalHomeomorph.html#IsLocalHomeomorphOn">IsLocalHomeomorphOn</a> <span class="fn">f</span> (<span class="fn">f</span> <a href="../.././Mathlib/Data/Set/Operations.html#Set.preimage">⁻¹'</a> <span class="fn">s</span>)</span></div></div></div></div><div class="decl" id="IsCoveringMap"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L118-L121">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsCoveringMap"><span class="name">IsCoveringMap</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../.././foundational_types.html">Prop</a></div></div><p>A covering map is a continuous function <code>f : E → X</code> with discrete fibers such that each point
+of <code>X</code> has an evenly covered neighborhood.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMap">IsCoveringMap</a> <span class="fn">f</span></span> <a href="../.././Init/Prelude.html#Eq">=</a> <span class="fn">∀ (<span class="fn">x</span> : <span class="fn">X</span>), <span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsEvenlyCovered">IsEvenlyCovered</a> <span class="fn">f</span> <span class="fn">x</span> <span class="fn">↑(<span class="fn">f</span> <a href="../.././Mathlib/Data/Set/Operations.html#Set.preimage">⁻¹'</a> <a href="../.././Init/Core.html#Singleton.singleton">{</a><span class="fn">x</span><a href="../.././Init/Core.html#Singleton.singleton">}</a>)</span></span></span></li></ul></details><details id="instances-for-list-IsCoveringMap" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="isCoveringMap_iff_isCoveringMapOn_univ"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L125-L126">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#isCoveringMap_iff_isCoveringMapOn_univ"><span class="name">isCoveringMap_iff_isCoveringMapOn_univ</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMap">IsCoveringMap</a> <span class="fn">f</span></span> <a href="../.././Init/Core.html#Iff">↔</a> <span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMapOn">IsCoveringMapOn</a> <span class="fn">f</span> <a href="../.././Mathlib/Data/Set/Defs.html#Set.univ">Set.univ</a></span></div></div></div></div><div class="decl" id="IsCoveringMap.isCoveringMapOn"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L128-L130">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsCoveringMap.isCoveringMapOn"><span class="name">IsCoveringMap</span>.<span class="name">isCoveringMapOn</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMap">IsCoveringMap</a> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMapOn">IsCoveringMapOn</a> <span class="fn">f</span> <a href="../.././Mathlib/Data/Set/Defs.html#Set.univ">Set.univ</a></span></div></div></div></div><div class="decl" id="IsCoveringMap.mk"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L136-L139">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsCoveringMap.mk"><span class="name">IsCoveringMap</span>.<span class="name">mk</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><span class="fn">X</span> → <a href="../.././foundational_types.html">Type</a> u_3</span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn">(<span class="fn">x</span> : <span class="fn">X</span>) → <span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">(<span class="fn">F</span> <span class="fn">x</span>)</span></span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn">∀ (<span class="fn">x</span> : <span class="fn">X</span>), <span class="fn"><a href="../.././Mathlib/Topology/Order.html#DiscreteTopology">DiscreteTopology</a> <span class="fn">(<span class="fn">F</span> <span class="fn">x</span>)</span></span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn">(<span class="fn">x</span> : <span class="fn">X</span>) → <span class="fn"><a href="../.././Mathlib/Topology/FiberBundle/Trivialization.html#Trivialization">Trivialization</a> <span class="fn">(<span class="fn">F</span> <span class="fn">x</span>)</span> <span class="fn">f</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn">∀ (<span class="fn">x</span> : <span class="fn">X</span>), <span class="fn">x</span> <a href="../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn">(<span class="fn">e</span> <span class="fn">x</span>)</span>.<a href="../.././Mathlib/Topology/FiberBundle/Trivialization.html#Trivialization.baseSet">baseSet</a></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMap">IsCoveringMap</a> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="IsCoveringMap.continuous"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L145-L146">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsCoveringMap.continuous"><span class="name">IsCoveringMap</span>.<span class="name">continuous</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMap">IsCoveringMap</a> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#Continuous">Continuous</a> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="IsCoveringMap.isLocalHomeomorph"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L148-L149">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsCoveringMap.isLocalHomeomorph"><span class="name">IsCoveringMap</span>.<span class="name">isLocalHomeomorph</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMap">IsCoveringMap</a> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../.././Mathlib/Topology/IsLocalHomeomorph.html#IsLocalHomeomorph">IsLocalHomeomorph</a> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="IsCoveringMap.isOpenMap"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L151-L152">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsCoveringMap.isOpenMap"><span class="name">IsCoveringMap</span>.<span class="name">isOpenMap</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMap">IsCoveringMap</a> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#IsOpenMap">IsOpenMap</a> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="IsCoveringMap.isQuotientMap"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L154-L155">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsCoveringMap.isQuotientMap"><span class="name">IsCoveringMap</span>.<span class="name">isQuotientMap</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMap">IsCoveringMap</a> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hf'</span> : <span class="fn"><a href="../.././Mathlib/Logic/Function/Defs.html#Function.Surjective">Function.Surjective</a> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../.././Mathlib/Topology/Defs/Induced.html#Topology.IsQuotientMap">Topology.IsQuotientMap</a> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="IsCoveringMap.quotientMap"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L157-L158">source</a></div><div class="attributes">@[deprecated IsCoveringMap.isQuotientMap (since := &quot;2024-10-22&quot;)]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsCoveringMap.quotientMap"><span class="name">IsCoveringMap</span>.<span class="name">quotientMap</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMap">IsCoveringMap</a> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hf'</span> : <span class="fn"><a href="../.././Mathlib/Logic/Function/Defs.html#Function.Surjective">Function.Surjective</a> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../.././Mathlib/Topology/Defs/Induced.html#Topology.IsQuotientMap">Topology.IsQuotientMap</a> <span class="fn">f</span></span></div></div><p><strong>Alias</strong> of <code><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMap.isQuotientMap">IsCoveringMap.isQuotientMap</a></code>.</p></div></div><div class="decl" id="IsCoveringMap.isSeparatedMap"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L160-L170">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsCoveringMap.isSeparatedMap"><span class="name">IsCoveringMap</span>.<span class="name">isSeparatedMap</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMap">IsCoveringMap</a> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../.././Mathlib/Topology/SeparatedMap.html#IsSeparatedMap">IsSeparatedMap</a> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="IsCoveringMap.eq_of_comp_eq"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L174-L176">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsCoveringMap.eq_of_comp_eq"><span class="name">IsCoveringMap</span>.<span class="name">eq_of_comp_eq</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMap">IsCoveringMap</a> <span class="fn">f</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">g₁ </span><span class="fn">g₂</span> : <span class="fn"><span class="fn">A</span> → <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Connected/Basic.html#PreconnectedSpace">PreconnectedSpace</a> <span class="fn">A</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h₁</span> : <span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#Continuous">Continuous</a> <span class="fn">g₁</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h₂</span> : <span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#Continuous">Continuous</a> <span class="fn">g₂</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn">f</span> <a href="../.././Init/Prelude.html#Function.comp">∘</a> <span class="fn">g₁</span> <a href="../.././Init/Prelude.html#Eq">=</a> <span class="fn">f</span> <a href="../.././Init/Prelude.html#Function.comp">∘</a> <span class="fn">g₂</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn">A</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">ha</span> : <span class="fn"><span class="fn">g₁</span> <span class="fn">a</span></span> <a href="../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn">g₂</span> <span class="fn">a</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">g₁</span> <a href="../.././Init/Prelude.html#Eq">=</a> <span class="fn">g₂</span></div></div></div></div><div class="decl" id="IsCoveringMap.const_of_comp"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L178-L180">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsCoveringMap.const_of_comp"><span class="name">IsCoveringMap</span>.<span class="name">const_of_comp</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMap">IsCoveringMap</a> <span class="fn">f</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">g</span> : <span class="fn"><span class="fn">A</span> → <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Connected/Basic.html#PreconnectedSpace">PreconnectedSpace</a> <span class="fn">A</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">cont</span> : <span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#Continuous">Continuous</a> <span class="fn">g</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn">∀ (<span class="fn">a </span><span class="fn">a'</span> : <span class="fn">A</span>), <span class="fn"><span class="fn">f</span> <span class="fn">(<span class="fn">g</span> <span class="fn">a</span>)</span></span> <a href="../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn">f</span> <span class="fn">(<span class="fn">g</span> <span class="fn">a'</span>)</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">a </span><span class="fn">a'</span> : <span class="fn">A</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">g</span> <span class="fn">a</span></span> <a href="../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn">g</span> <span class="fn">a'</span></span></div></div></div></div><div class="decl" id="IsCoveringMap.eqOn_of_comp_eqOn"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L182-L184">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsCoveringMap.eqOn_of_comp_eqOn"><span class="name">IsCoveringMap</span>.<span class="name">eqOn_of_comp_eqOn</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMap">IsCoveringMap</a> <span class="fn">f</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">A</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">g₁ </span><span class="fn">g₂</span> : <span class="fn"><span class="fn">A</span> → <span class="fn">E</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hs</span> : <span class="fn"><a href="../.././Mathlib/Topology/Connected/Basic.html#IsPreconnected">IsPreconnected</a> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h₁</span> : <span class="fn"><a href="../.././Mathlib/Topology/Defs/Filter.html#ContinuousOn">ContinuousOn</a> <span class="fn">g₁</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h₂</span> : <span class="fn"><a href="../.././Mathlib/Topology/Defs/Filter.html#ContinuousOn">ContinuousOn</a> <span class="fn">g₂</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn"><a href="../.././Mathlib/Data/Set/Operations.html#Set.EqOn">Set.EqOn</a> (<span class="fn">f</span> <a href="../.././Init/Prelude.html#Function.comp">∘</a> <span class="fn">g₁</span>) (<span class="fn">f</span> <a href="../.././Init/Prelude.html#Function.comp">∘</a> <span class="fn">g₂</span>) <span class="fn">s</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a</span> : <span class="fn">A</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">has</span> : <span class="fn">a</span> <a href="../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">ha</span> : <span class="fn"><span class="fn">g₁</span> <span class="fn">a</span></span> <a href="../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn">g₂</span> <span class="fn">a</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../.././Mathlib/Data/Set/Operations.html#Set.EqOn">Set.EqOn</a> <span class="fn">g₁</span> <span class="fn">g₂</span> <span class="fn">s</span></span></div></div></div></div><div class="decl" id="IsCoveringMap.constOn_of_comp"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L186-L189">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsCoveringMap.constOn_of_comp"><span class="name">IsCoveringMap</span>.<span class="name">constOn_of_comp</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMap">IsCoveringMap</a> <span class="fn">f</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">A</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">g</span> : <span class="fn"><span class="fn">A</span> → <span class="fn">E</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hs</span> : <span class="fn"><a href="../.././Mathlib/Topology/Connected/Basic.html#IsPreconnected">IsPreconnected</a> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">cont</span> : <span class="fn"><a href="../.././Mathlib/Topology/Defs/Filter.html#ContinuousOn">ContinuousOn</a> <span class="fn">g</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn">∀ <span class="fn">a</span> ∈ <span class="fn">s</span>, <span class="fn">∀ <span class="fn">a'</span> ∈ <span class="fn">s</span>, <span class="fn"><span class="fn">f</span> <span class="fn">(<span class="fn">g</span> <span class="fn">a</span>)</span></span> <a href="../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn">f</span> <span class="fn">(<span class="fn">g</span> <span class="fn">a'</span>)</span></span></span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a </span><span class="fn">a'</span> : <span class="fn">A</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ha</span> : <span class="fn">a</span> <a href="../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">ha'</span> : <span class="fn">a'</span> <a href="../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">g</span> <span class="fn">a</span></span> <a href="../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn">g</span> <span class="fn">a'</span></span></div></div></div></div><div class="decl" id="IsFiberBundle.isCoveringMap"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L195-L198">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#IsFiberBundle.isCoveringMap"><span class="name">IsFiberBundle</span>.<span class="name">isCoveringMap</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">X</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Order.html#DiscreteTopology">DiscreteTopology</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn">∀ (<span class="fn">x</span> : <span class="fn">X</span>), <span class="fn">∃ (<span class="fn">e</span> : <span class="fn"><a href="../.././Mathlib/Topology/FiberBundle/Trivialization.html#Trivialization">Trivialization</a> <span class="fn">F</span> <span class="fn">f</span></span>), <span class="fn">x</span> <a href="../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><span class="fn">e</span>.<a href="../.././Mathlib/Topology/FiberBundle/Trivialization.html#Trivialization.baseSet">baseSet</a></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMap">IsCoveringMap</a> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="FiberBundle.isCoveringMap"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Topology/Covering.lean#L200-L203">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././Mathlib/Topology/Covering.html#FiberBundle.isCoveringMap"><span class="name">FiberBundle</span>.<span class="name">isCoveringMap</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">X</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <span class="fn"><span class="fn">X</span> → <a href="../.././foundational_types.html">Type</a> u_4</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Order.html#DiscreteTopology">DiscreteTopology</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">(<a href="../.././Mathlib/Data/Bundle.html#Bundle.TotalSpace">Bundle.TotalSpace</a> <span class="fn">F</span> <span class="fn">E</span>)</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn">(<span class="fn">x</span> : <span class="fn">X</span>) → <span class="fn"><a href="../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">(<span class="fn">E</span> <span class="fn">x</span>)</span></span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../.././Mathlib/Topology/FiberBundle/Basic.html#FiberBundle">FiberBundle</a> <span class="fn">F</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../.././Mathlib/Topology/Covering.html#IsCoveringMap">IsCoveringMap</a> <a href="../.././Mathlib/Data/Bundle.html#Bundle.TotalSpace.proj">Bundle.TotalSpace.proj</a></span></div></div></div></div></main>
+<nav class="nav"><iframe src="../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

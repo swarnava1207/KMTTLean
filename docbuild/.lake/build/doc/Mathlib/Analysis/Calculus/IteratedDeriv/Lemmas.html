@@ -1,0 +1,532 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../../.././style.css"></link><link rel="icon" href="../../../.././favicon.svg"></link><link rel="mask-icon" href="../../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../../.././/declarations/declaration-data.bmp" as="image"></link><title>Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas</title><script defer="true" src="../../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../../.././";</script><script>const MODULE_NAME="Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas";</script><script type="module" src="../../../.././jump-src.js"></script><script type="module" src="../../../.././search.js"></script><script type="module" src="../../../.././expand-nav.js"></script><script type="module" src="../../../.././how-about.js"></script><script type="module" src="../../../.././instances.js"></script><script type="module" src="../../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span>Documentation</span></h1><h2 class="header_filename break_within"><span class="name">Mathlib</span>.<span class="name">Analysis</span>.<span class="name">Calculus</span>.<span class="name">IteratedDeriv</span>.<span class="name">Lemmas</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="../../../.././Init.html">Init</a></li><li><a href="../../../.././Mathlib/Analysis/Calculus/ContDiff/Operations.html">Mathlib.Analysis.Calculus.ContDiff.Operations</a></li><li><a href="../../../.././Mathlib/Analysis/Calculus/Deriv/Mul.html">Mathlib.Analysis.Calculus.Deriv.Mul</a></li><li><a href="../../../.././Mathlib/Analysis/Calculus/Deriv/Shift.html">Mathlib.Analysis.Calculus.Deriv.Shift</a></li><li><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html">Mathlib.Analysis.Calculus.IteratedDeriv.Defs</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#iteratedDerivWithin_congr"><span class="name">iteratedDerivWithin_congr</span></a></div><div class="nav_link"><a class="break_within" href="#iteratedDerivWithin_add"><span class="name">iteratedDerivWithin_add</span></a></div><div class="nav_link"><a class="break_within" href="#iteratedDerivWithin_const_add"><span class="name">iteratedDerivWithin_const_add</span></a></div><div class="nav_link"><a class="break_within" href="#iteratedDerivWithin_const_sub"><span class="name">iteratedDerivWithin_const_sub</span></a></div><div class="nav_link"><a class="break_within" href="#iteratedDerivWithin_const_neg"><span class="name">iteratedDerivWithin_const_neg</span></a></div><div class="nav_link"><a class="break_within" href="#iteratedDerivWithin_const_smul"><span class="name">iteratedDerivWithin_const_smul</span></a></div><div class="nav_link"><a class="break_within" href="#iteratedDerivWithin_const_mul"><span class="name">iteratedDerivWithin_const_mul</span></a></div><div class="nav_link"><a class="break_within" href="#iteratedDerivWithin_neg"><span class="name">iteratedDerivWithin_neg</span></a></div><div class="nav_link"><a class="break_within" href="#iteratedDerivWithin_neg'"><span class="name">iteratedDerivWithin_neg'</span></a></div><div class="nav_link"><a class="break_within" href="#iteratedDerivWithin_sub"><span class="name">iteratedDerivWithin_sub</span></a></div><div class="nav_link"><a class="break_within" href="#iteratedDerivWithin_comp_const_smul"><span class="name">iteratedDerivWithin_comp_const_smul</span></a></div><div class="nav_link"><a class="break_within" href="#iteratedDeriv_add"><span class="name">iteratedDeriv_add</span></a></div><div class="nav_link"><a class="break_within" href="#iteratedDeriv_const_add"><span class="name">iteratedDeriv_const_add</span></a></div><div class="nav_link"><a class="break_within" href="#iteratedDeriv_const_sub"><span class="name">iteratedDeriv_const_sub</span></a></div><div class="nav_link"><a class="break_within" href="#iteratedDeriv_neg"><span class="name">iteratedDeriv_neg</span></a></div><div class="nav_link"><a class="break_within" href="#iteratedDeriv_sub"><span class="name">iteratedDeriv_sub</span></a></div><div class="nav_link"><a class="break_within" href="#iteratedDeriv_const_smul"><span class="name">iteratedDeriv_const_smul</span></a></div><div class="nav_link"><a class="break_within" href="#iteratedDeriv_const_mul"><span class="name">iteratedDeriv_const_mul</span></a></div><div class="nav_link"><a class="break_within" href="#iteratedDeriv_comp_const_smul"><span class="name">iteratedDeriv_comp_const_smul</span></a></div><div class="nav_link"><a class="break_within" href="#iteratedDeriv_comp_const_mul"><span class="name">iteratedDeriv_comp_const_mul</span></a></div><div class="nav_link"><a class="break_within" href="#iteratedDeriv_comp_neg"><span class="name">iteratedDeriv_comp_neg</span></a></div><div class="nav_link"><a class="break_within" href="#Filter.EventuallyEq.iteratedDeriv_eq"><span class="name">Filter</span>.<span class="name">EventuallyEq</span>.<span class="name">iteratedDeriv_eq</span></a></div><div class="nav_link"><a class="break_within" href="#Set.EqOn.iteratedDeriv_of_isOpen"><span class="name">Set</span>.<span class="name">EqOn</span>.<span class="name">iteratedDeriv_of_isOpen</span></a></div><div class="nav_link"><a class="break_within" href="#iteratedDeriv_comp_const_add"><span class="name">iteratedDeriv_comp_const_add</span></a></div><div class="nav_link"><a class="break_within" href="#iteratedDeriv_comp_add_const"><span class="name">iteratedDeriv_comp_add_const</span></a></div></nav><main>
+<div class="mod_doc"><h1 class="markdown-heading" id="One-dimensional-iterated-derivatives">One-dimensional iterated derivatives <a class="hover-link" href="#One-dimensional-iterated-derivatives">#</a></h1><p>This file contains a number of further results on <code><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a></code> that need more imports
+than are available in <code><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html">Mathlib/Analysis/Calculus/IteratedDeriv/Defs.lean</a></code>.</p></div><div class="decl" id="iteratedDerivWithin_congr"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L28-L35">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDerivWithin_congr"><span class="name">iteratedDerivWithin_congr</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">𝕜</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f </span><span class="fn">g</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">F</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hfg</span> : <span class="fn"><a href="../../../.././Mathlib/Data/Set/Operations.html#Set.EqOn">Set.EqOn</a> <span class="fn">f</span> <span class="fn">g</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../../.././Mathlib/Data/Set/Operations.html#Set.EqOn">Set.EqOn</a> <span class="fn">(<a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> <span class="fn">f</span> <span class="fn">s</span>)</span> <span class="fn">(<a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> <span class="fn">g</span> <span class="fn">s</span>)</span> <span class="fn">s</span></span></div></div></div></div><div class="decl" id="iteratedDerivWithin_add"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L38-L43">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDerivWithin_add"><span class="name">iteratedDerivWithin_add</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">𝕜</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">𝕜</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hx</span> : <span class="fn">x</span> <a href="../../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/TangentCone.html#UniqueDiffOn">UniqueDiffOn</a> <span class="fn">𝕜</span> <span class="fn">s</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f </span><span class="fn">g</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">F</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/ContDiff/Defs.html#ContDiffWithinAt">ContDiffWithinAt</a> <span class="fn">𝕜</span> <span class="fn">(↑<span class="fn">n</span>)</span> <span class="fn">f</span> <span class="fn">s</span> <span class="fn">x</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hg</span> : <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/ContDiff/Defs.html#ContDiffWithinAt">ContDiffWithinAt</a> <span class="fn">𝕜</span> <span class="fn">(↑<span class="fn">n</span>)</span> <span class="fn">g</span> <span class="fn">s</span> <span class="fn">x</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> (<span class="fn">f</span> <a href="../../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn">g</span>) <span class="fn">s</span> <span class="fn">x</span></span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> <span class="fn">f</span> <span class="fn">s</span> <span class="fn">x</span></span> <a href="../../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> <span class="fn">g</span> <span class="fn">s</span> <span class="fn">x</span></span></div></div></div></div><div class="decl" id="iteratedDerivWithin_const_add"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L45-L52">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDerivWithin_const_add"><span class="name">iteratedDerivWithin_const_add</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">𝕜</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">𝕜</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">F</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hn</span> : <span class="fn">0</span> <a href="../../../.././Init/Prelude.html#LT.lt">&lt;</a> <span class="fn">n</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn">F</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> <span class="fn">(fun (<span class="fn">z</span> : <span class="fn">𝕜</span>) =&gt; <span class="fn">c</span> <a href="../../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn"><span class="fn">f</span> <span class="fn">z</span></span>)</span> <span class="fn">s</span> <span class="fn">x</span></span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> <span class="fn">f</span> <span class="fn">s</span> <span class="fn">x</span></span></div></div></div></div><div class="decl" id="iteratedDerivWithin_const_sub"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L54-L62">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDerivWithin_const_sub"><span class="name">iteratedDerivWithin_const_sub</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">𝕜</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">𝕜</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">F</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hn</span> : <span class="fn">0</span> <a href="../../../.././Init/Prelude.html#LT.lt">&lt;</a> <span class="fn">n</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn">F</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> <span class="fn">(fun (<span class="fn">z</span> : <span class="fn">𝕜</span>) =&gt; <span class="fn">c</span> <a href="../../../.././Init/Prelude.html#HSub.hSub">-</a> <span class="fn"><span class="fn">f</span> <span class="fn">z</span></span>)</span> <span class="fn">s</span> <span class="fn">x</span></span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> <span class="fn">(fun (<span class="fn">z</span> : <span class="fn">𝕜</span>) =&gt; <a href="../../../.././Init/Prelude.html#Neg.neg">-</a><span class="fn"><span class="fn">f</span> <span class="fn">z</span></span>)</span> <span class="fn">s</span> <span class="fn">x</span></span></div></div></div></div><div class="decl" id="iteratedDerivWithin_const_neg"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L64-L65">source</a></div><div class="attributes">@[deprecated iteratedDerivWithin_const_sub (since := &quot;2024-12-10&quot;)]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDerivWithin_const_neg"><span class="name">iteratedDerivWithin_const_neg</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">𝕜</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">𝕜</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">F</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hn</span> : <span class="fn">0</span> <a href="../../../.././Init/Prelude.html#LT.lt">&lt;</a> <span class="fn">n</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn">F</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> <span class="fn">(fun (<span class="fn">z</span> : <span class="fn">𝕜</span>) =&gt; <span class="fn">c</span> <a href="../../../.././Init/Prelude.html#HSub.hSub">-</a> <span class="fn"><span class="fn">f</span> <span class="fn">z</span></span>)</span> <span class="fn">s</span> <span class="fn">x</span></span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> <span class="fn">(fun (<span class="fn">z</span> : <span class="fn">𝕜</span>) =&gt; <a href="../../../.././Init/Prelude.html#Neg.neg">-</a><span class="fn"><span class="fn">f</span> <span class="fn">z</span></span>)</span> <span class="fn">s</span> <span class="fn">x</span></span></div></div><p><strong>Alias</strong> of <code><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDerivWithin_const_sub">iteratedDerivWithin_const_sub</a></code>.</p></div></div><div class="decl" id="iteratedDerivWithin_const_smul"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L68-L72">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDerivWithin_const_smul"><span class="name">iteratedDerivWithin_const_smul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Algebra/Ring/Defs.html#Semiring">Semiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Algebra/Group/Action/Defs.html#SMulCommClass">SMulCommClass</a> <span class="fn">𝕜</span> <span class="fn">R</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Topology/Algebra/ConstMulAction.html#ContinuousConstSMul">ContinuousConstSMul</a> <span class="fn">R</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">𝕜</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">𝕜</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hx</span> : <span class="fn">x</span> <a href="../../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/TangentCone.html#UniqueDiffOn">UniqueDiffOn</a> <span class="fn">𝕜</span> <span class="fn">s</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">F</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/ContDiff/Defs.html#ContDiffWithinAt">ContDiffWithinAt</a> <span class="fn">𝕜</span> <span class="fn">(↑<span class="fn">n</span>)</span> <span class="fn">f</span> <span class="fn">s</span> <span class="fn">x</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> (<span class="fn">c</span> <a href="../../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn">f</span>) <span class="fn">s</span> <span class="fn">x</span></span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <span class="fn">c</span> <a href="../../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> <span class="fn">f</span> <span class="fn">s</span> <span class="fn">x</span></span></div></div></div></div><div class="decl" id="iteratedDerivWithin_const_mul"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L75-L77">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDerivWithin_const_mul"><span class="name">iteratedDerivWithin_const_mul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">𝕜</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">𝕜</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hx</span> : <span class="fn">x</span> <a href="../../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/TangentCone.html#UniqueDiffOn">UniqueDiffOn</a> <span class="fn">𝕜</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn">𝕜</span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">𝕜</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/ContDiff/Defs.html#ContDiffWithinAt">ContDiffWithinAt</a> <span class="fn">𝕜</span> <span class="fn">(↑<span class="fn">n</span>)</span> <span class="fn">f</span> <span class="fn">s</span> <span class="fn">x</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> <span class="fn">(fun (<span class="fn">z</span> : <span class="fn">𝕜</span>) =&gt; <span class="fn">c</span> <a href="../../../.././Init/Prelude.html#HMul.hMul">*</a> <span class="fn"><span class="fn">f</span> <span class="fn">z</span></span>)</span> <span class="fn">s</span> <span class="fn">x</span></span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <span class="fn">c</span> <a href="../../../.././Init/Prelude.html#HMul.hMul">*</a> <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> <span class="fn">f</span> <span class="fn">s</span> <span class="fn">x</span></span></div></div></div></div><div class="decl" id="iteratedDerivWithin_neg"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L81-L89">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDerivWithin_neg"><span class="name">iteratedDerivWithin_neg</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">𝕜</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">𝕜</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">F</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> (<a href="../../../.././Init/Prelude.html#Neg.neg">-</a><span class="fn">f</span>) <span class="fn">s</span> <span class="fn">x</span></span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <a href="../../../.././Init/Prelude.html#Neg.neg">-</a><span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> <span class="fn">f</span> <span class="fn">s</span> <span class="fn">x</span></span></div></div></div></div><div class="decl" id="iteratedDerivWithin_neg'"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L92-L94">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDerivWithin_neg'"><span class="name">iteratedDerivWithin_neg'</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">𝕜</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">𝕜</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">F</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> <span class="fn">(fun (<span class="fn">z</span> : <span class="fn">𝕜</span>) =&gt; <a href="../../../.././Init/Prelude.html#Neg.neg">-</a><span class="fn"><span class="fn">f</span> <span class="fn">z</span></span>)</span> <span class="fn">s</span> <span class="fn">x</span></span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <a href="../../../.././Init/Prelude.html#Neg.neg">-</a><span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> <span class="fn">f</span> <span class="fn">s</span> <span class="fn">x</span></span></div></div></div></div><div class="decl" id="iteratedDerivWithin_sub"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L98-L103">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDerivWithin_sub"><span class="name">iteratedDerivWithin_sub</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">𝕜</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">𝕜</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hx</span> : <span class="fn">x</span> <a href="../../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/TangentCone.html#UniqueDiffOn">UniqueDiffOn</a> <span class="fn">𝕜</span> <span class="fn">s</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f </span><span class="fn">g</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">F</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/ContDiff/Defs.html#ContDiffWithinAt">ContDiffWithinAt</a> <span class="fn">𝕜</span> <span class="fn">(↑<span class="fn">n</span>)</span> <span class="fn">f</span> <span class="fn">s</span> <span class="fn">x</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hg</span> : <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/ContDiff/Defs.html#ContDiffWithinAt">ContDiffWithinAt</a> <span class="fn">𝕜</span> <span class="fn">(↑<span class="fn">n</span>)</span> <span class="fn">g</span> <span class="fn">s</span> <span class="fn">x</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> (<span class="fn">f</span> <a href="../../../.././Init/Prelude.html#HSub.hSub">-</a> <span class="fn">g</span>) <span class="fn">s</span> <span class="fn">x</span></span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> <span class="fn">f</span> <span class="fn">s</span> <span class="fn">x</span></span> <a href="../../../.././Init/Prelude.html#HSub.hSub">-</a> <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> <span class="fn">g</span> <span class="fn">s</span> <span class="fn">x</span></span></div></div></div></div><div class="decl" id="iteratedDerivWithin_comp_const_smul"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L105-L129">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDerivWithin_comp_const_smul"><span class="name">iteratedDerivWithin_comp_const_smul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">𝕜</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">𝕜</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hx</span> : <span class="fn">x</span> <a href="../../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/TangentCone.html#UniqueDiffOn">UniqueDiffOn</a> <span class="fn">𝕜</span> <span class="fn">s</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">F</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/ContDiff/Defs.html#ContDiffOn">ContDiffOn</a> <span class="fn">𝕜</span> <span class="fn">(↑<span class="fn">n</span>)</span> <span class="fn">f</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn">𝕜</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hs</span> : <span class="fn"><a href="../../../.././Mathlib/Data/Set/Operations.html#Set.MapsTo">Set.MapsTo</a> <span class="fn">(fun (<span class="fn">x</span> : <span class="fn">𝕜</span>) =&gt; <span class="fn">c</span> <a href="../../../.././Init/Prelude.html#HMul.hMul">*</a> <span class="fn">x</span>)</span> <span class="fn">s</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> <span class="fn">(fun (<span class="fn">x</span> : <span class="fn">𝕜</span>) =&gt; <span class="fn"><span class="fn">f</span> (<span class="fn">c</span> <a href="../../../.././Init/Prelude.html#HMul.hMul">*</a> <span class="fn">x</span>)</span>)</span> <span class="fn">s</span> <span class="fn">x</span></span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <span class="fn">c</span> <a href="../../../.././Init/Prelude.html#HPow.hPow">^</a> <span class="fn">n</span> <a href="../../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDerivWithin">iteratedDerivWithin</a> <span class="fn">n</span> <span class="fn">f</span> <span class="fn">s</span> (<span class="fn">c</span> <a href="../../../.././Init/Prelude.html#HMul.hMul">*</a> <span class="fn">x</span>)</span></div></div></div></div><div class="decl" id="iteratedDeriv_add"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L133-L136">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDeriv_add"><span class="name">iteratedDeriv_add</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">𝕜</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f </span><span class="fn">g</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">F</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/ContDiff/Defs.html#ContDiffAt">ContDiffAt</a> <span class="fn">𝕜</span> <span class="fn">(↑<span class="fn">n</span>)</span> <span class="fn">f</span> <span class="fn">x</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hg</span> : <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/ContDiff/Defs.html#ContDiffAt">ContDiffAt</a> <span class="fn">𝕜</span> <span class="fn">(↑<span class="fn">n</span>)</span> <span class="fn">g</span> <span class="fn">x</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> (<span class="fn">f</span> <a href="../../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn">g</span>) <span class="fn">x</span></span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">f</span> <span class="fn">x</span></span> <a href="../../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">g</span> <span class="fn">x</span></span></div></div></div></div><div class="decl" id="iteratedDeriv_const_add"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L138-L140">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDeriv_const_add"><span class="name">iteratedDeriv_const_add</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">𝕜</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">F</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hn</span> : <span class="fn">0</span> <a href="../../../.././Init/Prelude.html#LT.lt">&lt;</a> <span class="fn">n</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn">F</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">(fun (<span class="fn">z</span> : <span class="fn">𝕜</span>) =&gt; <span class="fn">c</span> <a href="../../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn"><span class="fn">f</span> <span class="fn">z</span></span>)</span> <span class="fn">x</span></span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">f</span> <span class="fn">x</span></span></div></div></div></div><div class="decl" id="iteratedDeriv_const_sub"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L142-L144">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDeriv_const_sub"><span class="name">iteratedDeriv_const_sub</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">𝕜</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">F</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hn</span> : <span class="fn">0</span> <a href="../../../.././Init/Prelude.html#LT.lt">&lt;</a> <span class="fn">n</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn">F</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">(fun (<span class="fn">z</span> : <span class="fn">𝕜</span>) =&gt; <span class="fn">c</span> <a href="../../../.././Init/Prelude.html#HSub.hSub">-</a> <span class="fn"><span class="fn">f</span> <span class="fn">z</span></span>)</span> <span class="fn">x</span></span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> (<a href="../../../.././Init/Prelude.html#Neg.neg">-</a><span class="fn">f</span>) <span class="fn">x</span></span></div></div></div></div><div class="decl" id="iteratedDeriv_neg"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L146-L148">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDeriv_neg"><span class="name">iteratedDeriv_neg</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">F</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn">𝕜</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">(fun (<span class="fn">x</span> : <span class="fn">𝕜</span>) =&gt; <a href="../../../.././Init/Prelude.html#Neg.neg">-</a><span class="fn"><span class="fn">f</span> <span class="fn">x</span></span>)</span> <span class="fn">a</span></span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <a href="../../../.././Init/Prelude.html#Neg.neg">-</a><span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">f</span> <span class="fn">a</span></span></div></div></div></div><div class="decl" id="iteratedDeriv_sub"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L150-L153">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDeriv_sub"><span class="name">iteratedDeriv_sub</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">𝕜</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f </span><span class="fn">g</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">F</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/ContDiff/Defs.html#ContDiffAt">ContDiffAt</a> <span class="fn">𝕜</span> <span class="fn">(↑<span class="fn">n</span>)</span> <span class="fn">f</span> <span class="fn">x</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hg</span> : <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/ContDiff/Defs.html#ContDiffAt">ContDiffAt</a> <span class="fn">𝕜</span> <span class="fn">(↑<span class="fn">n</span>)</span> <span class="fn">g</span> <span class="fn">x</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> (<span class="fn">f</span> <a href="../../../.././Init/Prelude.html#HSub.hSub">-</a> <span class="fn">g</span>) <span class="fn">x</span></span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">f</span> <span class="fn">x</span></span> <a href="../../../.././Init/Prelude.html#HSub.hSub">-</a> <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">g</span> <span class="fn">x</span></span></div></div></div></div><div class="decl" id="iteratedDeriv_const_smul"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L155-L159">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDeriv_const_smul"><span class="name">iteratedDeriv_const_smul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">𝕜</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">F</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/ContDiff/Defs.html#ContDiffAt">ContDiffAt</a> <span class="fn">𝕜</span> <span class="fn">(↑<span class="fn">n</span>)</span> <span class="fn">f</span> <span class="fn">x</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn">𝕜</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> (<span class="fn">c</span> <a href="../../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn">f</span>) <span class="fn">x</span></span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <span class="fn">c</span> <a href="../../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">f</span> <span class="fn">x</span></span></div></div></div></div><div class="decl" id="iteratedDeriv_const_mul"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L161-L165">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDeriv_const_mul"><span class="name">iteratedDeriv_const_mul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">𝕜</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">𝕜</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/ContDiff/Defs.html#ContDiffAt">ContDiffAt</a> <span class="fn">𝕜</span> <span class="fn">(↑<span class="fn">n</span>)</span> <span class="fn">f</span> <span class="fn">x</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn">𝕜</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">(fun (<span class="fn">z</span> : <span class="fn">𝕜</span>) =&gt; <span class="fn">c</span> <a href="../../../.././Init/Prelude.html#HMul.hMul">*</a> <span class="fn"><span class="fn">f</span> <span class="fn">z</span></span>)</span> <span class="fn">x</span></span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <span class="fn">c</span> <a href="../../../.././Init/Prelude.html#HMul.hMul">*</a> <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">f</span> <span class="fn">x</span></span></div></div></div></div><div class="decl" id="iteratedDeriv_comp_const_smul"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L167-L172">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDeriv_comp_const_smul"><span class="name">iteratedDeriv_comp_const_smul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">F</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/ContDiff/Defs.html#ContDiff">ContDiff</a> <span class="fn">𝕜</span> <span class="fn">(↑<span class="fn">n</span>)</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn">𝕜</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">(<a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">fun (<span class="fn">x</span> : <span class="fn">𝕜</span>) =&gt; <span class="fn"><span class="fn">f</span> (<span class="fn">c</span> <a href="../../../.././Init/Prelude.html#HMul.hMul">*</a> <span class="fn">x</span>)</span></span>)</span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <span class="fn">fun (<span class="fn">x</span> : <span class="fn">𝕜</span>) =&gt; <span class="fn">c</span> <a href="../../../.././Init/Prelude.html#HPow.hPow">^</a> <span class="fn">n</span> <a href="../../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">f</span> (<span class="fn">c</span> <a href="../../../.././Init/Prelude.html#HMul.hMul">*</a> <span class="fn">x</span>)</span></span></div></div></div></div><div class="decl" id="iteratedDeriv_comp_const_mul"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L174-L176">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDeriv_comp_const_mul"><span class="name">iteratedDeriv_comp_const_mul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">𝕜</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/ContDiff/Defs.html#ContDiff">ContDiff</a> <span class="fn">𝕜</span> <span class="fn">(↑<span class="fn">n</span>)</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn">𝕜</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">(<a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">fun (<span class="fn">x</span> : <span class="fn">𝕜</span>) =&gt; <span class="fn"><span class="fn">f</span> (<span class="fn">c</span> <a href="../../../.././Init/Prelude.html#HMul.hMul">*</a> <span class="fn">x</span>)</span></span>)</span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <span class="fn">fun (<span class="fn">x</span> : <span class="fn">𝕜</span>) =&gt; <span class="fn">c</span> <a href="../../../.././Init/Prelude.html#HPow.hPow">^</a> <span class="fn">n</span> <a href="../../../.././Init/Prelude.html#HMul.hMul">*</a> <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">f</span> (<span class="fn">c</span> <a href="../../../.././Init/Prelude.html#HMul.hMul">*</a> <span class="fn">x</span>)</span></span></div></div></div></div><div class="decl" id="iteratedDeriv_comp_neg"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L178-L186">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDeriv_comp_neg"><span class="name">iteratedDeriv_comp_neg</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">F</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn">𝕜</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">(fun (<span class="fn">x</span> : <span class="fn">𝕜</span>) =&gt; <span class="fn"><span class="fn">f</span> (<a href="../../../.././Init/Prelude.html#Neg.neg">-</a><span class="fn">x</span>)</span>)</span> <span class="fn">a</span></span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <span class="fn">(-<span class="fn">1</span>)</span> <a href="../../../.././Init/Prelude.html#HPow.hPow">^</a> <span class="fn">n</span> <a href="../../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">f</span> (<a href="../../../.././Init/Prelude.html#Neg.neg">-</a><span class="fn">a</span>)</span></div></div></div></div><div class="decl" id="Filter.EventuallyEq.iteratedDeriv_eq"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L189-L192">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#Filter.EventuallyEq.iteratedDeriv_eq"><span class="name">Filter</span>.<span class="name">EventuallyEq</span>.<span class="name">iteratedDeriv_eq</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f </span><span class="fn">g</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">F</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">𝕜</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hfg</span> : <span class="fn">f</span> <a href="../../../.././Mathlib/Order/Filter/Defs.html#Filter.EventuallyEq">=ᶠ[</a><span class="fn"><a href="../../../.././Mathlib/Topology/Defs/Filter.html#nhds">nhds</a> <span class="fn">x</span></span><a href="../../../.././Mathlib/Order/Filter/Defs.html#Filter.EventuallyEq">]</a> <span class="fn">g</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">f</span> <span class="fn">x</span></span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">g</span> <span class="fn">x</span></span></div></div></div></div><div class="decl" id="Set.EqOn.iteratedDeriv_of_isOpen"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L194-L198">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#Set.EqOn.iteratedDeriv_of_isOpen"><span class="name">Set</span>.<span class="name">EqOn</span>.<span class="name">iteratedDeriv_of_isOpen</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">𝕜</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f </span><span class="fn">g</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">F</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hfg</span> : <span class="fn"><a href="../../../.././Mathlib/Data/Set/Operations.html#Set.EqOn">EqOn</a> <span class="fn">f</span> <span class="fn">g</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hs</span> : <span class="fn"><a href="../../../.././Mathlib/Topology/Defs/Basic.html#IsOpen">IsOpen</a> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../../.././Mathlib/Data/Set/Operations.html#Set.EqOn">EqOn</a> <span class="fn">(<a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">f</span>)</span> <span class="fn">(<a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">g</span>)</span> <span class="fn">s</span></span></div></div></div></div><div class="mod_doc"><h3 class="markdown-heading" id="Invariance-of-iterated-derivatives-under-translation">Invariance of iterated derivatives under translation <a class="hover-link" href="#Invariance-of-iterated-derivatives-under-translation">#</a></h3></div><div class="decl" id="iteratedDeriv_comp_const_add"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L210-L216">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDeriv_comp_const_add"><span class="name">iteratedDeriv_comp_const_add</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">F</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn">𝕜</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">(<a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">fun (<span class="fn">z</span> : <span class="fn">𝕜</span>) =&gt; <span class="fn"><span class="fn">f</span> (<span class="fn">s</span> <a href="../../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn">z</span>)</span></span>)</span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <span class="fn">fun (<span class="fn">t</span> : <span class="fn">𝕜</span>) =&gt; <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">f</span> (<span class="fn">s</span> <a href="../../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn">t</span>)</span></span></div></div><p>The iterated derivative commutes with shifting the function by a constant on the left.</p></div></div><div class="decl" id="iteratedDeriv_comp_add_const"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.lean#L218-L224">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Lemmas.html#iteratedDeriv_comp_add_const"><span class="name">iteratedDeriv_comp_add_const</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F</span> : <a href="../../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Field/Basic.html#NontriviallyNormedField">NontriviallyNormedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Group/Basic.html#NormedAddCommGroup">NormedAddCommGroup</a> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../../.././Mathlib/Analysis/Normed/Module/Basic.html#NormedSpace">NormedSpace</a> <span class="fn">𝕜</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">n</span> : <a href="../../../.././Init/Prelude.html#Nat">ℕ</a>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">F</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn">𝕜</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">(<a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">fun (<span class="fn">z</span> : <span class="fn">𝕜</span>) =&gt; <span class="fn"><span class="fn">f</span> (<span class="fn">z</span> <a href="../../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn">s</span>)</span></span>)</span> <a href="../../../.././Init/Prelude.html#Eq">=</a> <span class="fn">fun (<span class="fn">t</span> : <span class="fn">𝕜</span>) =&gt; <span class="fn"><a href="../../../.././Mathlib/Analysis/Calculus/IteratedDeriv/Defs.html#iteratedDeriv">iteratedDeriv</a> <span class="fn">n</span> <span class="fn">f</span> (<span class="fn">t</span> <a href="../../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn">s</span>)</span></span></div></div><p>The iterated derivative commutes with shifting the function by a constant on the right.</p></div></div></main>
+<nav class="nav"><iframe src="../../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

@@ -1,0 +1,1047 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>Mathlib.LinearAlgebra.BilinearForm.Properties</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="Mathlib.LinearAlgebra.BilinearForm.Properties";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span>Documentation</span></h1><h2 class="header_filename break_within"><span class="name">Mathlib</span>.<span class="name">LinearAlgebra</span>.<span class="name">BilinearForm</span>.<span class="name">Properties</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="../../.././Init.html">Init</a></li><li><a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Hom.html">Mathlib.LinearAlgebra.BilinearForm.Hom</a></li><li><a href="../../.././Mathlib/LinearAlgebra/Dual/Lemmas.html">Mathlib.LinearAlgebra.Dual.Lemmas</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-Mathlib.LinearAlgebra.BilinearForm.Properties" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsRefl"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsRefl</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsRefl.eq_zero"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsRefl</span>.<span class="name">eq_zero</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsRefl.neg"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsRefl</span>.<span class="name">neg</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsRefl.smul"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsRefl</span>.<span class="name">smul</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsRefl.groupSMul"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsRefl</span>.<span class="name">groupSMul</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.isRefl_zero"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">isRefl_zero</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.isRefl_neg"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">isRefl_neg</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsSymm"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsSymm.eq"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">eq</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsSymm.isRefl"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">isRefl</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsSymm.add"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">add</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsSymm.sub"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">sub</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsSymm.neg"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">neg</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsSymm.smul"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">smul</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsSymm.restrict"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">restrict</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.isSymm_zero"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">isSymm_zero</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.isSymm_neg"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">isSymm_neg</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.isSymm_iff_flip"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">isSymm_iff_flip</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsAlt"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsAlt</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsAlt.self_eq_zero"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsAlt</span>.<span class="name">self_eq_zero</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsAlt.neg_eq"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsAlt</span>.<span class="name">neg_eq</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsAlt.isRefl"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsAlt</span>.<span class="name">isRefl</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsAlt.eq_of_add_add_eq_zero"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsAlt</span>.<span class="name">eq_of_add_add_eq_zero</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsAlt.add"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsAlt</span>.<span class="name">add</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsAlt.sub"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsAlt</span>.<span class="name">sub</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsAlt.neg"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsAlt</span>.<span class="name">neg</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.IsAlt.smul"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsAlt</span>.<span class="name">smul</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.isAlt_zero"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">isAlt_zero</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.isAlt_neg"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">isAlt_neg</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.Nondegenerate"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">Nondegenerate</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.not_nondegenerate_zero"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">not_nondegenerate_zero</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.Nondegenerate.ne_zero"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">Nondegenerate</span>.<span class="name">ne_zero</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.Nondegenerate.congr"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">Nondegenerate</span>.<span class="name">congr</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.nondegenerate_congr_iff"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">nondegenerate_congr_iff</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.nondegenerate_iff_ker_eq_bot"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">nondegenerate_iff_ker_eq_bot</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.Nondegenerate.ker_eq_bot"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">Nondegenerate</span>.<span class="name">ker_eq_bot</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.compLeft_injective"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">compLeft_injective</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.isAdjointPair_unique_of_nondegenerate"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">isAdjointPair_unique_of_nondegenerate</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.toDual"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">toDual</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.toDual_def"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">toDual_def</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.apply_toDual_symm_apply"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">apply_toDual_symm_apply</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.Nondegenerate.flip"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">Nondegenerate</span>.<span class="name">flip</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.nonDegenerateFlip_iff"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">nonDegenerateFlip_iff</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.dualBasis"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">dualBasis</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.dualBasis_repr_apply"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">dualBasis_repr_apply</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.apply_dualBasis_left"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">apply_dualBasis_left</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.apply_dualBasis_right"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">apply_dualBasis_right</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.dualBasis_dualBasis_flip"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">dualBasis_dualBasis_flip</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.dualBasis_flip_dualBasis"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">dualBasis_flip_dualBasis</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.dualBasis_dualBasis"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">dualBasis_dualBasis</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.symmCompOfNondegenerate"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">symmCompOfNondegenerate</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.comp_symmCompOfNondegenerate_apply"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">comp_symmCompOfNondegenerate_apply</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.symmCompOfNondegenerate_left_apply"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">symmCompOfNondegenerate_left_apply</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.leftAdjointOfNondegenerate"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">leftAdjointOfNondegenerate</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.isAdjointPairLeftAdjointOfNondegenerate"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">isAdjointPairLeftAdjointOfNondegenerate</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.BilinForm.isAdjointPair_iff_eq_of_nondegenerate"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">isAdjointPair_iff_eq_of_nondegenerate</span></a></div></nav><main>
+<div class="mod_doc"><h1 class="markdown-heading" id="Bilinear-form">Bilinear form <a class="hover-link" href="#Bilinear-form">#</a></h1><p>This file defines various properties of bilinear forms, including reflexivity, symmetry,
+alternativity, adjoint, and non-degeneracy.
+For orthogonality, see <code><a href="../../.././LinearAlgebra/BilinearForm/Orthogonal.html">LinearAlgebra/BilinearForm/Orthogonal.lean</a></code>.</p><h2 class="markdown-heading" id="Notations">Notations <a class="hover-link" href="#Notations">#</a></h2><p>Given any term <code>B</code> of type <code>BilinForm</code>, due to a coercion, can use
+the notation <code>B x y</code> to refer to the function field, ie. <code>B x y = B.bilin x y</code>.</p><p>In this file we use the following type variables:</p><ul>
+<li><code>M</code>, <code>M'</code>, ... are modules over the commutative semiring <code>R</code>,</li>
+<li><code>M₁</code>, <code>M₁'</code>, ... are modules over the commutative ring <code>R₁</code>,</li>
+<li><code>V</code>, ... is a vector space over the field <code>K</code>.</li>
+</ul><h2 class="markdown-heading" id="References">References <a class="hover-link" href="#References">#</a></h2><ul>
+<li><a href="https://en.wikipedia.org/wiki/Bilinear_form">https://en.wikipedia.org/wiki/Bilinear_form</a></li>
+</ul><h2 class="markdown-heading" id="Tags">Tags <a class="hover-link" href="#Tags">#</a></h2><p>Bilinear form,</p></div><div class="mod_doc"><h3 class="markdown-heading" id="Reflexivity-symmetry-and-alternativity">Reflexivity, symmetry, and alternativity <a class="hover-link" href="#Reflexivity-symmetry-and-alternativity">#</a></h3></div><div class="decl" id="LinearMap.BilinForm.IsRefl"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L53-L54">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsRefl"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsRefl</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>The proposition that a bilinear form is reflexive</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsRefl">IsRefl</a></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/SesquilinearForm.html#LinearMap.IsRefl">LinearMap.IsRefl</a> <span class="fn">B</span></span></li></ul></details><details id="instances-for-list-LinearMap.BilinForm.IsRefl" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LinearMap.BilinForm.IsRefl.eq_zero"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L58-L58">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsRefl.eq_zero"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsRefl</span>.<span class="name">eq_zero</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">H</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsRefl">IsRefl</a></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x </span><span class="fn">y</span> : <span class="fn">M</span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">x</span>)</span> <span class="fn">y</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">0</span> → <span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">y</span>)</span> <span class="fn">x</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">0</span></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.IsRefl.neg"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L60-L61">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsRefl.neg"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsRefl</span>.<span class="name">neg</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R₁</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₁</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsRefl">IsRefl</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">(<a href="../../.././Init/Prelude.html#Neg.neg">-</a><span class="fn">B</span>).<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsRefl">IsRefl</a></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.IsRefl.smul"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L63-L67">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsRefl.smul"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsRefl</span>.<span class="name">smul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">α</span> : <a href="../../.././foundational_types.html">Type</a> u_8}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">α</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">α</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Action/Defs.html#SMulCommClass">SMulCommClass</a> <span class="fn">R</span> <span class="fn">α</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/NoZeroSMulDivisors/Defs.html#NoZeroSMulDivisors">NoZeroSMulDivisors</a> <span class="fn">α</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn">α</span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsRefl">IsRefl</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">(<span class="fn">a</span> <a href="../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn">B</span>).<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsRefl">IsRefl</a></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.IsRefl.groupSMul"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L69-L71">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsRefl.groupSMul"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsRefl</span>.<span class="name">groupSMul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">α</span> : <a href="../../.././foundational_types.html">Type</a> u_8}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#Group">Group</a> <span class="fn">α</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/GroupWithZero/Action/Defs.html#DistribMulAction">DistribMulAction</a> <span class="fn">α</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Action/Defs.html#SMulCommClass">SMulCommClass</a> <span class="fn">R</span> <span class="fn">α</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn">α</span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsRefl">IsRefl</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">(<span class="fn">a</span> <a href="../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn">B</span>).<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsRefl">IsRefl</a></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.isRefl_zero"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L75-L76">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.isRefl_zero"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">isRefl_zero</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsRefl">IsRefl</a> <span class="fn">0</span></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.isRefl_neg"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L78-L80">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.isRefl_neg"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">isRefl_neg</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R₁</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₁</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn">(<a href="../../.././Init/Prelude.html#Neg.neg">-</a><span class="fn">B</span>).<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsRefl">IsRefl</a></span> <a href="../../.././Init/Core.html#Iff">↔</a> <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsRefl">IsRefl</a></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.IsSymm"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L82-L83">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>The proposition that a bilinear form is symmetric</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm">IsSymm</a></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/SesquilinearForm.html#LinearMap.IsSymm">LinearMap.IsSymm</a> <span class="fn">B</span></span></li></ul></details><details id="instances-for-list-LinearMap.BilinForm.IsSymm" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LinearMap.BilinForm.IsSymm.eq"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L87-L88">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm.eq"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">eq</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">H</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm">IsSymm</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x </span><span class="fn">y</span> : <span class="fn">M</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">x</span>)</span> <span class="fn">y</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">y</span>)</span> <span class="fn">x</span></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.IsSymm.isRefl"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L90-L90">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm.isRefl"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">isRefl</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">H</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm">IsSymm</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsRefl">IsRefl</a></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.IsSymm.add"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L92-L93">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm.add"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">add</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B₁ </span><span class="fn">B₂</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB₁</span> : <span class="fn"><span class="fn">B₁</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm">IsSymm</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB₂</span> : <span class="fn"><span class="fn">B₂</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm">IsSymm</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">(<span class="fn">B₁</span> <a href="../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn">B₂</span>).<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm">IsSymm</a></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.IsSymm.sub"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L95-L96">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm.sub"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">sub</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R₁</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₁</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B₁ </span><span class="fn">B₂</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB₁</span> : <span class="fn"><span class="fn">B₁</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm">IsSymm</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB₂</span> : <span class="fn"><span class="fn">B₂</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm">IsSymm</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">(<span class="fn">B₁</span> <a href="../../.././Init/Prelude.html#HSub.hSub">-</a> <span class="fn">B₂</span>).<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm">IsSymm</a></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.IsSymm.neg"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L98-L99">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm.neg"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">neg</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R₁</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₁</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm">IsSymm</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">(<a href="../../.././Init/Prelude.html#Neg.neg">-</a><span class="fn">B</span>).<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm">IsSymm</a></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.IsSymm.smul"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L101-L103">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm.smul"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">smul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">α</span> : <a href="../../.././foundational_types.html">Type</a> u_8}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#Monoid">Monoid</a> <span class="fn">α</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/GroupWithZero/Action/Defs.html#DistribMulAction">DistribMulAction</a> <span class="fn">α</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Action/Defs.html#SMulCommClass">SMulCommClass</a> <span class="fn">R</span> <span class="fn">α</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn">α</span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm">IsSymm</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">(<span class="fn">a</span> <a href="../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn">B</span>).<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm">IsSymm</a></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.IsSymm.restrict"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L105-L107">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm.restrict"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsSymm</span>.<span class="name">restrict</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm">IsSymm</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">W</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Module/Submodule/Defs.html#Submodule">Submodule</a> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Basic.html#LinearMap.BilinForm.restrict">restrict</a></span> <span class="fn">W</span>)</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm">IsSymm</a></span></div></div><p>The restriction of a symmetric bilinear form on a submodule is also symmetric.</p></div></div><div class="decl" id="LinearMap.BilinForm.isSymm_zero"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L111-L112">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.isSymm_zero"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">isSymm_zero</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm">IsSymm</a> <span class="fn">0</span></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.isSymm_neg"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L114-L116">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.isSymm_neg"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">isSymm_neg</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R₁</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₁</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn">(<a href="../../.././Init/Prelude.html#Neg.neg">-</a><span class="fn">B</span>).<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm">IsSymm</a></span> <a href="../../.././Init/Core.html#Iff">↔</a> <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm">IsSymm</a></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.isSymm_iff_flip"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L118-L119">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.isSymm_iff_flip"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">isSymm_iff_flip</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm">IsSymm</a></span> <a href="../../.././Init/Core.html#Iff">↔</a> <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Basic.html#LinearMap.BilinForm.flipHom">flipHom</a> <span class="fn">B</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">B</span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.IsAlt"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L121-L122">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsAlt</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>The proposition that a bilinear form is alternating</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt">IsAlt</a></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/SesquilinearForm.html#LinearMap.IsAlt">LinearMap.IsAlt</a> <span class="fn">B</span></span></li></ul></details><details id="instances-for-list-LinearMap.BilinForm.IsAlt" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LinearMap.BilinForm.IsAlt.self_eq_zero"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L126-L126">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt.self_eq_zero"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsAlt</span>.<span class="name">self_eq_zero</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">H</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt">IsAlt</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">M</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">x</span>)</span> <span class="fn">x</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">0</span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.IsAlt.neg_eq"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L128-L128">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt.neg_eq"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsAlt</span>.<span class="name">neg_eq</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R₁</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₁</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B₁</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">H</span> : <span class="fn"><span class="fn">B₁</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt">IsAlt</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x </span><span class="fn">y</span> : <span class="fn">M₁</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././Init/Prelude.html#Neg.neg">-</a><span class="fn"><span class="fn">(<span class="fn">B₁</span> <span class="fn">x</span>)</span> <span class="fn">y</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn">(<span class="fn">B₁</span> <span class="fn">y</span>)</span> <span class="fn">x</span></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.IsAlt.isRefl"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L130-L130">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt.isRefl"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsAlt</span>.<span class="name">isRefl</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R₁</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₁</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B₁</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">H</span> : <span class="fn"><span class="fn">B₁</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt">IsAlt</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">B₁</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsRefl">IsRefl</a></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.IsAlt.eq_of_add_add_eq_zero"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L132-L133">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt.eq_of_add_add_eq_zero"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsAlt</span>.<span class="name">eq_of_add_add_eq_zero</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#IsCancelAdd">IsCancelAdd</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a </span><span class="fn">b </span><span class="fn">c</span> : <span class="fn">M</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">H</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt">IsAlt</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hAdd</span> : <span class="fn">a</span> <a href="../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn">b</span> <a href="../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn">c</span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">0</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">a</span>)</span> <span class="fn">b</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">b</span>)</span> <span class="fn">c</span></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.IsAlt.add"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L135-L136">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt.add"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsAlt</span>.<span class="name">add</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B₁ </span><span class="fn">B₂</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB₁</span> : <span class="fn"><span class="fn">B₁</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt">IsAlt</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB₂</span> : <span class="fn"><span class="fn">B₂</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt">IsAlt</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">(<span class="fn">B₁</span> <a href="../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn">B₂</span>).<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt">IsAlt</a></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.IsAlt.sub"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L138-L139">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt.sub"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsAlt</span>.<span class="name">sub</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R₁</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₁</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B₁ </span><span class="fn">B₂</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB₁</span> : <span class="fn"><span class="fn">B₁</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt">IsAlt</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB₂</span> : <span class="fn"><span class="fn">B₂</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt">IsAlt</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">(<span class="fn">B₁</span> <a href="../../.././Init/Prelude.html#HSub.hSub">-</a> <span class="fn">B₂</span>).<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt">IsAlt</a></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.IsAlt.neg"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L141-L142">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt.neg"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsAlt</span>.<span class="name">neg</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R₁</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₁</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt">IsAlt</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">(<a href="../../.././Init/Prelude.html#Neg.neg">-</a><span class="fn">B</span>).<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt">IsAlt</a></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.IsAlt.smul"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L144-L146">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt.smul"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">IsAlt</span>.<span class="name">smul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">α</span> : <a href="../../.././foundational_types.html">Type</a> u_8}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#Monoid">Monoid</a> <span class="fn">α</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/GroupWithZero/Action/Defs.html#DistribMulAction">DistribMulAction</a> <span class="fn">α</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Action/Defs.html#SMulCommClass">SMulCommClass</a> <span class="fn">R</span> <span class="fn">α</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn">α</span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt">IsAlt</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">(<span class="fn">a</span> <a href="../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn">B</span>).<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt">IsAlt</a></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.isAlt_zero"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L150-L151">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.isAlt_zero"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">isAlt_zero</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt">IsAlt</a> <span class="fn">0</span></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.isAlt_neg"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L153-L155">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.isAlt_neg"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">isAlt_neg</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R₁</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₁</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn">(<a href="../../.././Init/Prelude.html#Neg.neg">-</a><span class="fn">B</span>).<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt">IsAlt</a></span> <a href="../../.././Init/Core.html#Iff">↔</a> <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsAlt">IsAlt</a></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.Nondegenerate"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L161-L170">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">Nondegenerate</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>A nondegenerate bilinear form is a bilinear form such that the only element that is orthogonal
+to every other element is <code>0</code>; i.e., for all nonzero <code>m</code> in <code>M</code>, there exists <code>n</code> in <code>M</code> with
+<code>B m n ≠ 0</code>.</p><p>Note that for general (neither symmetric nor antisymmetric) bilinear forms this definition has a
+chirality; in addition to this &quot;left&quot; nondegeneracy condition one could define a &quot;right&quot;
+nondegeneracy condition that in the situation described, <code>B n m ≠ 0</code>.  This variant definition is
+not currently provided in mathlib. In finite dimension either definition implies the other.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">∀ (<span class="fn">m</span> : <span class="fn">M</span>), <span class="fn"><span class="fn">(∀ (<span class="fn">n</span> : <span class="fn">M</span>), <span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">m</span>)</span> <span class="fn">n</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">0</span>)</span> → <span class="fn">m</span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">0</span></span></span></li></ul></details><details id="instances-for-list-LinearMap.BilinForm.Nondegenerate" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LinearMap.BilinForm.not_nondegenerate_zero"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L176-L179">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.not_nondegenerate_zero"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">not_nondegenerate_zero</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Logic/Nontrivial/Defs.html#Nontrivial">Nontrivial</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><a href="../../.././Init/Prelude.html#Not">¬</a><span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a> <span class="fn">0</span></span></div></div><p>In a non-trivial module, zero is not non-degenerate.</p></div></div><div class="decl" id="LinearMap.BilinForm.Nondegenerate.ne_zero"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L186-L187">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate.ne_zero"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">Nondegenerate</span>.<span class="name">ne_zero</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Logic/Nontrivial/Defs.html#Nontrivial">Nontrivial</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">B</span> <a href="../../.././Init/Core.html#Ne">≠</a> <span class="fn">0</span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.Nondegenerate.congr"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L189-L192">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate.congr"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">Nondegenerate</span>.<span class="name">congr</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M'</span> : <a href="../../.././foundational_types.html">Type</a> u_8}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn">M</span> <a href="../../.././Mathlib/Algebra/Module/Equiv/Defs.html#LinearEquiv">≃ₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/Algebra/Module/Equiv/Defs.html#LinearEquiv">]</a> <span class="fn">M'</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">(<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Hom.html#LinearMap.BilinForm.congr">BilinForm.congr</a> <span class="fn">e</span>)</span> <span class="fn">B</span>)</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.nondegenerate_congr_iff"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L194-L199">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.nondegenerate_congr_iff"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">nondegenerate_congr_iff</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M'</span> : <a href="../../.././foundational_types.html">Type</a> u_8}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn">M</span> <a href="../../.././Mathlib/Algebra/Module/Equiv/Defs.html#LinearEquiv">≃ₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/Algebra/Module/Equiv/Defs.html#LinearEquiv">]</a> <span class="fn">M'</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">(<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Hom.html#LinearMap.BilinForm.congr">congr</a> <span class="fn">e</span>)</span> <span class="fn">B</span>)</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span> <a href="../../.././Init/Core.html#Iff">↔</a> <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.nondegenerate_iff_ker_eq_bot"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L201-L212">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.nondegenerate_iff_ker_eq_bot"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">nondegenerate_iff_ker_eq_bot</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span> <a href="../../.././Init/Core.html#Iff">↔</a> <span class="fn"><a href="../../.././Mathlib/Algebra/Module/Submodule/Ker.html#LinearMap.ker">ker</a> <span class="fn">B</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <a href="../../.././Mathlib/Order/Notation.html#Bot.bot">⊥</a></div></div><p>A bilinear form is nondegenerate if and only if it has a trivial kernel.</p></div></div><div class="decl" id="LinearMap.BilinForm.Nondegenerate.ker_eq_bot"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L214-L215">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate.ker_eq_bot"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">Nondegenerate</span>.<span class="name">ker_eq_bot</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Algebra/Module/Submodule/Ker.html#LinearMap.ker">ker</a> <span class="fn">B</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <a href="../../.././Mathlib/Order/Notation.html#Bot.bot">⊥</a></div></div></div></div><div class="decl" id="LinearMap.BilinForm.compLeft_injective"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L217-L222">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.compLeft_injective"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">compLeft_injective</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R₁</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₁</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Logic/Function/Defs.html#Function.Injective">Function.Injective</a> <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Hom.html#LinearMap.BilinForm.compLeft">compLeft</a></span></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.isAdjointPair_unique_of_nondegenerate"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L224-L227">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.isAdjointPair_unique_of_nondegenerate"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">isAdjointPair_unique_of_nondegenerate</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R₁</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M₁</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">R₁</span> <span class="fn">M₁</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">φ </span><span class="fn">ψ₁ </span><span class="fn">ψ₂</span> : <span class="fn">M₁</span> <a href="../../.././Mathlib/Algebra/Module/LinearMap/Defs.html#LinearMap">→ₗ[</a><span class="fn">R₁</span><a href="../../.././Mathlib/Algebra/Module/LinearMap/Defs.html#LinearMap">]</a> <span class="fn">M₁</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hψ₁</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/SesquilinearForm.html#LinearMap.IsAdjointPair">IsAdjointPair</a> <span class="fn">B</span> <span class="fn">B</span> <span class="fn">⇑<span class="fn">ψ₁</span></span> <span class="fn">⇑<span class="fn">φ</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hψ₂</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/SesquilinearForm.html#LinearMap.IsAdjointPair">IsAdjointPair</a> <span class="fn">B</span> <span class="fn">B</span> <span class="fn">⇑<span class="fn">ψ₂</span></span> <span class="fn">⇑<span class="fn">φ</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">ψ₁</span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">ψ₂</span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.toDual"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L233-L237">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.toDual"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">toDual</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Field/Defs.html#Field">Field</a> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">K</span> <span class="fn">V</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">V</span> <a href="../../.././Mathlib/Algebra/Module/Equiv/Defs.html#LinearEquiv">≃ₗ[</a><span class="fn">K</span><a href="../../.././Mathlib/Algebra/Module/Equiv/Defs.html#LinearEquiv">]</a> <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/Dual/Defs.html#Module.Dual">Module.Dual</a> <span class="fn">K</span> <span class="fn">V</span></span></div></div><p>Given a nondegenerate bilinear form <code>B</code> on a finite-dimensional vector space, <code>B.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.toDual">toDual</a></code> is
+the linear equivalence between a vector space and its dual.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.toDual">toDual</a></span> <span class="fn">b</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Lemmas.html#LinearMap.linearEquivOfInjective">LinearMap.linearEquivOfInjective</a> <span class="fn">B</span> <span class="fn">⋯</span> <span class="fn">⋯</span></span></li></ul></details><details id="instances-for-list-LinearMap.BilinForm.toDual" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LinearMap.BilinForm.toDual_def"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L239-L240">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.toDual_def"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">toDual_def</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Field/Defs.html#Field">Field</a> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">K</span> <span class="fn">V</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/SesquilinearForm.html#LinearMap.SeparatingLeft">SeparatingLeft</a> <span class="fn">B</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">m </span><span class="fn">n</span> : <span class="fn">V</span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">(<span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.toDual">toDual</a></span> <span class="fn">b</span>)</span> <span class="fn">m</span>)</span> <span class="fn">n</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">m</span>)</span> <span class="fn">n</span></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.apply_toDual_symm_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L242-L247">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.apply_toDual_symm_apply"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">apply_toDual_symm_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Field/Defs.html#Field">Field</a> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">K</span> <span class="fn">V</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/Dual/Defs.html#Module.Dual">Module.Dual</a> <span class="fn">K</span> <span class="fn">V</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">v</span> : <span class="fn">V</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">(<span class="fn"><span class="fn">(<span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.toDual">toDual</a></span> <span class="fn">hB</span>)</span>.<a href="../../.././Mathlib/Algebra/Module/Equiv/Defs.html#LinearEquiv.symm">symm</a></span> <span class="fn">f</span>)</span>)</span> <span class="fn">v</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn">f</span> <span class="fn">v</span></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.Nondegenerate.flip"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L249-L255">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate.flip"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">Nondegenerate</span>.<span class="name">flip</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Field/Defs.html#Field">Field</a> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">K</span> <span class="fn">V</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Basic.html#LinearMap.BilinForm.flip">flip</a></span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.nonDegenerateFlip_iff"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L257-L258">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.nonDegenerateFlip_iff"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">nonDegenerateFlip_iff</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Field/Defs.html#Field">Field</a> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">K</span> <span class="fn">V</span></span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Basic.html#LinearMap.BilinForm.flip">flip</a></span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span> <a href="../../.././Init/Core.html#Iff">↔</a> <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.dualBasis"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L266-L272">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.dualBasis"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">dualBasis</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Field/Defs.html#Field">Field</a> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_9}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Init/Prelude.html#DecidableEq">DecidableEq</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Data/Finite/Defs.html#Finite">Finite</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">K</span> <span class="fn">V</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/Basis/Defs.html#Basis">Basis</a> <span class="fn">ι</span> <span class="fn">K</span> <span class="fn">V</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/LinearAlgebra/Basis/Defs.html#Basis">Basis</a> <span class="fn">ι</span> <span class="fn">K</span> <span class="fn">V</span></span></div></div><p>The <code>B</code>-dual basis <code>B.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.dualBasis">dualBasis</a> hB b</code> to a finite basis <code>b</code> satisfies
+<code>B (B.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.dualBasis">dualBasis</a> hB b i) (b j) = B (b i) (B.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.dualBasis">dualBasis</a> hB b j) = if i = j then 1 else 0</code>,
+where <code>B</code> is a nondegenerate (symmetric) bilinear form and <code>b</code> is a finite basis.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.dualBasis">dualBasis</a></span> <span class="fn">hB</span> <span class="fn">b</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn"><span class="fn"><span class="fn">b</span>.<a href="../../.././Mathlib/LinearAlgebra/Dual/Basis.html#Basis.dualBasis">dualBasis</a></span>.<a href="../../.././Mathlib/LinearAlgebra/Basis/Defs.html#Basis.map">map</a></span> <span class="fn"><span class="fn">(<span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.toDual">toDual</a></span> <span class="fn">hB</span>)</span>.<a href="../../.././Mathlib/Algebra/Module/Equiv/Defs.html#LinearEquiv.symm">symm</a></span></span></li></ul></details><details id="instances-for-list-LinearMap.BilinForm.dualBasis" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LinearMap.BilinForm.dualBasis_repr_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L274-L282">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.dualBasis_repr_apply"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">dualBasis_repr_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Field/Defs.html#Field">Field</a> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_9}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Init/Prelude.html#DecidableEq">DecidableEq</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Data/Finite/Defs.html#Finite">Finite</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">K</span> <span class="fn">V</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/Basis/Defs.html#Basis">Basis</a> <span class="fn">ι</span> <span class="fn">K</span> <span class="fn">V</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">V</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">i</span> : <span class="fn">ι</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">(<span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.dualBasis">dualBasis</a></span> <span class="fn">hB</span> <span class="fn">b</span>)</span>.<a href="../../.././Mathlib/LinearAlgebra/Basis/Defs.html#Basis.repr">repr</a></span> <span class="fn">x</span>)</span> <span class="fn">i</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">x</span>)</span> <span class="fn">(<span class="fn">b</span> <span class="fn">i</span>)</span></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.apply_dualBasis_left"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L284-L288">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.apply_dualBasis_left"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">apply_dualBasis_left</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Field/Defs.html#Field">Field</a> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_9}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Init/Prelude.html#DecidableEq">DecidableEq</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Data/Finite/Defs.html#Finite">Finite</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">K</span> <span class="fn">V</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/Basis/Defs.html#Basis">Basis</a> <span class="fn">ι</span> <span class="fn">K</span> <span class="fn">V</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">i </span><span class="fn">j</span> : <span class="fn">ι</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">(<span class="fn">(<span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.dualBasis">dualBasis</a></span> <span class="fn">hB</span> <span class="fn">b</span>)</span> <span class="fn">i</span>)</span>)</span> <span class="fn">(<span class="fn">b</span> <span class="fn">j</span>)</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <a href="../../.././Init/Prelude.html#ite">if</a> <span class="fn">j</span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">i</span> <a href="../../.././Init/Prelude.html#ite">then</a> <span class="fn">1</span> <a href="../../.././Init/Prelude.html#ite">else</a> <span class="fn">0</span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.apply_dualBasis_right"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L290-L292">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.apply_dualBasis_right"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">apply_dualBasis_right</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Field/Defs.html#Field">Field</a> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_9}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Init/Prelude.html#DecidableEq">DecidableEq</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Data/Finite/Defs.html#Finite">Finite</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">K</span> <span class="fn">V</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">sym</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm">IsSymm</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/Basis/Defs.html#Basis">Basis</a> <span class="fn">ι</span> <span class="fn">K</span> <span class="fn">V</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">i </span><span class="fn">j</span> : <span class="fn">ι</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">B</span> <span class="fn">(<span class="fn">b</span> <span class="fn">i</span>)</span>)</span> <span class="fn">(<span class="fn">(<span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.dualBasis">dualBasis</a></span> <span class="fn">hB</span> <span class="fn">b</span>)</span> <span class="fn">j</span>)</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <a href="../../.././Init/Prelude.html#ite">if</a> <span class="fn">i</span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">j</span> <a href="../../.././Init/Prelude.html#ite">then</a> <span class="fn">1</span> <a href="../../.././Init/Prelude.html#ite">else</a> <span class="fn">0</span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.dualBasis_dualBasis_flip"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L294-L301">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.dualBasis_dualBasis_flip"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">dualBasis_dualBasis_flip</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Field/Defs.html#Field">Field</a> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">K</span> <span class="fn">V</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_10}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Data/Finite/Defs.html#Finite">Finite</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Init/Prelude.html#DecidableEq">DecidableEq</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/Basis/Defs.html#Basis">Basis</a> <span class="fn">ι</span> <span class="fn">K</span> <span class="fn">V</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.dualBasis">dualBasis</a></span> <span class="fn">hB</span> <span class="fn">(<span class="fn"><span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Basic.html#LinearMap.BilinForm.flip">flip</a></span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.dualBasis">dualBasis</a></span> <span class="fn">⋯</span> <span class="fn">b</span>)</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">b</span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.dualBasis_flip_dualBasis"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L303-L307">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.dualBasis_flip_dualBasis"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">dualBasis_flip_dualBasis</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Field/Defs.html#Field">Field</a> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">K</span> <span class="fn">V</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_10}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Data/Finite/Defs.html#Finite">Finite</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Init/Prelude.html#DecidableEq">DecidableEq</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/Basis/Defs.html#Basis">Basis</a> <span class="fn">ι</span> <span class="fn">K</span> <span class="fn">V</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Basic.html#LinearMap.BilinForm.flip">flip</a></span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.dualBasis">dualBasis</a></span> <span class="fn">⋯</span> <span class="fn">(<span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.dualBasis">dualBasis</a></span> <span class="fn">hB</span> <span class="fn">b</span>)</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">b</span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.dualBasis_dualBasis"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L309-L314">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.dualBasis_dualBasis"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">dualBasis_dualBasis</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Field/Defs.html#Field">Field</a> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">K</span> <span class="fn">V</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hB'</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.IsSymm">IsSymm</a></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_10}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Data/Finite/Defs.html#Finite">Finite</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Init/Prelude.html#DecidableEq">DecidableEq</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/Basis/Defs.html#Basis">Basis</a> <span class="fn">ι</span> <span class="fn">K</span> <span class="fn">V</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.dualBasis">dualBasis</a></span> <span class="fn">hB</span> <span class="fn">(<span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.dualBasis">dualBasis</a></span> <span class="fn">hB</span> <span class="fn">b</span>)</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">b</span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.symmCompOfNondegenerate"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L322-L326">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.symmCompOfNondegenerate"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">symmCompOfNondegenerate</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Field/Defs.html#Field">Field</a> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B₁ </span><span class="fn">B₂</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">K</span> <span class="fn">V</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b₂</span> : <span class="fn"><span class="fn">B₂</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">V</span> <a href="../../.././Mathlib/Algebra/Module/LinearMap/Defs.html#LinearMap">→ₗ[</a><span class="fn">K</span><a href="../../.././Mathlib/Algebra/Module/LinearMap/Defs.html#LinearMap">]</a> <span class="fn">V</span></div></div><p>Given bilinear forms <code>B₁, B₂</code> where <code>B₂</code> is nondegenerate, <code><a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.symmCompOfNondegenerate">symmCompOfNondegenerate</a></code>
+is the linear map <code>B₂ ∘ B₁</code>.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn"><span class="fn">B₁</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.symmCompOfNondegenerate">symmCompOfNondegenerate</a></span> <span class="fn">B₂</span> <span class="fn">b₂</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn">↑<span class="fn"><span class="fn">(<span class="fn"><span class="fn">B₂</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.toDual">toDual</a></span> <span class="fn">b₂</span>)</span>.<a href="../../.././Mathlib/Algebra/Module/Equiv/Defs.html#LinearEquiv.symm">symm</a></span></span> <a href="../../.././Mathlib/Algebra/Module/LinearMap/Defs.html#LinearMap.comp">∘ₗ</a> <span class="fn">B₁</span></span></li></ul></details><details id="instances-for-list-LinearMap.BilinForm.symmCompOfNondegenerate" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LinearMap.BilinForm.comp_symmCompOfNondegenerate_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L328-L333">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.comp_symmCompOfNondegenerate_apply"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">comp_symmCompOfNondegenerate_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Field/Defs.html#Field">Field</a> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B₁</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">K</span> <span class="fn">V</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B₂</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">K</span> <span class="fn">V</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">b₂</span> : <span class="fn"><span class="fn">B₂</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">v</span> : <span class="fn">V</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">B₂</span> <span class="fn">(<span class="fn">(<span class="fn"><span class="fn">B₁</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.symmCompOfNondegenerate">symmCompOfNondegenerate</a></span> <span class="fn">B₂</span> <span class="fn">b₂</span>)</span> <span class="fn">v</span>)</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn">B₁</span> <span class="fn">v</span></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.symmCompOfNondegenerate_left_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L335-L338">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.symmCompOfNondegenerate_left_apply"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">symmCompOfNondegenerate_left_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Field/Defs.html#Field">Field</a> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B₁</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">K</span> <span class="fn">V</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">B₂</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">K</span> <span class="fn">V</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">b₂</span> : <span class="fn"><span class="fn">B₂</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">v </span><span class="fn">w</span> : <span class="fn">V</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">B₂</span> <span class="fn">(<span class="fn">(<span class="fn"><span class="fn">B₁</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.symmCompOfNondegenerate">symmCompOfNondegenerate</a></span> <span class="fn">B₂</span> <span class="fn">b₂</span>)</span> <span class="fn">w</span>)</span>)</span> <span class="fn">v</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn">(<span class="fn">B₁</span> <span class="fn">w</span>)</span> <span class="fn">v</span></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.leftAdjointOfNondegenerate"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L340-L345">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.leftAdjointOfNondegenerate"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">leftAdjointOfNondegenerate</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Field/Defs.html#Field">Field</a> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">K</span> <span class="fn">V</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn">V</span> <a href="../../.././Mathlib/Algebra/Module/LinearMap/Defs.html#LinearMap">→ₗ[</a><span class="fn">K</span><a href="../../.././Mathlib/Algebra/Module/LinearMap/Defs.html#LinearMap">]</a> <span class="fn">V</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">V</span> <a href="../../.././Mathlib/Algebra/Module/LinearMap/Defs.html#LinearMap">→ₗ[</a><span class="fn">K</span><a href="../../.././Mathlib/Algebra/Module/LinearMap/Defs.html#LinearMap">]</a> <span class="fn">V</span></div></div><p>Given the nondegenerate bilinear form <code>B</code> and the linear map <code>φ</code>,
+<code><a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.leftAdjointOfNondegenerate">leftAdjointOfNondegenerate</a></code> provides the left adjoint of <code>φ</code> with respect to <code>B</code>.
+The lemma proving this property is <code><a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.isAdjointPairLeftAdjointOfNondegenerate">BilinForm.isAdjointPairLeftAdjointOfNondegenerate</a></code>.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.leftAdjointOfNondegenerate">leftAdjointOfNondegenerate</a></span> <span class="fn">b</span> <span class="fn">φ</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Hom.html#LinearMap.BilinForm.compRight">compRight</a></span> <span class="fn">φ</span>)</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.symmCompOfNondegenerate">symmCompOfNondegenerate</a></span> <span class="fn">B</span> <span class="fn">b</span></span></li></ul></details><details id="instances-for-list-LinearMap.BilinForm.leftAdjointOfNondegenerate" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LinearMap.BilinForm.isAdjointPairLeftAdjointOfNondegenerate"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L347-L349">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.isAdjointPairLeftAdjointOfNondegenerate"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">isAdjointPairLeftAdjointOfNondegenerate</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Field/Defs.html#Field">Field</a> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">K</span> <span class="fn">V</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn">V</span> <a href="../../.././Mathlib/Algebra/Module/LinearMap/Defs.html#LinearMap">→ₗ[</a><span class="fn">K</span><a href="../../.././Mathlib/Algebra/Module/LinearMap/Defs.html#LinearMap">]</a> <span class="fn">V</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/LinearAlgebra/SesquilinearForm.html#LinearMap.IsAdjointPair">IsAdjointPair</a> <span class="fn">B</span> <span class="fn">B</span> <span class="fn">⇑<span class="fn">(<span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.leftAdjointOfNondegenerate">leftAdjointOfNondegenerate</a></span> <span class="fn">b</span> <span class="fn">φ</span>)</span></span> <span class="fn">⇑<span class="fn">φ</span></span></span></div></div></div></div><div class="decl" id="LinearMap.BilinForm.isAdjointPair_iff_eq_of_nondegenerate"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/LinearAlgebra/BilinearForm/Properties.lean#L351-L358">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.isAdjointPair_iff_eq_of_nondegenerate"><span class="name">LinearMap</span>.<span class="name">BilinForm</span>.<span class="name">isAdjointPair_iff_eq_of_nondegenerate</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">K</span> : <a href="../../.././foundational_types.html">Type</a> u_6}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Field/Defs.html#Field">Field</a> <span class="fn">K</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/LinearAlgebra/FiniteDimensional/Defs.html#FiniteDimensional">FiniteDimensional</a> <span class="fn">K</span> <span class="fn">V</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">B</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/BilinearMap.html#LinearMap.BilinForm">LinearMap.BilinForm</a> <span class="fn">K</span> <span class="fn">V</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">b</span> : <span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.Nondegenerate">Nondegenerate</a></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">ψ </span><span class="fn">φ</span> : <span class="fn">V</span> <a href="../../.././Mathlib/Algebra/Module/LinearMap/Defs.html#LinearMap">→ₗ[</a><span class="fn">K</span><a href="../../.././Mathlib/Algebra/Module/LinearMap/Defs.html#LinearMap">]</a> <span class="fn">V</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/LinearAlgebra/SesquilinearForm.html#LinearMap.IsAdjointPair">IsAdjointPair</a> <span class="fn">B</span> <span class="fn">B</span> <span class="fn">⇑<span class="fn">ψ</span></span> <span class="fn">⇑<span class="fn">φ</span></span></span> <a href="../../.././Init/Core.html#Iff">↔</a> <span class="fn">ψ</span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn"><span class="fn">B</span>.<a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.leftAdjointOfNondegenerate">leftAdjointOfNondegenerate</a></span> <span class="fn">b</span> <span class="fn">φ</span></span></div></div><p>Given the nondegenerate bilinear form <code>B</code>, the linear map <code>φ</code> has a unique left adjoint given by
+<code><a href="../../.././Mathlib/LinearAlgebra/BilinearForm/Properties.html#LinearMap.BilinForm.leftAdjointOfNondegenerate">BilinForm.leftAdjointOfNondegenerate</a></code>.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

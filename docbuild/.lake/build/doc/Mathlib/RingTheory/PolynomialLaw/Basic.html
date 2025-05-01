@@ -1,0 +1,854 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>Mathlib.RingTheory.PolynomialLaw.Basic</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="Mathlib.RingTheory.PolynomialLaw.Basic";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span>Documentation</span></h1><h2 class="header_filename break_within"><span class="name">Mathlib</span>.<span class="name">RingTheory</span>.<span class="name">PolynomialLaw</span>.<span class="name">Basic</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="../../.././Init.html">Init</a></li><li><a href="../../.././Mathlib/LinearAlgebra/DFinsupp.html">Mathlib.LinearAlgebra.DFinsupp</a></li><li><a href="../../.././Mathlib/LinearAlgebra/TensorProduct/Associator.html">Mathlib.LinearAlgebra.TensorProduct.Associator</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-Mathlib.RingTheory.PolynomialLaw.Basic" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw"><span class="name">PolynomialLaw</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.ext_iff"><span class="name">PolynomialLaw</span>.<span class="name">ext_iff</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.ext"><span class="name">PolynomialLaw</span>.<span class="name">ext</span></a></div><div class="nav_link"><a class="break_within" href="#«term_→ₚₗ[_]_»"><span class="name">«term_→ₚₗ[_]_»</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.isCompat_apply'"><span class="name">PolynomialLaw</span>.<span class="name">isCompat_apply'</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.instZero"><span class="name">PolynomialLaw</span>.<span class="name">instZero</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.zero_def"><span class="name">PolynomialLaw</span>.<span class="name">zero_def</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.instInhabited"><span class="name">PolynomialLaw</span>.<span class="name">instInhabited</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.id"><span class="name">PolynomialLaw</span>.<span class="name">id</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.id_apply'"><span class="name">PolynomialLaw</span>.<span class="name">id_apply'</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.add"><span class="name">PolynomialLaw</span>.<span class="name">add</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.instAdd"><span class="name">PolynomialLaw</span>.<span class="name">instAdd</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.add_def"><span class="name">PolynomialLaw</span>.<span class="name">add_def</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.add_def_apply"><span class="name">PolynomialLaw</span>.<span class="name">add_def_apply</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.smul"><span class="name">PolynomialLaw</span>.<span class="name">smul</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.instSMul"><span class="name">PolynomialLaw</span>.<span class="name">instSMul</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.smul_def"><span class="name">PolynomialLaw</span>.<span class="name">smul_def</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.smul_def_apply"><span class="name">PolynomialLaw</span>.<span class="name">smul_def_apply</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.add_smul"><span class="name">PolynomialLaw</span>.<span class="name">add_smul</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.zero_smul"><span class="name">PolynomialLaw</span>.<span class="name">zero_smul</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.one_smul"><span class="name">PolynomialLaw</span>.<span class="name">one_smul</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.instMulAction"><span class="name">PolynomialLaw</span>.<span class="name">instMulAction</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.instAddCommMonoid"><span class="name">PolynomialLaw</span>.<span class="name">instAddCommMonoid</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.instModule"><span class="name">PolynomialLaw</span>.<span class="name">instModule</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.neg"><span class="name">PolynomialLaw</span>.<span class="name">neg</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.instNeg"><span class="name">PolynomialLaw</span>.<span class="name">instNeg</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.neg_def"><span class="name">PolynomialLaw</span>.<span class="name">neg_def</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.instAddCommGroup"><span class="name">PolynomialLaw</span>.<span class="name">instAddCommGroup</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.ground"><span class="name">PolynomialLaw</span>.<span class="name">ground</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.ground_apply"><span class="name">PolynomialLaw</span>.<span class="name">ground_apply</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.instCoeFunForall"><span class="name">PolynomialLaw</span>.<span class="name">instCoeFunForall</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.one_tmul_ground_apply'"><span class="name">PolynomialLaw</span>.<span class="name">one_tmul_ground_apply'</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.lground"><span class="name">PolynomialLaw</span>.<span class="name">lground</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.ground_id"><span class="name">PolynomialLaw</span>.<span class="name">ground_id</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.ground_id_apply"><span class="name">PolynomialLaw</span>.<span class="name">ground_id_apply</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.comp"><span class="name">PolynomialLaw</span>.<span class="name">comp</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.comp_toFun'"><span class="name">PolynomialLaw</span>.<span class="name">comp_toFun'</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.comp_assoc"><span class="name">PolynomialLaw</span>.<span class="name">comp_assoc</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.comp_id"><span class="name">PolynomialLaw</span>.<span class="name">comp_id</span></a></div><div class="nav_link"><a class="break_within" href="#PolynomialLaw.id_comp"><span class="name">PolynomialLaw</span>.<span class="name">id_comp</span></a></div></nav><main>
+<div class="mod_doc"><h1 class="markdown-heading" id="Polynomial-laws-on-modules">Polynomial laws on modules <a class="hover-link" href="#Polynomial-laws-on-modules">#</a></h1><p>Let <code>M</code> and <code>N</code> be a modules over a commutative ring <code>R</code>.
+A polynomial law <code>f : <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">PolynomialLaw</a> R M N</code>, with notation <code>f : M →ₚₗₗ[R] N</code>,
+is a “law” that assigns a natural map <code><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">PolynomialLaw.toFun'</a> f S : S ⊗[R] M → S ⊗[R] N</code>
+for every <code>R</code>-algebra <code>S</code>.</p><p>For type theoretic reasons, if <code>R : Type u</code>, then the definition of the polynomial map <code>f</code>
+is restricted to <code>R</code>-algebras <code>S</code> such that <code>S : Type u</code>.
+Using the fact that a module is the direct limit of its finitely generated submodules, that a
+finitely generated subalgebra is a quotient of a polynomial ring in the universe <code>u</code>, plus
+the commutation of tensor products with direct limits, we will extend the functor
+to all <code>R</code>-algebras (TODO).</p><h2 class="markdown-heading" id="Main-definitions-lemmas">Main definitions/lemmas <a class="hover-link" href="#Main-definitions-lemmas">#</a></h2><ul>
+<li><p>Instance : <code><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> R (M →ₚₗ[R] N)</code> shows that polynomial laws form a <code>R</code>-module.</p>
+</li>
+<li><p><code><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.ground">PolynomialLaw.ground</a> f</code> is the map <code>M → N</code> corresponding to <code><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">PolynomialLaw.toFun'</a> f R</code> under
+the isomorphisms <code>R ⊗[R] M ≃ₗ[R] M</code>, and similarly for <code>N</code>.</p>
+</li>
+</ul><p>In further works, we construct the coefficients of a polynomial law and show the relation with
+polynomials (when the module <code>M</code> is free and finite).</p><h2 class="markdown-heading" id="Implementation-notes">Implementation notes <a class="hover-link" href="#Implementation-notes">#</a></h2><p>In the literature, the theory is writen for commutative rings, but this implementation
+only assume <code>R</code> is a commutative semiring.</p><h2 class="markdown-heading" id="References">References <a class="hover-link" href="#References">#</a></h2><ul>
+<li><a href="../../.././Roby-1963">Roby, Norbert. 1963. « Lois polynomes et lois formelles en théorie des modules ».
+Annales scientifiques de l’École Normale Supérieure 80 (3): 213‑348</a></li>
+</ul></div><div class="decl" id="PolynomialLaw"><div class="structure"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L53-L65">source</a></div><div class="decl_header"><span class="decl_kind">structure</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw"><span class="name">PolynomialLaw</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Type</a> (max (max (u + 1) u_1) u_2)</div></div><p>A polynomial map <code>M →ₚₗ[R] N</code> between <code>R</code>-modules is a functorial family of maps
+<code>S ⊗[R] M → S ⊗[R] N</code>, for all <code>R</code>-algebras <code>S</code>.</p><p>For universe reasons, <code>S</code> has to be restricted to the same universe as <code>R</code>.</p><ul class="structure_fields" id="PolynomialLaw.mk"><li id="PolynomialLaw.toFun'" class="structure_field"><div class="structure_field_info">toFun'<span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Algebra/Defs.html#Algebra">Algebra</a> <span class="fn">R</span> <span class="fn">S</span></span>]</span></span>
+</span> : <span class="fn"><span class="fn"><a href="../../.././Mathlib/LinearAlgebra/TensorProduct/Basic.html#TensorProduct">TensorProduct</a> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">M</span></span> → <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/TensorProduct/Basic.html#TensorProduct">TensorProduct</a> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">N</span></span></span></div><div class="structure_field_doc"><p>The functions <code>S ⊗[R] M → S ⊗[R] N</code> underlying a polynomial law</p></div></li><li id="PolynomialLaw.isCompat'" class="structure_field"><div class="structure_field_info">isCompat'<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Algebra/Defs.html#Algebra">Algebra</a> <span class="fn">R</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S'</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">S'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Algebra/Defs.html#Algebra">Algebra</a> <span class="fn">R</span> <span class="fn">S'</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn">S</span> <a href="../../.././Mathlib/Algebra/Algebra/Hom.html#AlgHom">→ₐ[</a><span class="fn">R</span><a href="../../.././Mathlib/Algebra/Algebra/Hom.html#AlgHom">]</a> <span class="fn">S'</span>)</span></span>
+ : <span class="fn">⇑<span class="fn">(<a href="../../.././Mathlib/LinearAlgebra/TensorProduct/Basic.html#LinearMap.rTensor">LinearMap.rTensor</a> <span class="fn">N</span> <span class="fn"><span class="fn">φ</span>.<a href="../../.././Mathlib/Algebra/Algebra/Hom.html#AlgHom.toLinearMap">toLinearMap</a></span>)</span></span> <a href="../../.././Init/Prelude.html#Function.comp">∘</a> <span class="fn"><span class="fn"><span class="fn">self</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn"><span class="fn">self</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S'</span></span> <a href="../../.././Init/Prelude.html#Function.comp">∘</a> <span class="fn">⇑<span class="fn">(<a href="../../.././Mathlib/LinearAlgebra/TensorProduct/Basic.html#LinearMap.rTensor">LinearMap.rTensor</a> <span class="fn">M</span> <span class="fn"><span class="fn">φ</span>.<a href="../../.././Mathlib/Algebra/Algebra/Hom.html#AlgHom.toLinearMap">toLinearMap</a></span>)</span></span></div><div class="structure_field_doc"><p>The compatibility relations between the functions underlying a polynomial law</p></div></li></ul><details id="instances-for-list-PolynomialLaw" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="PolynomialLaw.ext_iff"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L57-L57">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.ext_iff"><span class="name">PolynomialLaw</span>.<span class="name">ext_iff</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">inst✝</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">inst✝¹</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">inst✝²</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">inst✝³</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">inst✝⁴</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x </span><span class="fn">y</span> : <span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn">x</span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">y</span> <a href="../../.././Init/Core.html#Iff">↔</a> <span class="fn"><span class="fn">x</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn">y</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span></div></div></div></div><div class="decl" id="PolynomialLaw.ext"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L57-L57">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.ext"><span class="name">PolynomialLaw</span>.<span class="name">ext</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">inst✝</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">inst✝¹</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">inst✝²</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">inst✝³</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">inst✝⁴</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x </span><span class="fn">y</span> : <span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">toFun'</span> : <span class="fn"><span class="fn">x</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn">y</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">x</span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">y</span></div></div></div></div><div class="decl" id="«term_→ₚₗ[_]_»"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L67-L68">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#«term_→ₚₗ[_]_»"><span class="name">«term_→ₚₗ[_]_»</span></a></span><span class="decl_args"> :</span><div class="decl_type"><a href="../../.././Init/Prelude.html#Lean.TrailingParserDescr">Lean.TrailingParserDescr</a></div></div><p><code>M →ₚₗ[R] N</code> is the type of <code>R</code>-polynomial laws from <code>M</code> to <code>N</code>.</p><details><summary>Equations</summary><ul class="equations"><li class="equation">One or more equations did not get rendered due to their size.</li></ul></details><details id="instances-for-list-«term_→ₚₗ[_]_»" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="PolynomialLaw.isCompat_apply'"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L70-L77">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.isCompat_apply'"><span class="name">PolynomialLaw</span>.<span class="name">isCompat_apply'</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Algebra/Defs.html#Algebra">Algebra</a> <span class="fn">R</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S'</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">S'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Algebra/Defs.html#Algebra">Algebra</a> <span class="fn">R</span> <span class="fn">S'</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn">S</span> <a href="../../.././Mathlib/Algebra/Algebra/Hom.html#AlgHom">→ₐ[</a><span class="fn">R</span><a href="../../.././Mathlib/Algebra/Algebra/Hom.html#AlgHom">]</a> <span class="fn">S'</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/TensorProduct/Basic.html#TensorProduct">TensorProduct</a> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<a href="../../.././Mathlib/LinearAlgebra/TensorProduct/Basic.html#LinearMap.rTensor">LinearMap.rTensor</a> <span class="fn">N</span> <span class="fn"><span class="fn">φ</span>.<a href="../../.././Mathlib/Algebra/Algebra/Hom.html#AlgHom.toLinearMap">toLinearMap</a></span>)</span> <span class="fn">(<span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span> <span class="fn">x</span>)</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S'</span> <span class="fn">(<span class="fn">(<a href="../../.././Mathlib/LinearAlgebra/TensorProduct/Basic.html#LinearMap.rTensor">LinearMap.rTensor</a> <span class="fn">M</span> <span class="fn"><span class="fn">φ</span>.<a href="../../.././Mathlib/Algebra/Algebra/Hom.html#AlgHom.toLinearMap">toLinearMap</a></span>)</span> <span class="fn">x</span>)</span></span></div></div></div></div><div class="decl" id="PolynomialLaw.instZero"><div class="instance"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L90-L90">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.instZero"><span class="name">PolynomialLaw</span>.<span class="name">instZero</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Init/Prelude.html#Zero">Zero</a> (<span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.instZero">PolynomialLaw.instZero</a> <a href="../../.././Init/Prelude.html#Eq">=</a>   <span class="fn">{ <span class="fn">zero</span> := <span class="fn">{ <span class="fn">toFun'</span> := <span class="fn">fun (<span class="fn">x</span> : <a href="../../.././foundational_types.html">Type</a> ?u.42) [<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">x</span></span>] [<span class="fn"><a href="../../.././Mathlib/Algebra/Algebra/Defs.html#Algebra">Algebra</a> <span class="fn">R</span> <span class="fn">x</span></span>] =&gt; <span class="fn">0</span></span>, <span class="fn">isCompat'</span> := <span class="fn">⋯</span> }</span> }</span></li></ul></details></div></div><div class="decl" id="PolynomialLaw.zero_def"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L92-L94">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.zero_def"><span class="name">PolynomialLaw</span>.<span class="name">zero_def</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Algebra/Defs.html#Algebra">Algebra</a> <span class="fn">R</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a> <span class="fn">0</span> <span class="fn">S</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">0</span></div></div></div></div><div class="decl" id="PolynomialLaw.instInhabited"><div class="instance"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L96-L96">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.instInhabited"><span class="name">PolynomialLaw</span>.<span class="name">instInhabited</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Init/Prelude.html#Inhabited">Inhabited</a> (<span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.instInhabited">PolynomialLaw.instInhabited</a> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">{ <span class="fn">default</span> := <a href="../../.././Init/Prelude.html#Zero.zero">Zero.zero</a> }</span></li></ul></details></div></div><div class="decl" id="PolynomialLaw.id"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L98-L100">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.id"><span class="name">PolynomialLaw</span>.<span class="name">id</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">M</span></div></div><p>The identity as a polynomial law</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.id">PolynomialLaw.id</a> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">{ <span class="fn">toFun'</span> := <span class="fn">fun (<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> ?u.26) (<span class="fn">x</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">S</span></span>) (<span class="fn">x_1</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Algebra/Defs.html#Algebra">Algebra</a> <span class="fn">R</span> <span class="fn">S</span></span>) =&gt; <a href="../../.././Init/Prelude.html#id">id</a></span>, <span class="fn">isCompat'</span> := <span class="fn">⋯</span> }</span></li></ul></details><details id="instances-for-list-PolynomialLaw.id" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="PolynomialLaw.id_apply'"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L102-L103">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.id_apply'"><span class="name">PolynomialLaw</span>.<span class="name">id_apply'</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Algebra/Defs.html#Algebra">Algebra</a> <span class="fn">R</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.id">id</a>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <a href="../../.././Init/Prelude.html#id">_root_.id</a></div></div></div></div><div class="decl" id="PolynomialLaw.add"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L105-L107">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.add"><span class="name">PolynomialLaw</span>.<span class="name">add</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f </span><span class="fn">g</span> : <span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span></div></div><p>The sum of two polynomial laws</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.add">add</a></span> <span class="fn">g</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a>   <span class="fn">{ <span class="fn">toFun'</span> := <span class="fn">fun (<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> ?u.50) (<span class="fn">x</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">S</span></span>) (<span class="fn">x_1</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Algebra/Defs.html#Algebra">Algebra</a> <span class="fn">R</span> <span class="fn">S</span></span>) =&gt; <span class="fn"><span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span></span> <a href="../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn"><span class="fn"><span class="fn">g</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span></span></span>, <span class="fn">isCompat'</span> := <span class="fn">⋯</span> }</span></li></ul></details><details id="instances-for-list-PolynomialLaw.add" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="PolynomialLaw.instAdd"><div class="instance"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L109-L109">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.instAdd"><span class="name">PolynomialLaw</span>.<span class="name">instAdd</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Init/Prelude.html#Add">Add</a> (<span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.instAdd">PolynomialLaw.instAdd</a> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">{ <span class="fn">add</span> := <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.add">PolynomialLaw.add</a> }</span></li></ul></details></div></div><div class="decl" id="PolynomialLaw.add_def"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L111-L113">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.add_def"><span class="name">PolynomialLaw</span>.<span class="name">add_def</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f </span><span class="fn">g</span> : <span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Algebra/Defs.html#Algebra">Algebra</a> <span class="fn">R</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">f</span> <a href="../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn">g</span>).<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span></span> <a href="../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn"><span class="fn"><span class="fn">g</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span></span></div></div></div></div><div class="decl" id="PolynomialLaw.add_def_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L115-L116">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.add_def_apply"><span class="name">PolynomialLaw</span>.<span class="name">add_def_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f </span><span class="fn">g</span> : <span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Algebra/Defs.html#Algebra">Algebra</a> <span class="fn">R</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/TensorProduct/Basic.html#TensorProduct">TensorProduct</a> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">f</span> <a href="../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn">g</span>).<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span> <span class="fn">m</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span> <span class="fn">m</span></span> <a href="../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn"><span class="fn"><span class="fn">g</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span> <span class="fn">m</span></span></div></div></div></div><div class="decl" id="PolynomialLaw.smul"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L118-L120">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.smul"><span class="name">PolynomialLaw</span>.<span class="name">smul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">r</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span></div></div><p>External multiplication of a <code>f : M →ₚₗ[R] N</code> by <code>r : R</code></p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.smul">PolynomialLaw.smul</a> <span class="fn">r</span> <span class="fn">f</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a>   <span class="fn">{ <span class="fn">toFun'</span> := <span class="fn">fun (<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> ?u.48) (<span class="fn">x</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">S</span></span>) (<span class="fn">x_1</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Algebra/Defs.html#Algebra">Algebra</a> <span class="fn">R</span> <span class="fn">S</span></span>) =&gt; <span class="fn">r</span> <a href="../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn"><span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span></span></span>, <span class="fn">isCompat'</span> := <span class="fn">⋯</span> }</span></li></ul></details><details id="instances-for-list-PolynomialLaw.smul" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="PolynomialLaw.instSMul"><div class="instance"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L122-L122">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.instSMul"><span class="name">PolynomialLaw</span>.<span class="name">instSMul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Algebra/Notation/Defs.html#SMul">SMul</a> <span class="fn">R</span> (<span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.instSMul">PolynomialLaw.instSMul</a> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">{ <span class="fn">smul</span> := <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.smul">PolynomialLaw.smul</a> }</span></li></ul></details></div></div><div class="decl" id="PolynomialLaw.smul_def"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L124-L126">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.smul_def"><span class="name">PolynomialLaw</span>.<span class="name">smul_def</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">r</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Algebra/Defs.html#Algebra">Algebra</a> <span class="fn">R</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">r</span> <a href="../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn">f</span>).<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">r</span> <a href="../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn"><span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span></span></div></div></div></div><div class="decl" id="PolynomialLaw.smul_def_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L128-L129">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.smul_def_apply"><span class="name">PolynomialLaw</span>.<span class="name">smul_def_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">r</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Algebra/Defs.html#Algebra">Algebra</a> <span class="fn">R</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn"><a href="../../.././Mathlib/LinearAlgebra/TensorProduct/Basic.html#TensorProduct">TensorProduct</a> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">r</span> <a href="../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn">f</span>).<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span> <span class="fn">m</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">r</span> <a href="../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn"><span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span> <span class="fn">m</span></span></div></div></div></div><div class="decl" id="PolynomialLaw.add_smul"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L131-L132">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.add_smul"><span class="name">PolynomialLaw</span>.<span class="name">add_smul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">a </span><span class="fn">b</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type">(<span class="fn">a</span> <a href="../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn">b</span>) <a href="../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn">f</span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">a</span> <a href="../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn">f</span> <a href="../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn">b</span> <a href="../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn">f</span></div></div></div></div><div class="decl" id="PolynomialLaw.zero_smul"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L134-L135">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.zero_smul"><span class="name">PolynomialLaw</span>.<span class="name">zero_smul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">0</span> <a href="../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn">f</span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">0</span></div></div></div></div><div class="decl" id="PolynomialLaw.one_smul"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L137-L138">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.one_smul"><span class="name">PolynomialLaw</span>.<span class="name">one_smul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">1</span> <a href="../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn">f</span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">f</span></div></div></div></div><div class="decl" id="PolynomialLaw.instMulAction"><div class="instance"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L140-L142">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.instMulAction"><span class="name">PolynomialLaw</span>.<span class="name">instMulAction</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Algebra/Group/Action/Defs.html#MulAction">MulAction</a> <span class="fn">R</span> (<span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.instMulAction">PolynomialLaw.instMulAction</a> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">{ <span class="fn">toSMul</span> := <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.instSMul">PolynomialLaw.instSMul</a>, <span class="fn">one_smul</span> := <span class="fn">⋯</span>, <span class="fn">mul_smul</span> := <span class="fn">⋯</span> }</span></li></ul></details></div></div><div class="decl" id="PolynomialLaw.instAddCommMonoid"><div class="instance"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L144-L151">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.instAddCommMonoid"><span class="name">PolynomialLaw</span>.<span class="name">instAddCommMonoid</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> (<span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation">One or more equations did not get rendered due to their size.</li></ul></details></div></div><div class="decl" id="PolynomialLaw.instModule"><div class="instance"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L153-L157">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.instModule"><span class="name">PolynomialLaw</span>.<span class="name">instModule</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> (<span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.instModule">PolynomialLaw.instModule</a> <a href="../../.././Init/Prelude.html#Eq">=</a>   <span class="fn">{ <span class="fn">toMulAction</span> := <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.instMulAction">PolynomialLaw.instMulAction</a>, <span class="fn">smul_zero</span> := <span class="fn">⋯</span>, <span class="fn">smul_add</span> := <span class="fn">⋯</span>, <span class="fn">add_smul</span> := <span class="fn">⋯</span>, <span class="fn">zero_smul</span> := <span class="fn">⋯</span> }</span></li></ul></details></div></div><div class="decl" id="PolynomialLaw.neg"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L167-L169">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.neg"><span class="name">PolynomialLaw</span>.<span class="name">neg</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span></div></div><p>The opposite of a polynomial law</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.neg">neg</a></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">{ <span class="fn">toFun'</span> := <span class="fn">fun (<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> ?u.44) (<span class="fn">x</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">S</span></span>) (<span class="fn">x_1</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Algebra/Defs.html#Algebra">Algebra</a> <span class="fn">R</span> <span class="fn">S</span></span>) =&gt; <span class="fn">-<span class="fn">1</span></span> <a href="../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn"><span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span></span></span>, <span class="fn">isCompat'</span> := <span class="fn">⋯</span> }</span></li></ul></details><details id="instances-for-list-PolynomialLaw.neg" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="PolynomialLaw.instNeg"><div class="instance"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L171-L171">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.instNeg"><span class="name">PolynomialLaw</span>.<span class="name">instNeg</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Init/Prelude.html#Neg">Neg</a> (<span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.instNeg">PolynomialLaw.instNeg</a> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">{ <span class="fn">neg</span> := <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.neg">PolynomialLaw.neg</a> }</span></li></ul></details></div></div><div class="decl" id="PolynomialLaw.neg_def"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L173-L175">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.neg_def"><span class="name">PolynomialLaw</span>.<span class="name">neg_def</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Algebra/Defs.html#Algebra">Algebra</a> <span class="fn">R</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<a href="../../.././Init/Prelude.html#Neg.neg">-</a><span class="fn">f</span>).<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">-<span class="fn">1</span></span> <a href="../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn"><span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span></span></div></div></div></div><div class="decl" id="PolynomialLaw.instAddCommGroup"><div class="instance"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L177-L196">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.instAddCommGroup"><span class="name">PolynomialLaw</span>.<span class="name">instAddCommGroup</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommGroup">AddCommGroup</a> (<span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation">One or more equations did not get rendered due to their size.</li></ul></details></div></div><div class="decl" id="PolynomialLaw.ground"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L208-L209">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.ground"><span class="name">PolynomialLaw</span>.<span class="name">ground</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">M</span> → <span class="fn">N</span></span></div></div><p>The map <code>M → N</code> associated with a <code>f : M →ₚₗ[R] N</code> (essentially, <code>f.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a> R</code>)</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.ground">ground</a></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">⇑<span class="fn">(<a href="../../.././Mathlib/LinearAlgebra/TensorProduct/Associator.html#TensorProduct.lid">TensorProduct.lid</a> <span class="fn">R</span> <span class="fn">N</span>)</span></span> <a href="../../.././Init/Prelude.html#Function.comp">∘</a> <span class="fn"><span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">R</span></span> <a href="../../.././Init/Prelude.html#Function.comp">∘</a> <span class="fn">⇑<span class="fn"><span class="fn">(<a href="../../.././Mathlib/LinearAlgebra/TensorProduct/Associator.html#TensorProduct.lid">TensorProduct.lid</a> <span class="fn">R</span> <span class="fn">M</span>)</span>.<a href="../../.././Mathlib/Algebra/Module/Equiv/Defs.html#LinearEquiv.symm">symm</a></span></span></li></ul></details><details id="instances-for-list-PolynomialLaw.ground" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="PolynomialLaw.ground_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L211-L211">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.ground_apply"><span class="name">PolynomialLaw</span>.<span class="name">ground_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn">M</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.ground">ground</a></span> <span class="fn">m</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn">(<a href="../../.././Mathlib/LinearAlgebra/TensorProduct/Associator.html#TensorProduct.lid">TensorProduct.lid</a> <span class="fn">R</span> <span class="fn">N</span>)</span> <span class="fn">(<span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">R</span> (<span class="fn">1</span> <a href="../../.././Mathlib/LinearAlgebra/TensorProduct/Basic.html#TensorProduct.tmul">⊗ₜ[</a><span class="fn">R</span><a href="../../.././Mathlib/LinearAlgebra/TensorProduct/Basic.html#TensorProduct.tmul">]</a> <span class="fn">m</span>))</span></span></div></div></div></div><div class="decl" id="PolynomialLaw.instCoeFunForall"><div class="instance"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L213-L214">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.instCoeFunForall"><span class="name">PolynomialLaw</span>.<span class="name">instCoeFunForall</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Init/Coe.html#CoeFun">CoeFun</a> (<span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>) <span class="fn">fun (<span class="fn">x</span> : <span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>) =&gt; <span class="fn"><span class="fn">M</span> → <span class="fn">N</span></span></span></span></div></div><details><summary>Equations</summary><ul class="equations"><li class="equation"><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.instCoeFunForall">PolynomialLaw.instCoeFunForall</a> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">{ <span class="fn">coe</span> := <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.ground">PolynomialLaw.ground</a> }</span></li></ul></details></div></div><div class="decl" id="PolynomialLaw.one_tmul_ground_apply'"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L216-L221">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.one_tmul_ground_apply'"><span class="name">PolynomialLaw</span>.<span class="name">one_tmul_ground_apply'</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Algebra/Defs.html#Algebra">Algebra</a> <span class="fn">R</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">M</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">1</span> <a href="../../.././Mathlib/LinearAlgebra/TensorProduct/Basic.html#TensorProduct.tmul">⊗ₜ[</a><span class="fn">R</span><a href="../../.././Mathlib/LinearAlgebra/TensorProduct/Basic.html#TensorProduct.tmul">]</a> <span class="fn"><span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.ground">ground</a></span> <span class="fn">x</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span> (<span class="fn">1</span> <a href="../../.././Mathlib/LinearAlgebra/TensorProduct/Basic.html#TensorProduct.tmul">⊗ₜ[</a><span class="fn">R</span><a href="../../.././Mathlib/LinearAlgebra/TensorProduct/Basic.html#TensorProduct.tmul">]</a> <span class="fn">x</span>)</span></div></div></div></div><div class="decl" id="PolynomialLaw.lground"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L223-L228">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.lground"><span class="name">PolynomialLaw</span>.<span class="name">lground</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type">(<span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>) <a href="../../.././Mathlib/Algebra/Module/LinearMap/Defs.html#LinearMap">→ₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/Algebra/Module/LinearMap/Defs.html#LinearMap">]</a> <span class="fn"><span class="fn">M</span> → <span class="fn">N</span></span></div></div><p>The map ground assigning a function <code>M → N</code> to a polynomial map <code>f : M →ₚₗ[R] N</code> as a
+linear map.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.lground">PolynomialLaw.lground</a> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">{ <span class="fn">toFun</span> := <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.ground">PolynomialLaw.ground</a>, <span class="fn">map_add'</span> := <span class="fn">⋯</span>, <span class="fn">map_smul'</span> := <span class="fn">⋯</span> }</span></li></ul></details><details id="instances-for-list-PolynomialLaw.lground" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="PolynomialLaw.ground_id"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L230-L231">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.ground_id"><span class="name">PolynomialLaw</span>.<span class="name">ground_id</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.id">id</a>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.ground">ground</a></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <a href="../../.././Init/Prelude.html#id">_root_.id</a></div></div></div></div><div class="decl" id="PolynomialLaw.ground_id_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L233-L234">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.ground_id_apply"><span class="name">PolynomialLaw</span>.<span class="name">ground_id_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn">M</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.id">id</a>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.ground">ground</a></span> <span class="fn">m</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">m</span></div></div></div></div><div class="decl" id="PolynomialLaw.comp"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L247-L250">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.comp"><span class="name">PolynomialLaw</span>.<span class="name">comp</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn">N</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">P</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">P</span></div></div><p>Composition of polynomial maps.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn"><span class="fn">g</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.comp">comp</a></span> <span class="fn">f</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a>   <span class="fn">{ <span class="fn">toFun'</span> := <span class="fn">fun (<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> ?u.60) (<span class="fn">x</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">S</span></span>) (<span class="fn">x_1</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Algebra/Defs.html#Algebra">Algebra</a> <span class="fn">R</span> <span class="fn">S</span></span>) =&gt; <span class="fn"><span class="fn"><span class="fn">g</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span></span> <a href="../../.././Init/Prelude.html#Function.comp">∘</a> <span class="fn"><span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span></span></span>, <span class="fn">isCompat'</span> := <span class="fn">⋯</span> }</span></li></ul></details><details id="instances-for-list-PolynomialLaw.comp" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="PolynomialLaw.comp_toFun'"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L252-L253">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.comp_toFun'"><span class="name">PolynomialLaw</span>.<span class="name">comp_toFun'</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn">N</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">P</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Algebra/Defs.html#Algebra">Algebra</a> <span class="fn">R</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">g</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.comp">comp</a></span> <span class="fn">f</span>)</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn"><span class="fn">g</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span></span> <a href="../../.././Init/Prelude.html#Function.comp">∘</a> <span class="fn"><span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.toFun'">toFun'</a></span> <span class="fn">S</span></span></div></div></div></div><div class="decl" id="PolynomialLaw.comp_assoc"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L255-L256">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.comp_assoc"><span class="name">PolynomialLaw</span>.<span class="name">comp_assoc</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn">N</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">P</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn">P</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">Q</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">h</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.comp">comp</a></span> <span class="fn">(<span class="fn"><span class="fn">g</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.comp">comp</a></span> <span class="fn">f</span>)</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">h</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.comp">comp</a></span> <span class="fn">g</span>)</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.comp">comp</a></span> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="PolynomialLaw.comp_id"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L258-L258">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.comp_id"><span class="name">PolynomialLaw</span>.<span class="name">comp_id</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn">N</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">P</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">g</span>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.comp">comp</a></span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.id">id</a></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">g</span></div></div></div></div><div class="decl" id="PolynomialLaw.id_comp"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/RingTheory/PolynomialLaw/Basic.lean#L260-L260">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.id_comp"><span class="name">PolynomialLaw</span>.<span class="name">id_comp</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommSemiring">CommSemiring</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn">M</span> <a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">→ₚₗ[</a><span class="fn">R</span><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw">]</a> <span class="fn">N</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.id">id</a>.<a href="../../.././Mathlib/RingTheory/PolynomialLaw/Basic.html#PolynomialLaw.comp">comp</a></span> <span class="fn">f</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">f</span></div></div></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

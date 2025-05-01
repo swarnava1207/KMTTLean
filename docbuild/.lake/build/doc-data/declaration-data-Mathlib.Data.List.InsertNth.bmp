@@ -1,0 +1,1 @@
+{"name":"Mathlib.Data.List.InsertNth","instances":[],"imports":["Init","Mathlib.Data.List.InsertIdx"],"declarations":[]}

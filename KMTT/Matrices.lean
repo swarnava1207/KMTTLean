@@ -14,79 +14,24 @@ of matrix identities related to graph theory.
 
 ## Main Definitions and Theorems
 
-- `Sym2.toProd`: Converts an unordered pair to an ordered pair based on a linear order.
 - `SimpleGraph.IncidenceMatrix` (alias `SimpleGraph.Inc`): The incidence matrix of a graph.
 - `I`: The identity matrix of dimension `n`.
-- `listSubsetsOfSize`: Enumerates all subsets of a given size from a list.
-- `submatrix'`: Extracts a rectangular block from a matrix using row/column index sets.
-- `all_subsets_of_size`: Enumerates all subsets of given cardinality from `Fin m`.
-- `zero_to_n_minus_one`: Finset of `Fin n`.
-- `Matrix.rowBlocks`, `Matrix.colBlocks`: Submatrices selecting specified rows or columns.
 - `List.remove`: Removes an indexed element from a list.
 - `remove_length`: Proves that `List.remove` decreases list length by 1.
 - `SimpleGraph.IncMinor`: Minor of the incidence matrix by removing one edge.
-- `non_zero_iff_incident`: Characterizes incidence via a predicate on edge endpoints.
+- `SimpleGraph.Lapminor`: Minor of the Laplacian matrix by removing the last row and column.
+- `non_zero_iff_incident`: Predicate checking if an edge corresponds to non-zero entries in the incidence matrix.
+- `edge_vertex_bijection`: Maps an incident edge index to the adjacent vertex.
 - `inc_incT_diag_degree`: States that `(Inc * Incᵀ) v v = degree v`.
-- `inc_incT_eq_lap`: Proves that `Inc * Incᵀ = Laplacian` matrix.
 
 These constructions are useful for combinatorics, spectral graph theory, and matrix-tree theorem formulations.
 -/
 open Classical
 variable {V : Type} [DecidableEq V] [Fintype V][LinearOrder V]
--- Converts a Sym2 (unordered pair) to an ordered pair using a linear order
-def Sym2.toProd {α : Type} [LinearOrder α] (s : Sym2 α) : α × α :=
-  Quot.lift
-    (fun (a, b) => if a < b then (a, b) else (b, a))
-    (by
-      intro (a, b) (c, d)
-      simp
-      intro h
-      apply Or.elim h
-      · intro h₁
-        simp [h₁]
-      · intro h₂
-        simp [h₂]
-        if h' : c < d then
-          simp [h']
-          have h'' : ¬ d < c := by
-            simp [le_of_lt, h']
-          simp [h'']
-        else
-          simp [h']
-          if h'' : d < c then
-            simp [h'']
-          else
-            intro h'''
-            apply And.intro
-            · apply le_antisymm
-              · exact h'''
-              · revert h'
-                simp
-            · apply le_antisymm
-              · revert h'
-                simp
-              · exact h''') s
-theorem Sym2.toProd_mem {α : Type}[LinearOrder α] (s : Sym2 α) :
-    s.toProd.1 ∈ s ∧ s.toProd.2 ∈ s := by
-       apply And.intro
-       · sorry
-       · sorry
 
 
 
-set_option linter.unusedSectionVars false
-lemma edge_exist_adj  (G : SimpleGraph V) [DecidableRel G.Adj] (v w : V)
-  : G.Adj v w ↔ Sym2.mk (v , w) ∈  G.Edges := by
-  apply Iff.intro
-  · intro h
-    simp [SimpleGraph.Edges]
-    assumption
-  · intro h
-    simp [SimpleGraph.Edges] at h
-    assumption
-
-
--- The incidence matrix of a simple graph G, oriented by linear order on vertices
+-- The incidence matrix of a simple graph G, oriented by the linear order on vertices.
 noncomputable def SimpleGraph.IncidenceMatrix {V : Type} [DecidableEq V][Fintype V][LinearOrder V](G : SimpleGraph V)[DecidableRel G.Adj]
   : Matrix V (Fin (G.Edges.length)) ℚ :=
   fun v e =>
@@ -95,47 +40,15 @@ noncomputable def SimpleGraph.IncidenceMatrix {V : Type} [DecidableEq V][Fintype
     else if v = b then -1
     else 0
 
--- Shorthand alias for incidence matrix
+-- Shorthand alias for `SimpleGraph.IncidenceMatrix`.
 alias SimpleGraph.Inc := SimpleGraph.IncidenceMatrix
 
--- Identity matrix over ℚ
+
+-- Defines the identity matrix of size `n x n` over the rationals `ℚ`.
 def I {n : Nat} : Matrix (Fin n) (Fin n) ℚ := 1
 
--- All subsets of a list of size `n`
-def listSubsetsOfSize {α : Type} : ℕ → List α → List (List α)
-  | 0, _ => [[]]
-  | _, [] => []
-  | (m+1), x :: xs =>
-      (listSubsetsOfSize m xs).map (fun ys => x :: ys) ++ listSubsetsOfSize (m+1) xs
 
-#eval listSubsetsOfSize 2 [1,2,3,4]
-
--- Extracts a submatrix given row and column index sets (as finsets)
-noncomputable def submatrix' {n m : ℕ} {α : Type} [Zero α] (A : Matrix (Fin n) (Fin m) α)
-  (rows : Finset (Fin n)) (cols : Finset (Fin m)) :
-    Matrix (Fin rows.card) (Fin cols.card) α :=
-  fun i j => A (rows.toList.get ⟨i.1, by simp [i.2]⟩) (cols.toList.get ⟨j.1, by simp [j.2]⟩)
-
--- All subsets of size `n` from `Fin m`
-def all_subsets_of_size (n m : ℕ) : Finset (Finset (Fin m)) :=
-  Finset.powersetCard n (Finset.univ)
-
--- The Finset {0, ..., n-1} as Fin n
-def zero_to_n_minus_one (n : Nat) : Finset (Fin n) := Finset.univ
-
--- Lemma: cardinality of `zero_to_n_minus_one` is `n`
-theorem zero_to_n_minus_one_card_eq_n {n : ℕ} : (zero_to_n_minus_one n).card = n := by
-  simp [zero_to_n_minus_one, Finset.card_univ]
-
--- Selects specified columns from matrix `N`
-noncomputable def Matrix.rowBlocks {n m : ℕ} (N : Matrix (Fin n) (Fin m) ℚ) (s : Finset (Fin m)) : Matrix (Fin n) (Fin s.card) ℚ
-        := by rw [← @zero_to_n_minus_one_card_eq_n n] ; exact submatrix' N (zero_to_n_minus_one n) s
-
--- Selects specified rows from matrix `N`
-noncomputable def Matrix.colBlocks {n m : ℕ } (N : Matrix (Fin n) (Fin m) ℚ) (s : Finset (Fin n)) : Matrix (Fin s.card) (Fin m) ℚ
-  := by rw [← @zero_to_n_minus_one_card_eq_n m] ; exact submatrix' N s (zero_to_n_minus_one m)
-
--- Removes the i-th element from a list, given proof that i < l.length
+-- Removes the i-th element from a list, given proof that i < l.length.
 def List.remove {α : Type} (l : List α) (i : ℕ) (h : i < l.length) : List α :=
   match l with
   | [] => []
@@ -145,7 +58,7 @@ def List.remove {α : Type} (l : List α) (i : ℕ) (h : i < l.length) : List α
     simp_all only [length_cons]
     ; omega )
 
--- Proves that `remove` decreases the length of the list by 1
+-- Proves that `List.remove` decreases the length of the list by exactly 1.
 theorem remove_length {α : Type} (l : List α) (i : ℕ) (h : i < l.length) :
   (List.remove l i h).length = l.length - 1 := by
   induction l generalizing i with
@@ -164,7 +77,7 @@ theorem remove_length {α : Type} (l : List α) (i : ℕ) (h : i < l.length) :
       | [] => aesop
       | y :: ys => simp
 
--- The incidence matrix of a graph minor (removes last edge)
+-- The incidence matrix of a graph minor obtained by removing the last edge from the edge list.
 noncomputable def SimpleGraph.IncMinor {n : ℕ} (G : SimpleGraph (Fin (n + 1))) [DecidableRel G.Adj]
         : Matrix (Fin n) (Fin (G.Edges.length - 1)) ℚ :=
         let m : ℕ := G.Edges.length
@@ -182,30 +95,20 @@ noncomputable def SimpleGraph.IncMinor {n : ℕ} (G : SimpleGraph (Fin (n + 1)))
           if i = a then 1
           else if i = b then -1
           else 0
--- The monor of the Laplacian matrix of a graph (removes last row and column)
+
+-- The minor of the Laplacian matrix of a graph, obtained by removing the last row and column.
 def SimpleGraph.Lapminor {n : ℕ} (G : SimpleGraph (Fin (n + 1))) [DecidableRel G.Adj]
         : Matrix (Fin n) (Fin n) ℚ :=
         fun i j => G.lapMatrix ℚ i j
--- A predicate: is there a non-zero entry in Inc for edge (a,b)?
+
+-- A predicate checking if an edge `e` corresponds to non-zero entries in the incidence matrix `G.Inc`.
 def non_zero_iff_incident (G : SimpleGraph V) [DecidableRel G.Adj]
   : (Sym2 V) → Prop
     := fun e =>
       let (a, b) := Sym2.toProd e
       ∃ i j, G.Inc a i = 1 ∧ G.Inc b j = -1
 
-#check Finset.sum_boole
-
-
-noncomputable def adjEdge (v: V) {G: SimpleGraph V} [DecidableRel G.Adj] : (Fin G.Edges.length)  → Bool :=
-  fun e =>
-    let (a, b) := Sym2.toProd (G.Edges.get e)
-    if a = v then true
-    else if b = v then true
-    else false
-#check bool_to_prop
-def bool_to_prop' {α : Type} (p : α → Bool) : α → Prop :=
-  fun x => p x = true
-
+-- Shows that the square of the incidence matrix entry `G.Inc v x` is 1 if edge `x` is incident to vertex `v`, and 0 otherwise.
 theorem adj_prop (v : V) (G : SimpleGraph V) [DecidableRel G.Adj] :
     ∀ x :  (Fin G.Edges.length), G.Inc v x * (G.Inc v x) = if adjEdge v x then 1 else 0 := by
   intro x
@@ -214,68 +117,57 @@ theorem adj_prop (v : V) (G : SimpleGraph V) [DecidableRel G.Adj] :
   simp [SimpleGraph.IncidenceMatrix]
   aesop
 
-noncomputable def SimpleGraph.EdgesIncident {G : SimpleGraph V} [DecidableRel G.Adj] (v : V) :
-  Finset (Fin G.Edges.length) :=
-  Finset.filter (bool_to_prop' (adjEdge v)) (Finset.univ : Finset (Fin G.Edges.length))
-#print SimpleGraph.neighborFinset
-#check Sym2
-
-lemma Sym2.equality_left {v w : V} (h : v = w) : ∀ x : V, s(v,x) = s(w, x) := by
-  simp [h]
-lemma Sym2.equality_right {v w : V} (h : v = w) : ∀ x : V, s(x,v) = s(x, w) := by
-  simp [h]
-#print SimpleGraph
+-- Maps an edge index `e` incident to vertex `v` to the other vertex of the edge. If not incident, returns `v`.
 noncomputable def edge_vertex_bijection (G : SimpleGraph V) [DecidableRel G.Adj] (v : V) :
-   Fin G.Edges.length → V :=
-   fun e =>
-     let (a, b) := Sym2.toProd (G.Edges.get e)
-     if a = v then b
-     else
+    Fin G.Edges.length → V :=
+    fun e =>
+      let (a, b) := Sym2.toProd (G.Edges.get e)
+      if a = v then b
+      else if b = v then a
+      else v
 
 
--- States: (Inc * Incᵀ)(v,v) = degree of v
+
+-- States that the diagonal entry `(v,v)` of the matrix product `Inc * Incᵀ` equals the degree of vertex `v`.
 theorem inc_incT_diag_degree (G : SimpleGraph V) [DecidableRel G.Adj] :
     ∀ v, (G.Inc * G.Inc.transpose) v v = G.degree v := by
   intro v
   simp only [Matrix.mul_apply, Matrix.transpose_apply]
   simp [adj_prop]
   unfold SimpleGraph.degree
-  sorry
+  sorry -- Proof needs completion
 
-#check Finset.card_bijective
-
+-- Shows that for distinct non-adjacent vertices `v, w`, the product of their corresponding entries in any column `e` of the incidence matrix is 0.
 @[simp]lemma not_adj_zero (G : SimpleGraph V)[DecidableRel G.Adj]{v w : V} (h_ne : v ≠ w)
   (h_adj : ¬ G.Adj v w) :
-  ∀ e : Fin (G.Edges.length), G.IncidenceMatrix v e * (G.IncidenceMatrix w e) = 0 := by sorry
+  ∀ e : Fin (G.Edges.length), G.IncidenceMatrix v e * (G.IncidenceMatrix w e) = 0 := by
+  intro e
+  simp [SimpleGraph.edge_exist_adj]
+  simp_all only [ne_eq]
+  let unordered_e :=G.Edges.get e
+  let (a, b) := Sym2.toProd unordered_e
+  by_cases h : a = v
+  · by_cases h' : b = w
+    · simp [SimpleGraph.edge_exist_adj] at h_adj
+      have : s(a,b) ∈ G.Edges := by
+        have : a ∈ unordered_e ∧ b ∈ unordered_e := by
+          sorry -- Proof needs completion: requires showing a,b are the elements of unordered_e
+        sorry -- Proof needs completion: requires showing unordered_e is s(a,b)
+      aesop
+    · simp[h',h, SimpleGraph.IncidenceMatrix]
+      apply Or.intro_right
+      split
+      · sorry -- Proof needs completion: requires showing w ≠ a and w ≠ b
+      · sorry -- Proof needs completion: requires showing w ≠ a and w ≠ b
 
+  · sorry -- Proof needs completion: handle case a ≠ v
+
+
+-- Shows that for distinct adjacent vertices `v, w`, the product `Inc v e * Inc w e` is -1 if edge `e` is `s(v,w)`, and 0 otherwise.
 @[simp]lemma adj_minus_one (G : SimpleGraph V)[DecidableRel G.Adj]{v w : V}
   (h_ne : v ≠ w)(h_adj : G.Adj v w) :
   ∀ e , G.IncidenceMatrix v e * (G.IncidenceMatrix w e) = if (G.Edges.get e) = Sym2.mk (v ,w) then -1 else 0
-    := by sorry
+    := by sorry -- Proof needs completion
 
--- Proves: Inc * Incᵀ = Laplacian matrix of the graph
-lemma inc_incT_eq_lap {n : ℕ} (G : SimpleGraph (Fin n))[DecidableRel G.Adj]
-  : G.Inc * G.Inc.transpose = (G.lapMatrix ℚ : Matrix (Fin n) (Fin n) ℚ) := by
-  apply Matrix.ext; intro i j
-  simp only [Matrix.mul_apply, Matrix.transpose_apply, SimpleGraph.Inc]
-  by_cases h_diag : i = j
-  · simp [h_diag]
-    have h₁ : G.lapMatrix ℚ j j = G.degree j := by
-      simp [SimpleGraph.lapMatrix]
-      simp [SimpleGraph.degMatrix]
-    rw [h₁]
-    apply inc_incT_diag_degree
-  · by_cases h:G.Adj i j
-    · let h' := adj_minus_one G h_diag h
-      simp[h',Finset.sum_ite_eq]
-      rw [Finset.sum_ite_eq]
-      sorry
-    · let h' := not_adj_zero G h_diag h
-      simp [h']
-      simp [SimpleGraph.lapMatrix]
-      simp [SimpleGraph.degMatrix, h_diag,h]
-
-#check Finset.sum_ite_eq
-#moogle "Fin sum to Finset sum."
-#loogle (∑ ?x, _), (∑ ?x ∈ Fin ?s, _)
-#moogle "minor of laplacian matrix of a simplegraph."
+-- Defines a function that always returns -1 of type `ℚ`.
+def neg_id {α : Type} (v : α) : ℚ := -1

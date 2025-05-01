@@ -1,0 +1,730 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>Mathlib.Analysis.Convex.Quasiconvex</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="Mathlib.Analysis.Convex.Quasiconvex";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span>Documentation</span></h1><h2 class="header_filename break_within"><span class="name">Mathlib</span>.<span class="name">Analysis</span>.<span class="name">Convex</span>.<span class="name">Quasiconvex</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="../../.././Init.html">Init</a></li><li><a href="../../.././Mathlib/Analysis/Convex/Function.html">Mathlib.Analysis.Convex.Function</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-Mathlib.Analysis.Convex.Quasiconvex" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#QuasiconvexOn"><span class="name">QuasiconvexOn</span></a></div><div class="nav_link"><a class="break_within" href="#QuasiconcaveOn"><span class="name">QuasiconcaveOn</span></a></div><div class="nav_link"><a class="break_within" href="#QuasilinearOn"><span class="name">QuasilinearOn</span></a></div><div class="nav_link"><a class="break_within" href="#QuasiconvexOn.dual"><span class="name">QuasiconvexOn</span>.<span class="name">dual</span></a></div><div class="nav_link"><a class="break_within" href="#QuasiconcaveOn.dual"><span class="name">QuasiconcaveOn</span>.<span class="name">dual</span></a></div><div class="nav_link"><a class="break_within" href="#QuasilinearOn.dual"><span class="name">QuasilinearOn</span>.<span class="name">dual</span></a></div><div class="nav_link"><a class="break_within" href="#Convex.quasiconvexOn_of_convex_le"><span class="name">Convex</span>.<span class="name">quasiconvexOn_of_convex_le</span></a></div><div class="nav_link"><a class="break_within" href="#Convex.quasiconcaveOn_of_convex_ge"><span class="name">Convex</span>.<span class="name">quasiconcaveOn_of_convex_ge</span></a></div><div class="nav_link"><a class="break_within" href="#QuasiconvexOn.convex"><span class="name">QuasiconvexOn</span>.<span class="name">convex</span></a></div><div class="nav_link"><a class="break_within" href="#QuasiconcaveOn.convex"><span class="name">QuasiconcaveOn</span>.<span class="name">convex</span></a></div><div class="nav_link"><a class="break_within" href="#QuasiconvexOn.sup"><span class="name">QuasiconvexOn</span>.<span class="name">sup</span></a></div><div class="nav_link"><a class="break_within" href="#QuasiconcaveOn.inf"><span class="name">QuasiconcaveOn</span>.<span class="name">inf</span></a></div><div class="nav_link"><a class="break_within" href="#quasiconvexOn_iff_le_max"><span class="name">quasiconvexOn_iff_le_max</span></a></div><div class="nav_link"><a class="break_within" href="#quasiconcaveOn_iff_min_le"><span class="name">quasiconcaveOn_iff_min_le</span></a></div><div class="nav_link"><a class="break_within" href="#quasilinearOn_iff_mem_uIcc"><span class="name">quasilinearOn_iff_mem_uIcc</span></a></div><div class="nav_link"><a class="break_within" href="#QuasiconvexOn.convex_lt"><span class="name">QuasiconvexOn</span>.<span class="name">convex_lt</span></a></div><div class="nav_link"><a class="break_within" href="#QuasiconcaveOn.convex_gt"><span class="name">QuasiconcaveOn</span>.<span class="name">convex_gt</span></a></div><div class="nav_link"><a class="break_within" href="#ConvexOn.quasiconvexOn"><span class="name">ConvexOn</span>.<span class="name">quasiconvexOn</span></a></div><div class="nav_link"><a class="break_within" href="#ConcaveOn.quasiconcaveOn"><span class="name">ConcaveOn</span>.<span class="name">quasiconcaveOn</span></a></div><div class="nav_link"><a class="break_within" href="#MonotoneOn.quasiconvexOn"><span class="name">MonotoneOn</span>.<span class="name">quasiconvexOn</span></a></div><div class="nav_link"><a class="break_within" href="#MonotoneOn.quasiconcaveOn"><span class="name">MonotoneOn</span>.<span class="name">quasiconcaveOn</span></a></div><div class="nav_link"><a class="break_within" href="#MonotoneOn.quasilinearOn"><span class="name">MonotoneOn</span>.<span class="name">quasilinearOn</span></a></div><div class="nav_link"><a class="break_within" href="#AntitoneOn.quasiconvexOn"><span class="name">AntitoneOn</span>.<span class="name">quasiconvexOn</span></a></div><div class="nav_link"><a class="break_within" href="#AntitoneOn.quasiconcaveOn"><span class="name">AntitoneOn</span>.<span class="name">quasiconcaveOn</span></a></div><div class="nav_link"><a class="break_within" href="#AntitoneOn.quasilinearOn"><span class="name">AntitoneOn</span>.<span class="name">quasilinearOn</span></a></div><div class="nav_link"><a class="break_within" href="#Monotone.quasiconvexOn"><span class="name">Monotone</span>.<span class="name">quasiconvexOn</span></a></div><div class="nav_link"><a class="break_within" href="#Monotone.quasiconcaveOn"><span class="name">Monotone</span>.<span class="name">quasiconcaveOn</span></a></div><div class="nav_link"><a class="break_within" href="#Monotone.quasilinearOn"><span class="name">Monotone</span>.<span class="name">quasilinearOn</span></a></div><div class="nav_link"><a class="break_within" href="#Antitone.quasiconvexOn"><span class="name">Antitone</span>.<span class="name">quasiconvexOn</span></a></div><div class="nav_link"><a class="break_within" href="#Antitone.quasiconcaveOn"><span class="name">Antitone</span>.<span class="name">quasiconcaveOn</span></a></div><div class="nav_link"><a class="break_within" href="#Antitone.quasilinearOn"><span class="name">Antitone</span>.<span class="name">quasilinearOn</span></a></div><div class="nav_link"><a class="break_within" href="#QuasilinearOn.monotoneOn_or_antitoneOn"><span class="name">QuasilinearOn</span>.<span class="name">monotoneOn_or_antitoneOn</span></a></div><div class="nav_link"><a class="break_within" href="#quasilinearOn_iff_monotoneOn_or_antitoneOn"><span class="name">quasilinearOn_iff_monotoneOn_or_antitoneOn</span></a></div></nav><main>
+<div class="mod_doc"><h1 class="markdown-heading" id="Quasiconvex-and-quasiconcave-functions">Quasiconvex and quasiconcave functions <a class="hover-link" href="#Quasiconvex-and-quasiconcave-functions">#</a></h1><p>This file defines quasiconvexity, quasiconcavity and quasilinearity of functions, which are
+generalizations of unimodality and monotonicity. Convexity implies quasiconvexity, concavity implies
+quasiconcavity, and monotonicity implies quasilinearity.</p><h2 class="markdown-heading" id="Main-declarations">Main declarations <a class="hover-link" href="#Main-declarations">#</a></h2><ul>
+<li><code><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconvexOn">QuasiconvexOn</a> 𝕜 s f</code>: Quasiconvexity of the function <code>f</code> on the set <code>s</code> with scalars <code>𝕜</code>. This
+means that, for all <code>r</code>, <code>{x ∈ s | f x ≤ r}</code> is <code>𝕜</code>-convex.</li>
+<li><code><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconcaveOn">QuasiconcaveOn</a> 𝕜 s f</code>: Quasiconcavity of the function <code>f</code> on the set <code>s</code> with scalars <code>𝕜</code>. This
+means that, for all <code>r</code>, <code>{x ∈ s | r ≤ f x}</code> is <code>𝕜</code>-convex.</li>
+<li><code><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasilinearOn">QuasilinearOn</a> 𝕜 s f</code>: Quasilinearity of the function <code>f</code> on the set <code>s</code> with scalars <code>𝕜</code>. This
+means that <code>f</code> is both quasiconvex and quasiconcave.</li>
+</ul><h2 class="markdown-heading" id="References">References <a class="hover-link" href="#References">#</a></h2><ul>
+<li><a href="https://en.wikipedia.org/wiki/Quasiconvex_function">https://en.wikipedia.org/wiki/Quasiconvex_function</a></li>
+</ul></div><div class="decl" id="QuasiconvexOn"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L46-L49">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconvexOn"><span class="name">QuasiconvexOn</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Init/Prelude.html#LE">LE</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Notation/Defs.html#SMul">SMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>A function is quasiconvex if all its sublevels are convex.
+This means that, for all <code>r</code>, <code>{x ∈ s | f x ≤ r}</code> is <code>𝕜</code>-convex.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconvexOn">QuasiconvexOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">∀ (<span class="fn">r</span> : <span class="fn">β</span>), <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Basic.html#Convex">Convex</a> <span class="fn">𝕜</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">{</a><span class="fn">x</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">:</a> <span class="fn">E</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">|</a> <span class="fn">x</span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span> <a href="../../.././Init/Prelude.html#And">∧</a> <span class="fn"><span class="fn">f</span> <span class="fn">x</span></span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">r</span><a href="../../.././Mathlib/Data/Set/Defs.html#setOf">}</a></span></span></li></ul></details><details id="instances-for-list-QuasiconvexOn" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="QuasiconcaveOn"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L51-L54">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconcaveOn"><span class="name">QuasiconcaveOn</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Init/Prelude.html#LE">LE</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Notation/Defs.html#SMul">SMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>A function is quasiconcave if all its superlevels are convex.
+This means that, for all <code>r</code>, <code>{x ∈ s | r ≤ f x}</code> is <code>𝕜</code>-convex.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconcaveOn">QuasiconcaveOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">∀ (<span class="fn">r</span> : <span class="fn">β</span>), <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Basic.html#Convex">Convex</a> <span class="fn">𝕜</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">{</a><span class="fn">x</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">:</a> <span class="fn">E</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">|</a> <span class="fn">x</span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span> <a href="../../.././Init/Prelude.html#And">∧</a> <span class="fn">r</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn"><span class="fn">f</span> <span class="fn">x</span></span><a href="../../.././Mathlib/Data/Set/Defs.html#setOf">}</a></span></span></li></ul></details><details id="instances-for-list-QuasiconcaveOn" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="QuasilinearOn"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L56-L60">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasilinearOn"><span class="name">QuasilinearOn</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Init/Prelude.html#LE">LE</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Notation/Defs.html#SMul">SMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>A function is quasilinear if it is both quasiconvex and quasiconcave.
+This means that, for all <code>r</code>,
+the sets <code>{x ∈ s | f x ≤ r}</code> and <code>{x ∈ s | r ≤ f x}</code> are <code>𝕜</code>-convex.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasilinearOn">QuasilinearOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> (<span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconvexOn">QuasiconvexOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span> <a href="../../.././Init/Prelude.html#And">∧</a> <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconcaveOn">QuasiconcaveOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span>)</li></ul></details><details id="instances-for-list-QuasilinearOn" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="QuasiconvexOn.dual"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L64-L65">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconvexOn.dual"><span class="name">QuasiconvexOn</span>.<span class="name">dual</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Init/Prelude.html#LE">LE</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Notation/Defs.html#SMul">SMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconvexOn">QuasiconvexOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span> → <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconcaveOn">QuasiconcaveOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> (<span class="fn">⇑<a href="../../.././Mathlib/Order/Synonym.html#OrderDual.toDual">OrderDual.toDual</a></span> <a href="../../.././Init/Prelude.html#Function.comp">∘</a> <span class="fn">f</span>)</span></span></div></div></div></div><div class="decl" id="QuasiconcaveOn.dual"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L67-L68">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconcaveOn.dual"><span class="name">QuasiconcaveOn</span>.<span class="name">dual</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Init/Prelude.html#LE">LE</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Notation/Defs.html#SMul">SMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconcaveOn">QuasiconcaveOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span> → <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconvexOn">QuasiconvexOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> (<span class="fn">⇑<a href="../../.././Mathlib/Order/Synonym.html#OrderDual.toDual">OrderDual.toDual</a></span> <a href="../../.././Init/Prelude.html#Function.comp">∘</a> <span class="fn">f</span>)</span></span></div></div></div></div><div class="decl" id="QuasilinearOn.dual"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L70-L71">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasilinearOn.dual"><span class="name">QuasilinearOn</span>.<span class="name">dual</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Init/Prelude.html#LE">LE</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Notation/Defs.html#SMul">SMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasilinearOn">QuasilinearOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span> → <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasilinearOn">QuasilinearOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> (<span class="fn">⇑<a href="../../.././Mathlib/Order/Synonym.html#OrderDual.toDual">OrderDual.toDual</a></span> <a href="../../.././Init/Prelude.html#Function.comp">∘</a> <span class="fn">f</span>)</span></span></div></div></div></div><div class="decl" id="Convex.quasiconvexOn_of_convex_le"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L73-L74">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#Convex.quasiconvexOn_of_convex_le"><span class="name">Convex</span>.<span class="name">quasiconvexOn_of_convex_le</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Init/Prelude.html#LE">LE</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Notation/Defs.html#SMul">SMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hs</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Basic.html#Convex">Convex</a> <span class="fn">𝕜</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn">∀ (<span class="fn">r</span> : <span class="fn">β</span>), <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Basic.html#Convex">Convex</a> <span class="fn">𝕜</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">{</a><span class="fn">x</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">:</a> <span class="fn">E</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">|</a> <span class="fn"><span class="fn">f</span> <span class="fn">x</span></span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">r</span><a href="../../.././Mathlib/Data/Set/Defs.html#setOf">}</a></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconvexOn">QuasiconvexOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="Convex.quasiconcaveOn_of_convex_ge"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L76-L78">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#Convex.quasiconcaveOn_of_convex_ge"><span class="name">Convex</span>.<span class="name">quasiconcaveOn_of_convex_ge</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Init/Prelude.html#LE">LE</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Notation/Defs.html#SMul">SMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hs</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Basic.html#Convex">Convex</a> <span class="fn">𝕜</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn">∀ (<span class="fn">r</span> : <span class="fn">β</span>), <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Basic.html#Convex">Convex</a> <span class="fn">𝕜</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">{</a><span class="fn">x</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">:</a> <span class="fn">E</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">|</a> <span class="fn">r</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn"><span class="fn">f</span> <span class="fn">x</span></span><a href="../../.././Mathlib/Data/Set/Defs.html#setOf">}</a></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconcaveOn">QuasiconcaveOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="QuasiconvexOn.convex"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L80-L83">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconvexOn.convex"><span class="name">QuasiconvexOn</span>.<span class="name">convex</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Init/Prelude.html#LE">LE</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Notation/Defs.html#SMul">SMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/Directed.html#IsDirected">IsDirected</a> <span class="fn">β</span> <span class="fn">fun (<span class="fn">x1</span> <span class="fn">x2</span> : <span class="fn">β</span>) =&gt; <span class="fn">x1</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">x2</span></span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconvexOn">QuasiconvexOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Basic.html#Convex">Convex</a> <span class="fn">𝕜</span> <span class="fn">s</span></span></div></div></div></div><div class="decl" id="QuasiconcaveOn.convex"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L85-L86">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconcaveOn.convex"><span class="name">QuasiconcaveOn</span>.<span class="name">convex</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Init/Prelude.html#LE">LE</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Notation/Defs.html#SMul">SMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/Directed.html#IsDirected">IsDirected</a> <span class="fn">β</span> <span class="fn">fun (<span class="fn">x1</span> <span class="fn">x2</span> : <span class="fn">β</span>) =&gt; <span class="fn">x1</span> <a href="../../.././Init/Prelude.html#GE.ge">≥</a> <span class="fn">x2</span></span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconcaveOn">QuasiconcaveOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Basic.html#Convex">Convex</a> <span class="fn">𝕜</span> <span class="fn">s</span></span></div></div></div></div><div class="decl" id="QuasiconvexOn.sup"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L94-L98">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconvexOn.sup"><span class="name">QuasiconvexOn</span>.<span class="name">sup</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Notation/Defs.html#SMul">SMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f </span><span class="fn">g</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/Lattice.html#SemilatticeSup">SemilatticeSup</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconvexOn">QuasiconvexOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hg</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconvexOn">QuasiconvexOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">g</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconvexOn">QuasiconvexOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> (<span class="fn">f</span> <a href="../../.././Init/Prelude.html#Max.max">⊔</a> <span class="fn">g</span>)</span></div></div></div></div><div class="decl" id="QuasiconcaveOn.inf"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L100-L102">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconcaveOn.inf"><span class="name">QuasiconcaveOn</span>.<span class="name">inf</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Notation/Defs.html#SMul">SMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f </span><span class="fn">g</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/Lattice.html#SemilatticeInf">SemilatticeInf</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconcaveOn">QuasiconcaveOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hg</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconcaveOn">QuasiconcaveOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">g</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconcaveOn">QuasiconcaveOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> (<span class="fn">f</span> <a href="../../.././Init/Prelude.html#Min.min">⊓</a> <span class="fn">g</span>)</span></div></div></div></div><div class="decl" id="quasiconvexOn_iff_le_max"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L110-L116">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#quasiconvexOn_iff_le_max"><span class="name">quasiconvexOn_iff_le_max</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/Defs/LinearOrder.html#LinearOrder">LinearOrder</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Notation/Defs.html#SMul">SMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconvexOn">QuasiconvexOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span> <a href="../../.././Init/Core.html#Iff">↔</a>   <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Basic.html#Convex">Convex</a> <span class="fn">𝕜</span> <span class="fn">s</span></span> <a href="../../.././Init/Prelude.html#And">∧</a>     <span class="fn">∀ ⦃<span class="fn">x</span> : <span class="fn">E</span>⦄, <span class="fn"><span class="fn">x</span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span> → <span class="fn">∀ ⦃<span class="fn">y</span> : <span class="fn">E</span>⦄, <span class="fn"><span class="fn">y</span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span> → <span class="fn">∀ ⦃<span class="fn">a </span><span class="fn">b</span> : <span class="fn">𝕜</span>⦄, <span class="fn"><span class="fn">0</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">a</span> → <span class="fn"><span class="fn">0</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">b</span> → <span class="fn"><span class="fn">a</span> <a href="../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn">b</span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">1</span> → <span class="fn"><span class="fn">f</span> (<span class="fn">a</span> <a href="../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn">x</span> <a href="../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn">b</span> <a href="../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn">y</span>)</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn"><span class="fn">f</span> <span class="fn">x</span></span> <a href="../../.././Init/Prelude.html#Max.max">⊔</a> <span class="fn"><span class="fn">f</span> <span class="fn">y</span></span></span></span></span></span></span></span></span></span></div></div></div></div><div class="decl" id="quasiconcaveOn_iff_min_le"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L118-L120">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#quasiconcaveOn_iff_min_le"><span class="name">quasiconcaveOn_iff_min_le</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/Defs/LinearOrder.html#LinearOrder">LinearOrder</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Notation/Defs.html#SMul">SMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconcaveOn">QuasiconcaveOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span> <a href="../../.././Init/Core.html#Iff">↔</a>   <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Basic.html#Convex">Convex</a> <span class="fn">𝕜</span> <span class="fn">s</span></span> <a href="../../.././Init/Prelude.html#And">∧</a>     <span class="fn">∀ ⦃<span class="fn">x</span> : <span class="fn">E</span>⦄, <span class="fn"><span class="fn">x</span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span> → <span class="fn">∀ ⦃<span class="fn">y</span> : <span class="fn">E</span>⦄, <span class="fn"><span class="fn">y</span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span> → <span class="fn">∀ ⦃<span class="fn">a </span><span class="fn">b</span> : <span class="fn">𝕜</span>⦄, <span class="fn"><span class="fn">0</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">a</span> → <span class="fn"><span class="fn">0</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">b</span> → <span class="fn"><span class="fn">a</span> <a href="../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn">b</span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">1</span> → <span class="fn"><span class="fn">f</span> <span class="fn">x</span></span> <a href="../../.././Init/Prelude.html#Min.min">⊓</a> <span class="fn"><span class="fn">f</span> <span class="fn">y</span></span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn"><span class="fn">f</span> (<span class="fn">a</span> <a href="../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn">x</span> <a href="../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn">b</span> <a href="../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn">y</span>)</span></span></span></span></span></span></span></span></span></div></div></div></div><div class="decl" id="quasilinearOn_iff_mem_uIcc"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L122-L127">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#quasilinearOn_iff_mem_uIcc"><span class="name">quasilinearOn_iff_mem_uIcc</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/Defs/LinearOrder.html#LinearOrder">LinearOrder</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Notation/Defs.html#SMul">SMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasilinearOn">QuasilinearOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span> <a href="../../.././Init/Core.html#Iff">↔</a>   <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Basic.html#Convex">Convex</a> <span class="fn">𝕜</span> <span class="fn">s</span></span> <a href="../../.././Init/Prelude.html#And">∧</a>     <span class="fn">∀ ⦃<span class="fn">x</span> : <span class="fn">E</span>⦄,
+      <span class="fn"><span class="fn">x</span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span> → <span class="fn">∀ ⦃<span class="fn">y</span> : <span class="fn">E</span>⦄, <span class="fn"><span class="fn">y</span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span> → <span class="fn">∀ ⦃<span class="fn">a </span><span class="fn">b</span> : <span class="fn">𝕜</span>⦄, <span class="fn"><span class="fn">0</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">a</span> → <span class="fn"><span class="fn">0</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">b</span> → <span class="fn"><span class="fn">a</span> <a href="../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn">b</span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">1</span> → <span class="fn"><span class="fn">f</span> (<span class="fn">a</span> <a href="../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn">x</span> <a href="../../.././Init/Prelude.html#HAdd.hAdd">+</a> <span class="fn">b</span> <a href="../../.././Mathlib/Algebra/Notation/Defs.html#HSMul.hSMul">•</a> <span class="fn">y</span>)</span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><a href="../../.././Mathlib/Order/Interval/Set/UnorderedInterval.html#Set.uIcc">Set.uIcc</a> <span class="fn">(<span class="fn">f</span> <span class="fn">x</span>)</span> <span class="fn">(<span class="fn">f</span> <span class="fn">y</span>)</span></span></span></span></span></span></span></span></span></span></div></div></div></div><div class="decl" id="QuasiconvexOn.convex_lt"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L129-L133">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconvexOn.convex_lt"><span class="name">QuasiconvexOn</span>.<span class="name">convex_lt</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/Defs/LinearOrder.html#LinearOrder">LinearOrder</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Notation/Defs.html#SMul">SMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconvexOn">QuasiconvexOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">r</span> : <span class="fn">β</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Basic.html#Convex">Convex</a> <span class="fn">𝕜</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">{</a><span class="fn">x</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">:</a> <span class="fn">E</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">|</a> <span class="fn">x</span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span> <a href="../../.././Init/Prelude.html#And">∧</a> <span class="fn"><span class="fn">f</span> <span class="fn">x</span></span> <a href="../../.././Init/Prelude.html#LT.lt">&lt;</a> <span class="fn">r</span><a href="../../.././Mathlib/Data/Set/Defs.html#setOf">}</a></span></div></div></div></div><div class="decl" id="QuasiconcaveOn.convex_gt"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L135-L137">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconcaveOn.convex_gt"><span class="name">QuasiconcaveOn</span>.<span class="name">convex_gt</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/Defs/LinearOrder.html#LinearOrder">LinearOrder</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Notation/Defs.html#SMul">SMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconcaveOn">QuasiconcaveOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">r</span> : <span class="fn">β</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Basic.html#Convex">Convex</a> <span class="fn">𝕜</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">{</a><span class="fn">x</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">:</a> <span class="fn">E</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">|</a> <span class="fn">x</span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span> <a href="../../.././Init/Prelude.html#And">∧</a> <span class="fn">r</span> <a href="../../.././Init/Prelude.html#LT.lt">&lt;</a> <span class="fn"><span class="fn">f</span> <span class="fn">x</span></span><a href="../../.././Mathlib/Data/Set/Defs.html#setOf">}</a></span></div></div></div></div><div class="decl" id="ConvexOn.quasiconvexOn"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L146-L147">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#ConvexOn.quasiconvexOn"><span class="name">ConvexOn</span>.<span class="name">quasiconvexOn</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#OrderedAddCommMonoid">OrderedAddCommMonoid</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">𝕜</span> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Module/OrderedSMul.html#OrderedSMul">OrderedSMul</a> <span class="fn">𝕜</span> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Function.html#ConvexOn">ConvexOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconvexOn">QuasiconvexOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="ConcaveOn.quasiconcaveOn"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L149-L150">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#ConcaveOn.quasiconcaveOn"><span class="name">ConcaveOn</span>.<span class="name">quasiconcaveOn</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Group/Defs.html#AddCommMonoid">AddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#OrderedAddCommMonoid">OrderedAddCommMonoid</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">𝕜</span> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Module/OrderedSMul.html#OrderedSMul">OrderedSMul</a> <span class="fn">𝕜</span> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Function.html#ConcaveOn">ConcaveOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconcaveOn">QuasiconcaveOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="MonotoneOn.quasiconvexOn"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L161-L162">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#MonotoneOn.quasiconvexOn"><span class="name">MonotoneOn</span>.<span class="name">quasiconvexOn</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#LinearOrderedAddCommMonoid">LinearOrderedAddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#OrderedAddCommMonoid">OrderedAddCommMonoid</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Module/OrderedSMul.html#OrderedSMul">OrderedSMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Order/Monotone/Defs.html#MonotoneOn">MonotoneOn</a> <span class="fn">f</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hs</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Basic.html#Convex">Convex</a> <span class="fn">𝕜</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconvexOn">QuasiconvexOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="MonotoneOn.quasiconcaveOn"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L164-L165">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#MonotoneOn.quasiconcaveOn"><span class="name">MonotoneOn</span>.<span class="name">quasiconcaveOn</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#LinearOrderedAddCommMonoid">LinearOrderedAddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#OrderedAddCommMonoid">OrderedAddCommMonoid</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Module/OrderedSMul.html#OrderedSMul">OrderedSMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Order/Monotone/Defs.html#MonotoneOn">MonotoneOn</a> <span class="fn">f</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hs</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Basic.html#Convex">Convex</a> <span class="fn">𝕜</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconcaveOn">QuasiconcaveOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="MonotoneOn.quasilinearOn"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L167-L168">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#MonotoneOn.quasilinearOn"><span class="name">MonotoneOn</span>.<span class="name">quasilinearOn</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#LinearOrderedAddCommMonoid">LinearOrderedAddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#OrderedAddCommMonoid">OrderedAddCommMonoid</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Module/OrderedSMul.html#OrderedSMul">OrderedSMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Order/Monotone/Defs.html#MonotoneOn">MonotoneOn</a> <span class="fn">f</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hs</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Basic.html#Convex">Convex</a> <span class="fn">𝕜</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasilinearOn">QuasilinearOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="AntitoneOn.quasiconvexOn"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L170-L171">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#AntitoneOn.quasiconvexOn"><span class="name">AntitoneOn</span>.<span class="name">quasiconvexOn</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#LinearOrderedAddCommMonoid">LinearOrderedAddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#OrderedAddCommMonoid">OrderedAddCommMonoid</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Module/OrderedSMul.html#OrderedSMul">OrderedSMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Order/Monotone/Defs.html#AntitoneOn">AntitoneOn</a> <span class="fn">f</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hs</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Basic.html#Convex">Convex</a> <span class="fn">𝕜</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconvexOn">QuasiconvexOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="AntitoneOn.quasiconcaveOn"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L173-L174">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#AntitoneOn.quasiconcaveOn"><span class="name">AntitoneOn</span>.<span class="name">quasiconcaveOn</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#LinearOrderedAddCommMonoid">LinearOrderedAddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#OrderedAddCommMonoid">OrderedAddCommMonoid</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Module/OrderedSMul.html#OrderedSMul">OrderedSMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Order/Monotone/Defs.html#AntitoneOn">AntitoneOn</a> <span class="fn">f</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hs</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Basic.html#Convex">Convex</a> <span class="fn">𝕜</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconcaveOn">QuasiconcaveOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="AntitoneOn.quasilinearOn"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L176-L177">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#AntitoneOn.quasilinearOn"><span class="name">AntitoneOn</span>.<span class="name">quasilinearOn</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#LinearOrderedAddCommMonoid">LinearOrderedAddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#OrderedAddCommMonoid">OrderedAddCommMonoid</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Module/OrderedSMul.html#OrderedSMul">OrderedSMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">E</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Order/Monotone/Defs.html#AntitoneOn">AntitoneOn</a> <span class="fn">f</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hs</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Basic.html#Convex">Convex</a> <span class="fn">𝕜</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasilinearOn">QuasilinearOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="Monotone.quasiconvexOn"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L179-L180">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#Monotone.quasiconvexOn"><span class="name">Monotone</span>.<span class="name">quasiconvexOn</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#LinearOrderedAddCommMonoid">LinearOrderedAddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#OrderedAddCommMonoid">OrderedAddCommMonoid</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Module/OrderedSMul.html#OrderedSMul">OrderedSMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Order/Monotone/Defs.html#Monotone">Monotone</a> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconvexOn">QuasiconvexOn</a> <span class="fn">𝕜</span> <a href="../../.././Mathlib/Data/Set/Defs.html#Set.univ">Set.univ</a> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="Monotone.quasiconcaveOn"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L182-L183">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#Monotone.quasiconcaveOn"><span class="name">Monotone</span>.<span class="name">quasiconcaveOn</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#LinearOrderedAddCommMonoid">LinearOrderedAddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#OrderedAddCommMonoid">OrderedAddCommMonoid</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Module/OrderedSMul.html#OrderedSMul">OrderedSMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Order/Monotone/Defs.html#Monotone">Monotone</a> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconcaveOn">QuasiconcaveOn</a> <span class="fn">𝕜</span> <a href="../../.././Mathlib/Data/Set/Defs.html#Set.univ">Set.univ</a> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="Monotone.quasilinearOn"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L185-L186">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#Monotone.quasilinearOn"><span class="name">Monotone</span>.<span class="name">quasilinearOn</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#LinearOrderedAddCommMonoid">LinearOrderedAddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#OrderedAddCommMonoid">OrderedAddCommMonoid</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Module/OrderedSMul.html#OrderedSMul">OrderedSMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Order/Monotone/Defs.html#Monotone">Monotone</a> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasilinearOn">QuasilinearOn</a> <span class="fn">𝕜</span> <a href="../../.././Mathlib/Data/Set/Defs.html#Set.univ">Set.univ</a> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="Antitone.quasiconvexOn"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L188-L189">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#Antitone.quasiconvexOn"><span class="name">Antitone</span>.<span class="name">quasiconvexOn</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#LinearOrderedAddCommMonoid">LinearOrderedAddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#OrderedAddCommMonoid">OrderedAddCommMonoid</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Module/OrderedSMul.html#OrderedSMul">OrderedSMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Order/Monotone/Defs.html#Antitone">Antitone</a> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconvexOn">QuasiconvexOn</a> <span class="fn">𝕜</span> <a href="../../.././Mathlib/Data/Set/Defs.html#Set.univ">Set.univ</a> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="Antitone.quasiconcaveOn"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L191-L192">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#Antitone.quasiconcaveOn"><span class="name">Antitone</span>.<span class="name">quasiconcaveOn</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#LinearOrderedAddCommMonoid">LinearOrderedAddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#OrderedAddCommMonoid">OrderedAddCommMonoid</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Module/OrderedSMul.html#OrderedSMul">OrderedSMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Order/Monotone/Defs.html#Antitone">Antitone</a> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasiconcaveOn">QuasiconcaveOn</a> <span class="fn">𝕜</span> <a href="../../.././Mathlib/Data/Set/Defs.html#Set.univ">Set.univ</a> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="Antitone.quasilinearOn"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L194-L195">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#Antitone.quasilinearOn"><span class="name">Antitone</span>.<span class="name">quasilinearOn</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Ring/Defs.html#OrderedSemiring">OrderedSemiring</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#LinearOrderedAddCommMonoid">LinearOrderedAddCommMonoid</a> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#OrderedAddCommMonoid">OrderedAddCommMonoid</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Module/Defs.html#Module">Module</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Module/OrderedSMul.html#OrderedSMul">OrderedSMul</a> <span class="fn">𝕜</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">E</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Order/Monotone/Defs.html#Antitone">Antitone</a> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasilinearOn">QuasilinearOn</a> <span class="fn">𝕜</span> <a href="../../.././Mathlib/Data/Set/Defs.html#Set.univ">Set.univ</a> <span class="fn">f</span></span></div></div></div></div><div class="decl" id="QuasilinearOn.monotoneOn_or_antitoneOn"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L205-L209">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasilinearOn.monotoneOn_or_antitoneOn"><span class="name">QuasilinearOn</span>.<span class="name">monotoneOn_or_antitoneOn</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Field/Defs.html#LinearOrderedField">LinearOrderedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">𝕜</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/Defs/LinearOrder.html#LinearOrder">LinearOrder</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasilinearOn">QuasilinearOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Order/Monotone/Defs.html#MonotoneOn">MonotoneOn</a> <span class="fn">f</span> <span class="fn">s</span></span> <a href="../../.././Init/Prelude.html#Or">∨</a> <span class="fn"><a href="../../.././Mathlib/Order/Monotone/Defs.html#AntitoneOn">AntitoneOn</a> <span class="fn">f</span> <span class="fn">s</span></span></div></div></div></div><div class="decl" id="quasilinearOn_iff_monotoneOn_or_antitoneOn"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Analysis/Convex/Quasiconvex.lean#L211-L214">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#quasilinearOn_iff_monotoneOn_or_antitoneOn"><span class="name">quasilinearOn_iff_monotoneOn_or_antitoneOn</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">𝕜</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Field/Defs.html#LinearOrderedField">LinearOrderedField</a> <span class="fn">𝕜</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">𝕜</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><span class="fn">𝕜</span> → <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Order/Monoid/Defs.html#LinearOrderedAddCommMonoid">LinearOrderedAddCommMonoid</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hs</span> : <span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Basic.html#Convex">Convex</a> <span class="fn">𝕜</span> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Analysis/Convex/Quasiconvex.html#QuasilinearOn">QuasilinearOn</a> <span class="fn">𝕜</span> <span class="fn">s</span> <span class="fn">f</span></span> <a href="../../.././Init/Core.html#Iff">↔</a> <span class="fn"><a href="../../.././Mathlib/Order/Monotone/Defs.html#MonotoneOn">MonotoneOn</a> <span class="fn">f</span> <span class="fn">s</span></span> <a href="../../.././Init/Prelude.html#Or">∨</a> <span class="fn"><a href="../../.././Mathlib/Order/Monotone/Defs.html#AntitoneOn">AntitoneOn</a> <span class="fn">f</span> <span class="fn">s</span></span></div></div></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

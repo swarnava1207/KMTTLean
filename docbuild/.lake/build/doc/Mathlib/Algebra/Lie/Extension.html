@@ -1,0 +1,260 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>Mathlib.Algebra.Lie.Extension</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="Mathlib.Algebra.Lie.Extension";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span>Documentation</span></h1><h2 class="header_filename break_within"><span class="name">Mathlib</span>.<span class="name">Algebra</span>.<span class="name">Lie</span>.<span class="name">Extension</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Algebra/Lie/Extension.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="../../.././Init.html">Init</a></li><li><a href="../../.././Mathlib/Algebra/Lie/Submodule.html">Mathlib.Algebra.Lie.Submodule</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-Mathlib.Algebra.Lie.Extension" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LieAlgebra.IsExtension"><span class="name">LieAlgebra</span>.<span class="name">IsExtension</span></a></div><div class="nav_link"><a class="break_within" href="#LieAlgebra.Extension"><span class="name">LieAlgebra</span>.<span class="name">Extension</span></a></div><div class="nav_link"><a class="break_within" href="#LieAlgebra.IsExtension.extension"><span class="name">LieAlgebra</span>.<span class="name">IsExtension</span>.<span class="name">extension</span></a></div><div class="nav_link"><a class="break_within" href="#LieAlgebra.IsExtension.extension_incl"><span class="name">LieAlgebra</span>.<span class="name">IsExtension</span>.<span class="name">extension_incl</span></a></div><div class="nav_link"><a class="break_within" href="#LieAlgebra.IsExtension.extension_instLieRing"><span class="name">LieAlgebra</span>.<span class="name">IsExtension</span>.<span class="name">extension_instLieRing</span></a></div><div class="nav_link"><a class="break_within" href="#LieAlgebra.IsExtension.extension_instLieAlgebra"><span class="name">LieAlgebra</span>.<span class="name">IsExtension</span>.<span class="name">extension_instLieAlgebra</span></a></div><div class="nav_link"><a class="break_within" href="#LieAlgebra.IsExtension.extension_proj"><span class="name">LieAlgebra</span>.<span class="name">IsExtension</span>.<span class="name">extension_proj</span></a></div><div class="nav_link"><a class="break_within" href="#LieAlgebra.IsExtension.extension_L"><span class="name">LieAlgebra</span>.<span class="name">IsExtension</span>.<span class="name">extension_L</span></a></div><div class="nav_link"><a class="break_within" href="#LieAlgebra.isExtension_of_surjective"><span class="name">LieAlgebra</span>.<span class="name">isExtension_of_surjective</span></a></div></nav><main>
+<div class="mod_doc"><h1 class="markdown-heading" id="Extensions-of-Lie-algebras">Extensions of Lie algebras <a class="hover-link" href="#Extensions-of-Lie-algebras">#</a></h1><p>This file defines extensions of Lie algebras, given by short exact sequences of Lie algebra
+homomorphisms. They are implemented in two ways: <code><a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension">IsExtension</a></code> is a <code>Prop</code>-valued class taking two
+homomorphisms as parameters, and <code><a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.Extension">Extension</a></code> is a structure that includes the middle Lie algebra.</p><h2 class="markdown-heading" id="Main-definitions">Main definitions <a class="hover-link" href="#Main-definitions">#</a></h2><ul>
+<li><code><a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension">LieAlgebra.IsExtension</a></code>: A <code>Prop</code>-valued class characterizing an extension of Lie algebras.</li>
+<li><code><a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.Extension">LieAlgebra.Extension</a></code>: A bundled structure giving an extension of Lie algebras.</li>
+<li><code><a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension.extension">LieAlgebra.IsExtension.extension</a></code>: A function that builds the bundled structure from the class.</li>
+</ul><h2 class="markdown-heading" id="TODO">TODO <a class="hover-link" href="#TODO">#</a></h2><ul>
+<li><code>IsCentral</code> - central extensions</li>
+<li><code><a href="../../.././Mathlib/Logic/Equiv/Defs.html#Equiv">Equiv</a></code> - equivalence of extensions</li>
+<li><code>ofTwoCocycle</code> - construction of extensions from 2-cocycles</li>
+</ul><h2 class="markdown-heading" id="References">References <a class="hover-link" href="#References">#</a></h2><ul>
+<li><a href="../../.././bourbaki1975">N. Bourbaki, <em>Lie Groups and Lie Algebras, Chapters 1--3</em></a></li>
+</ul></div><div class="decl" id="LieAlgebra.IsExtension"><div class="class"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Algebra/Lie/Extension.lean#L36-L40">source</a></div><div class="decl_header"><span class="decl_kind">class</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension"><span class="name">LieAlgebra</span>.<span class="name">IsExtension</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">L</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">L</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">L</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">i</span> : <span class="fn">N</span> <a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">→ₗ⁅</a><span class="fn">R</span><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">⁆</a> <span class="fn">L</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">p</span> : <span class="fn">L</span> <a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">→ₗ⁅</a><span class="fn">R</span><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">⁆</a> <span class="fn">M</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>A sequence of two Lie algebra homomorphisms is an extension if it is short exact.</p><ul class="structure_fields" id="LieAlgebra.IsExtension.mk"><li id="LieAlgebra.IsExtension.ker_eq_bot" class="structure_field"><div class="structure_field_info">ker_eq_bot : <span class="fn"><span class="fn">i</span>.<a href="../../.././Mathlib/Algebra/Lie/Submodule.html#LieHom.ker">ker</a></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <a href="../../.././Mathlib/Order/Notation.html#Bot.bot">⊥</a></div></li><li id="LieAlgebra.IsExtension.range_eq_top" class="structure_field"><div class="structure_field_info">range_eq_top : <span class="fn"><span class="fn">p</span>.<a href="../../.././Mathlib/Algebra/Lie/Subalgebra.html#LieHom.range">range</a></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <a href="../../.././Mathlib/Order/Notation.html#Top.top">⊤</a></div></li><li id="LieAlgebra.IsExtension.exact" class="structure_field"><div class="structure_field_info">exact : <span class="fn"><span class="fn">i</span>.<a href="../../.././Mathlib/Algebra/Lie/Subalgebra.html#LieHom.range">range</a></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Submodule.html#LieIdeal.toLieSubalgebra">LieIdeal.toLieSubalgebra</a> <span class="fn">R</span> <span class="fn">L</span> <span class="fn"><span class="fn">p</span>.<a href="../../.././Mathlib/Algebra/Lie/Submodule.html#LieHom.ker">ker</a></span></span></div></li></ul><details class="instances"><summary>Instances</summary><ul id="instances-list-LieAlgebra.IsExtension" class="instances-list"></ul></details></div></div><div class="decl" id="LieAlgebra.Extension"><div class="structure"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Algebra/Lie/Extension.lean#L43-L56">source</a></div><div class="decl_header"><span class="decl_kind">structure</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.Extension"><span class="name">LieAlgebra</span>.<span class="name">Extension</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_4)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Type</a> (max (max (max u_1 u_2) u_4) (u_5 + 1))</div></div><p>The type of all Lie extensions of <code>M</code> by <code>N</code>.  That is, short exact sequences of <code>R</code>-Lie algebra
+homomorphisms <code>0 → N → <a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.Extension.L">L</a> → M → 0</code> where <code>R</code>, <code>M</code>, and <code>N</code> are fixed.</p><ul class="structure_fields" id="LieAlgebra.Extension.mk"><li id="LieAlgebra.Extension.L" class="structure_field"><div class="structure_field_info">L : <a href="../../.././foundational_types.html">Type</a> u_5</div><div class="structure_field_doc"><p>The middle object in the sequence.</p></div></li><li id="LieAlgebra.Extension.instLieRing" class="structure_field"><div class="structure_field_info">instLieRing : <span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn"><span class="fn">self</span>.<a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.Extension.L">L</a></span></span></div><div class="structure_field_doc"><p><code><a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.Extension.L">L</a></code> is a Lie ring.</p></div></li><li id="LieAlgebra.Extension.instLieAlgebra" class="structure_field"><div class="structure_field_info">instLieAlgebra : <span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn"><span class="fn">self</span>.<a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.Extension.L">L</a></span></span></div><div class="structure_field_doc"><p><code><a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.Extension.L">L</a></code> is a Lie algebra over <code>R</code>.</p></div></li><li id="LieAlgebra.Extension.incl" class="structure_field"><div class="structure_field_info">incl : <span class="fn">N</span> <a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">→ₗ⁅</a><span class="fn">R</span><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">⁆</a> <span class="fn"><span class="fn">self</span>.<a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.Extension.L">L</a></span></div><div class="structure_field_doc"><p>The inclusion homomorphism <code>N →ₗ⁅R⁆ <a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.Extension.L">L</a></code></p></div></li><li id="LieAlgebra.Extension.proj" class="structure_field"><div class="structure_field_info">proj : <span class="fn"><span class="fn">self</span>.<a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.Extension.L">L</a></span> <a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">→ₗ⁅</a><span class="fn">R</span><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">⁆</a> <span class="fn">M</span></div><div class="structure_field_doc"><p>The projection homomorphism <code><a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.Extension.L">L</a> →ₗ⁅R⁆ M</code></p></div></li><li id="LieAlgebra.Extension.IsExtension" class="structure_field"><div class="structure_field_info">IsExtension : <span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension">LieAlgebra.IsExtension</a> <span class="fn"><span class="fn">self</span>.<a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.Extension.incl">incl</a></span> <span class="fn"><span class="fn">self</span>.<a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.Extension.proj">proj</a></span></span></div></li></ul><details id="instances-for-list-LieAlgebra.Extension" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LieAlgebra.IsExtension.extension"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Algebra/Lie/Extension.lean#L58-L61">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension.extension"><span class="name">LieAlgebra</span>.<span class="name">IsExtension</span>.<span class="name">extension</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">L</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">L</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">L</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i</span> : <span class="fn">N</span> <a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">→ₗ⁅</a><span class="fn">R</span><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">⁆</a> <span class="fn">L</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">p</span> : <span class="fn">L</span> <a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">→ₗ⁅</a><span class="fn">R</span><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">⁆</a> <span class="fn">M</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension">IsExtension</a> <span class="fn">i</span> <span class="fn">p</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.Extension">Extension</a> <span class="fn">R</span> <span class="fn">N</span> <span class="fn">M</span></span></div></div><p>The bundled <code><a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.Extension">LieAlgebra.Extension</a></code> corresponding to <code><a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension">LieAlgebra.IsExtension</a></code></p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><span class="fn">h</span>.<a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension.extension">extension</a></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">{ <span class="fn">L</span> := <span class="fn">L</span>, <span class="fn">instLieRing</span> := <span class="fn">inst✝⁵</span>, <span class="fn">instLieAlgebra</span> := <span class="fn">inst✝⁴</span>, <span class="fn">incl</span> := <span class="fn">i</span>, <span class="fn">proj</span> := <span class="fn">p</span>, <span class="fn">IsExtension</span> := <span class="fn">h</span> }</span></li></ul></details><details id="instances-for-list-LieAlgebra.IsExtension.extension" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LieAlgebra.IsExtension.extension_incl"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Algebra/Lie/Extension.lean#L59-L59">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension.extension_incl"><span class="name">LieAlgebra</span>.<span class="name">IsExtension</span>.<span class="name">extension_incl</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">L</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">L</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">L</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i</span> : <span class="fn">N</span> <a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">→ₗ⁅</a><span class="fn">R</span><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">⁆</a> <span class="fn">L</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">p</span> : <span class="fn">L</span> <a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">→ₗ⁅</a><span class="fn">R</span><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">⁆</a> <span class="fn">M</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension">IsExtension</a> <span class="fn">i</span> <span class="fn">p</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">h</span>.<a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension.extension">extension</a></span>.<a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.Extension.incl">incl</a></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">i</span></div></div></div></div><div class="decl" id="LieAlgebra.IsExtension.extension_instLieRing"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Algebra/Lie/Extension.lean#L59-L59">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension.extension_instLieRing"><span class="name">LieAlgebra</span>.<span class="name">IsExtension</span>.<span class="name">extension_instLieRing</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">L</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">L</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">L</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i</span> : <span class="fn">N</span> <a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">→ₗ⁅</a><span class="fn">R</span><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">⁆</a> <span class="fn">L</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">p</span> : <span class="fn">L</span> <a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">→ₗ⁅</a><span class="fn">R</span><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">⁆</a> <span class="fn">M</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension">IsExtension</a> <span class="fn">i</span> <span class="fn">p</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">h</span>.<a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension.extension">extension</a></span>.<a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.Extension.instLieRing">instLieRing</a></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">inst✝</span></div></div></div></div><div class="decl" id="LieAlgebra.IsExtension.extension_instLieAlgebra"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Algebra/Lie/Extension.lean#L59-L59">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension.extension_instLieAlgebra"><span class="name">LieAlgebra</span>.<span class="name">IsExtension</span>.<span class="name">extension_instLieAlgebra</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">L</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">L</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">L</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i</span> : <span class="fn">N</span> <a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">→ₗ⁅</a><span class="fn">R</span><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">⁆</a> <span class="fn">L</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">p</span> : <span class="fn">L</span> <a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">→ₗ⁅</a><span class="fn">R</span><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">⁆</a> <span class="fn">M</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension">IsExtension</a> <span class="fn">i</span> <span class="fn">p</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">h</span>.<a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension.extension">extension</a></span>.<a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.Extension.instLieAlgebra">instLieAlgebra</a></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">inst✝</span></div></div></div></div><div class="decl" id="LieAlgebra.IsExtension.extension_proj"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Algebra/Lie/Extension.lean#L59-L59">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension.extension_proj"><span class="name">LieAlgebra</span>.<span class="name">IsExtension</span>.<span class="name">extension_proj</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">L</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">L</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">L</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i</span> : <span class="fn">N</span> <a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">→ₗ⁅</a><span class="fn">R</span><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">⁆</a> <span class="fn">L</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">p</span> : <span class="fn">L</span> <a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">→ₗ⁅</a><span class="fn">R</span><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">⁆</a> <span class="fn">M</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension">IsExtension</a> <span class="fn">i</span> <span class="fn">p</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">h</span>.<a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension.extension">extension</a></span>.<a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.Extension.proj">proj</a></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">p</span></div></div></div></div><div class="decl" id="LieAlgebra.IsExtension.extension_L"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Algebra/Lie/Extension.lean#L59-L59">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension.extension_L"><span class="name">LieAlgebra</span>.<span class="name">IsExtension</span>.<span class="name">extension_L</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">L</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">L</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">L</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i</span> : <span class="fn">N</span> <a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">→ₗ⁅</a><span class="fn">R</span><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">⁆</a> <span class="fn">L</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">p</span> : <span class="fn">L</span> <a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">→ₗ⁅</a><span class="fn">R</span><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">⁆</a> <span class="fn">M</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension">IsExtension</a> <span class="fn">i</span> <span class="fn">p</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">h</span>.<a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension.extension">extension</a></span>.<a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.Extension.L">L</a></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">L</span></div></div></div></div><div class="decl" id="LieAlgebra.isExtension_of_surjective"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Algebra/Lie/Extension.lean#L63-L68">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.isExtension_of_surjective"><span class="name">LieAlgebra</span>.<span class="name">isExtension_of_surjective</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">L</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Ring/Defs.html#CommRing">CommRing</a> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">L</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">L</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieRing">LieRing</a> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieAlgebra">LieAlgebra</a> <span class="fn">R</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn">L</span> <a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">→ₗ⁅</a><span class="fn">R</span><a href="../../.././Mathlib/Algebra/Lie/Basic.html#LieHom">⁆</a> <span class="fn">M</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Logic/Function/Defs.html#Function.Surjective">Function.Surjective</a> <span class="fn">⇑<span class="fn">f</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Algebra/Lie/Extension.html#LieAlgebra.IsExtension">IsExtension</a> <span class="fn"><span class="fn"><span class="fn">f</span>.<a href="../../.././Mathlib/Algebra/Lie/Submodule.html#LieHom.ker">ker</a></span>.<a href="../../.././Mathlib/Algebra/Lie/Submodule.html#LieIdeal.incl">incl</a></span> <span class="fn">f</span></span></div></div><p>A surjective Lie algebra homomorphism yields an extension.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

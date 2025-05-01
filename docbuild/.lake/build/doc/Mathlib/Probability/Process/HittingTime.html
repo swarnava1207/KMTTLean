@@ -1,0 +1,539 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>Mathlib.Probability.Process.HittingTime</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="Mathlib.Probability.Process.HittingTime";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span>Documentation</span></h1><h2 class="header_filename break_within"><span class="name">Mathlib</span>.<span class="name">Probability</span>.<span class="name">Process</span>.<span class="name">HittingTime</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="../../.././Init.html">Init</a></li><li><a href="../../.././Mathlib/Tactic/AdaptationNote.html">Mathlib.Tactic.AdaptationNote</a></li><li><a href="../../.././Mathlib/Probability/Process/Stopping.html">Mathlib.Probability.Process.Stopping</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-Mathlib.Probability.Process.HittingTime" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.hitting"><span class="name">MeasureTheory</span>.<span class="name">hitting</span></a></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.hitting_def"><span class="name">MeasureTheory</span>.<span class="name">hitting_def</span></a></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.hitting_of_lt"><span class="name">MeasureTheory</span>.<span class="name">hitting_of_lt</span></a></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.hitting_le"><span class="name">MeasureTheory</span>.<span class="name">hitting_le</span></a></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.not_mem_of_lt_hitting"><span class="name">MeasureTheory</span>.<span class="name">not_mem_of_lt_hitting</span></a></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.hitting_eq_end_iff"><span class="name">MeasureTheory</span>.<span class="name">hitting_eq_end_iff</span></a></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.hitting_of_le"><span class="name">MeasureTheory</span>.<span class="name">hitting_of_le</span></a></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.le_hitting"><span class="name">MeasureTheory</span>.<span class="name">le_hitting</span></a></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.le_hitting_of_exists"><span class="name">MeasureTheory</span>.<span class="name">le_hitting_of_exists</span></a></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.hitting_mem_Icc"><span class="name">MeasureTheory</span>.<span class="name">hitting_mem_Icc</span></a></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.hitting_mem_set"><span class="name">MeasureTheory</span>.<span class="name">hitting_mem_set</span></a></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.hitting_mem_set_of_hitting_lt"><span class="name">MeasureTheory</span>.<span class="name">hitting_mem_set_of_hitting_lt</span></a></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.hitting_le_of_mem"><span class="name">MeasureTheory</span>.<span class="name">hitting_le_of_mem</span></a></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.hitting_le_iff_of_exists"><span class="name">MeasureTheory</span>.<span class="name">hitting_le_iff_of_exists</span></a></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.hitting_le_iff_of_lt"><span class="name">MeasureTheory</span>.<span class="name">hitting_le_iff_of_lt</span></a></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.hitting_lt_iff"><span class="name">MeasureTheory</span>.<span class="name">hitting_lt_iff</span></a></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.hitting_eq_hitting_of_exists"><span class="name">MeasureTheory</span>.<span class="name">hitting_eq_hitting_of_exists</span></a></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.hitting_mono"><span class="name">MeasureTheory</span>.<span class="name">hitting_mono</span></a></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.hitting_isStoppingTime"><span class="name">MeasureTheory</span>.<span class="name">hitting_isStoppingTime</span></a></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.stoppedValue_hitting_mem"><span class="name">MeasureTheory</span>.<span class="name">stoppedValue_hitting_mem</span></a></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.isStoppingTime_hitting_isStoppingTime"><span class="name">MeasureTheory</span>.<span class="name">isStoppingTime_hitting_isStoppingTime</span></a></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.hitting_eq_sInf"><span class="name">MeasureTheory</span>.<span class="name">hitting_eq_sInf</span></a></div><div class="nav_link"><a class="break_within" href="#MeasureTheory.hitting_bot_le_iff"><span class="name">MeasureTheory</span>.<span class="name">hitting_bot_le_iff</span></a></div></nav><main>
+<div class="mod_doc"><h1 class="markdown-heading" id="Hitting-time">Hitting time <a class="hover-link" href="#Hitting-time">#</a></h1><p>Given a stochastic process, the hitting time provides the first time the process &quot;hits&quot; some
+subset of the state space. The hitting time is a stopping time in the case that the time index is
+discrete and the process is adapted (this is true in a far more general setting however we have
+only proved it for the discrete case so far).</p><h2 class="markdown-heading" id="Main-definition">Main definition <a class="hover-link" href="#Main-definition">#</a></h2><ul>
+<li><code><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">MeasureTheory.hitting</a></code>: the hitting time of a stochastic process</li>
+</ul><h2 class="markdown-heading" id="Main-results">Main results <a class="hover-link" href="#Main-results">#</a></h2><ul>
+<li><code><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting_isStoppingTime">MeasureTheory.hitting_isStoppingTime</a></code>: a discrete hitting time of an adapted process is a
+stopping time</li>
+</ul><h2 class="markdown-heading" id="Implementation-notes">Implementation notes <a class="hover-link" href="#Implementation-notes">#</a></h2><p>In the definition of the hitting time, we bound the hitting time by an upper and lower bound.
+This is to ensure that our result is meaningful in the case we are taking the infimum of an
+empty set or the infimum of a set which is unbounded from below. With this, we can talk about
+hitting times indexed by the natural numbers or the reals. By taking the bounds to be
+<code>⊤</code> and <code>⊥</code>, we obtain the standard definition in the case that the index is <code>ℕ∞</code> or <code>ℝ≥0∞</code>.</p></div><div class="decl" id="MeasureTheory.hitting"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L46-L54">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting"><span class="name">MeasureTheory</span>.<span class="name">hitting</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/Defs/PartialOrder.html#Preorder">Preorder</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/SetNotation.html#InfSet">InfSet</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">n </span><span class="fn">m</span> : <span class="fn">ι</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Ω</span> → <span class="fn">ι</span></span></div></div><p>Hitting time: given a stochastic process <code>u</code> and a set <code>s</code>, <code><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> u s n m</code> is the first time
+<code>u</code> is in <code>s</code> after time <code>n</code> and before time <code>m</code> (if <code>u</code> does not hit <code>s</code> after time <code>n</code> and
+before <code>m</code> then the hitting time is simply <code>m</code>).</p><p>The hitting time is a stopping time if the process is adapted and discrete.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">MeasureTheory.hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">m</span> <span class="fn">x</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <a href="../../.././Init/Prelude.html#ite">if</a> <span class="fn">∃ <span class="fn">j</span> ∈ <span class="fn"><a href="../../.././Mathlib/Order/Interval/Set/Defs.html#Set.Icc">Set.Icc</a> <span class="fn">n</span> <span class="fn">m</span></span>, <span class="fn"><span class="fn">u</span> <span class="fn">j</span> <span class="fn">x</span></span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span></span> <a href="../../.././Init/Prelude.html#ite">then</a> <span class="fn"><a href="../../.././Mathlib/Order/SetNotation.html#InfSet.sInf">sInf</a> (<span class="fn"><a href="../../.././Mathlib/Order/Interval/Set/Defs.html#Set.Icc">Set.Icc</a> <span class="fn">n</span> <span class="fn">m</span></span> <a href="../../.././Init/Core.html#Inter.inter">∩</a> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">{</a><span class="fn">i</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">:</a> <span class="fn">ι</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">|</a> <span class="fn"><span class="fn">u</span> <span class="fn">i</span> <span class="fn">x</span></span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span><a href="../../.././Mathlib/Data/Set/Defs.html#setOf">}</a>)</span> <a href="../../.././Init/Prelude.html#ite">else</a> <span class="fn">m</span></li></ul></details><details id="instances-for-list-MeasureTheory.hitting" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="MeasureTheory.hitting_def"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L57-L60">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting_def"><span class="name">MeasureTheory</span>.<span class="name">hitting_def</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/Defs/PartialOrder.html#Preorder">Preorder</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/SetNotation.html#InfSet">InfSet</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">n </span><span class="fn">m</span> : <span class="fn">ι</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">m</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">fun (<span class="fn">x</span> : <span class="fn">Ω</span>) =&gt; <a href="../../.././Init/Prelude.html#ite">if</a> <span class="fn">∃ <span class="fn">j</span> ∈ <span class="fn"><a href="../../.././Mathlib/Order/Interval/Set/Defs.html#Set.Icc">Set.Icc</a> <span class="fn">n</span> <span class="fn">m</span></span>, <span class="fn"><span class="fn">u</span> <span class="fn">j</span> <span class="fn">x</span></span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span></span> <a href="../../.././Init/Prelude.html#ite">then</a> <span class="fn"><a href="../../.././Mathlib/Order/SetNotation.html#InfSet.sInf">sInf</a> (<span class="fn"><a href="../../.././Mathlib/Order/Interval/Set/Defs.html#Set.Icc">Set.Icc</a> <span class="fn">n</span> <span class="fn">m</span></span> <a href="../../.././Init/Core.html#Inter.inter">∩</a> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">{</a><span class="fn">i</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">:</a> <span class="fn">ι</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">|</a> <span class="fn"><span class="fn">u</span> <span class="fn">i</span> <span class="fn">x</span></span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span><a href="../../.././Mathlib/Data/Set/Defs.html#setOf">}</a>)</span> <a href="../../.././Init/Prelude.html#ite">else</a> <span class="fn">m</span></span></div></div></div></div><div class="decl" id="MeasureTheory.hitting_of_lt"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L66-L75">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting_of_lt"><span class="name">MeasureTheory</span>.<span class="name">hitting_of_lt</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/ConditionallyCompleteLattice/Defs.html#ConditionallyCompleteLinearOrder">ConditionallyCompleteLinearOrder</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ω</span> : <span class="fn">Ω</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">m</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn">m</span> <a href="../../.././Init/Prelude.html#LT.lt">&lt;</a> <span class="fn">n</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">m</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">m</span></div></div><p>This lemma is strictly weaker than <code><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting_of_le">hitting_of_le</a></code>.</p></div></div><div class="decl" id="MeasureTheory.hitting_le"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L77-L83">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting_le"><span class="name">MeasureTheory</span>.<span class="name">hitting_le</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/ConditionallyCompleteLattice/Defs.html#ConditionallyCompleteLinearOrder">ConditionallyCompleteLinearOrder</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n </span><span class="fn">m</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ω</span> : <span class="fn">Ω</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">m</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">m</span></div></div></div></div><div class="decl" id="MeasureTheory.not_mem_of_lt_hitting"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L85-L92">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.not_mem_of_lt_hitting"><span class="name">MeasureTheory</span>.<span class="name">not_mem_of_lt_hitting</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/ConditionallyCompleteLattice/Defs.html#ConditionallyCompleteLinearOrder">ConditionallyCompleteLinearOrder</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ω</span> : <span class="fn">Ω</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">m </span><span class="fn">k</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hk₁</span> : <span class="fn">k</span> <a href="../../.././Init/Prelude.html#LT.lt">&lt;</a> <span class="fn"><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">m</span> <span class="fn">ω</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hk₂</span> : <span class="fn">n</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">k</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">u</span> <span class="fn">k</span> <span class="fn">ω</span></span> ∉ <span class="fn">s</span></span></div></div></div></div><div class="decl" id="MeasureTheory.hitting_eq_end_iff"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L94-L97">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting_eq_end_iff"><span class="name">MeasureTheory</span>.<span class="name">hitting_eq_end_iff</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/ConditionallyCompleteLattice/Defs.html#ConditionallyCompleteLinearOrder">ConditionallyCompleteLinearOrder</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ω</span> : <span class="fn">Ω</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">m</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">m</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">m</span> <a href="../../.././Init/Core.html#Iff">↔</a> <span class="fn"><span class="fn">(∃ <span class="fn">j</span> ∈ <span class="fn"><a href="../../.././Mathlib/Order/Interval/Set/Defs.html#Set.Icc">Set.Icc</a> <span class="fn">n</span> <span class="fn">m</span></span>, <span class="fn"><span class="fn">u</span> <span class="fn">j</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span>)</span> → <span class="fn"><a href="../../.././Mathlib/Order/SetNotation.html#InfSet.sInf">sInf</a> (<span class="fn"><a href="../../.././Mathlib/Order/Interval/Set/Defs.html#Set.Icc">Set.Icc</a> <span class="fn">n</span> <span class="fn">m</span></span> <a href="../../.././Init/Core.html#Inter.inter">∩</a> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">{</a><span class="fn">i</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">:</a> <span class="fn">ι</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">|</a> <span class="fn"><span class="fn">u</span> <span class="fn">i</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span><a href="../../.././Mathlib/Data/Set/Defs.html#setOf">}</a>)</span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">m</span></span></div></div></div></div><div class="decl" id="MeasureTheory.hitting_of_le"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L99-L107">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting_of_le"><span class="name">MeasureTheory</span>.<span class="name">hitting_of_le</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/ConditionallyCompleteLattice/Defs.html#ConditionallyCompleteLinearOrder">ConditionallyCompleteLinearOrder</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ω</span> : <span class="fn">Ω</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">m</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hmn</span> : <span class="fn">m</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">n</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">m</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn">m</span></div></div></div></div><div class="decl" id="MeasureTheory.le_hitting"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L109-L117">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.le_hitting"><span class="name">MeasureTheory</span>.<span class="name">le_hitting</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/ConditionallyCompleteLattice/Defs.html#ConditionallyCompleteLinearOrder">ConditionallyCompleteLinearOrder</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n </span><span class="fn">m</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hnm</span> : <span class="fn">n</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">m</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">ω</span> : <span class="fn">Ω</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">n</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn"><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">m</span> <span class="fn">ω</span></span></div></div></div></div><div class="decl" id="MeasureTheory.le_hitting_of_exists"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L119-L124">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.le_hitting_of_exists"><span class="name">MeasureTheory</span>.<span class="name">le_hitting_of_exists</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/ConditionallyCompleteLattice/Defs.html#ConditionallyCompleteLinearOrder">ConditionallyCompleteLinearOrder</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ω</span> : <span class="fn">Ω</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">m</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h_exists</span> : <span class="fn">∃ <span class="fn">j</span> ∈ <span class="fn"><a href="../../.././Mathlib/Order/Interval/Set/Defs.html#Set.Icc">Set.Icc</a> <span class="fn">n</span> <span class="fn">m</span></span>, <span class="fn"><span class="fn">u</span> <span class="fn">j</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn">n</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn"><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">m</span> <span class="fn">ω</span></span></div></div></div></div><div class="decl" id="MeasureTheory.hitting_mem_Icc"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L126-L127">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting_mem_Icc"><span class="name">MeasureTheory</span>.<span class="name">hitting_mem_Icc</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/ConditionallyCompleteLattice/Defs.html#ConditionallyCompleteLinearOrder">ConditionallyCompleteLinearOrder</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n </span><span class="fn">m</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hnm</span> : <span class="fn">n</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">m</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">ω</span> : <span class="fn">Ω</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">m</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn"><a href="../../.././Mathlib/Order/Interval/Set/Defs.html#Set.Icc">Set.Icc</a> <span class="fn">n</span> <span class="fn">m</span></span></div></div></div></div><div class="decl" id="MeasureTheory.hitting_mem_set"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L129-L137">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting_mem_set"><span class="name">MeasureTheory</span>.<span class="name">hitting_mem_set</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/ConditionallyCompleteLattice/Defs.html#ConditionallyCompleteLinearOrder">ConditionallyCompleteLinearOrder</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ω</span> : <span class="fn">Ω</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/RelClasses.html#WellFoundedLT">WellFoundedLT</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">m</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h_exists</span> : <span class="fn">∃ <span class="fn">j</span> ∈ <span class="fn"><a href="../../.././Mathlib/Order/Interval/Set/Defs.html#Set.Icc">Set.Icc</a> <span class="fn">n</span> <span class="fn">m</span></span>, <span class="fn"><span class="fn">u</span> <span class="fn">j</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">u</span> <span class="fn">(<a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">m</span> <span class="fn">ω</span>)</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span></div></div></div></div><div class="decl" id="MeasureTheory.hitting_mem_set_of_hitting_lt"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L139-L144">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting_mem_set_of_hitting_lt"><span class="name">MeasureTheory</span>.<span class="name">hitting_mem_set_of_hitting_lt</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/ConditionallyCompleteLattice/Defs.html#ConditionallyCompleteLinearOrder">ConditionallyCompleteLinearOrder</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ω</span> : <span class="fn">Ω</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/RelClasses.html#WellFoundedLT">WellFoundedLT</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">m</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hl</span> : <span class="fn"><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">m</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#LT.lt">&lt;</a> <span class="fn">m</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">u</span> <span class="fn">(<a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">m</span> <span class="fn">ω</span>)</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span></div></div></div></div><div class="decl" id="MeasureTheory.hitting_le_of_mem"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L146-L150">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting_le_of_mem"><span class="name">MeasureTheory</span>.<span class="name">hitting_le_of_mem</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/ConditionallyCompleteLattice/Defs.html#ConditionallyCompleteLinearOrder">ConditionallyCompleteLinearOrder</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n </span><span class="fn">i</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ω</span> : <span class="fn">Ω</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">m</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hin</span> : <span class="fn">n</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">i</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">him</span> : <span class="fn">i</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">m</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">his</span> : <span class="fn"><span class="fn">u</span> <span class="fn">i</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">m</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">i</span></div></div></div></div><div class="decl" id="MeasureTheory.hitting_le_iff_of_exists"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L152-L164">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting_le_iff_of_exists"><span class="name">MeasureTheory</span>.<span class="name">hitting_le_iff_of_exists</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/ConditionallyCompleteLattice/Defs.html#ConditionallyCompleteLinearOrder">ConditionallyCompleteLinearOrder</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n </span><span class="fn">i</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ω</span> : <span class="fn">Ω</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/RelClasses.html#WellFoundedLT">WellFoundedLT</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">m</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h_exists</span> : <span class="fn">∃ <span class="fn">j</span> ∈ <span class="fn"><a href="../../.././Mathlib/Order/Interval/Set/Defs.html#Set.Icc">Set.Icc</a> <span class="fn">n</span> <span class="fn">m</span></span>, <span class="fn"><span class="fn">u</span> <span class="fn">j</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">m</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">i</span> <a href="../../.././Init/Core.html#Iff">↔</a> <span class="fn">∃ <span class="fn">j</span> ∈ <span class="fn"><a href="../../.././Mathlib/Order/Interval/Set/Defs.html#Set.Icc">Set.Icc</a> <span class="fn">n</span> <span class="fn">i</span></span>, <span class="fn"><span class="fn">u</span> <span class="fn">j</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span></span></div></div></div></div><div class="decl" id="MeasureTheory.hitting_le_iff_of_lt"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L166-L173">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting_le_iff_of_lt"><span class="name">MeasureTheory</span>.<span class="name">hitting_le_iff_of_lt</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/ConditionallyCompleteLattice/Defs.html#ConditionallyCompleteLinearOrder">ConditionallyCompleteLinearOrder</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ω</span> : <span class="fn">Ω</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/RelClasses.html#WellFoundedLT">WellFoundedLT</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">m</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">i</span> : <span class="fn">ι</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hi</span> : <span class="fn">i</span> <a href="../../.././Init/Prelude.html#LT.lt">&lt;</a> <span class="fn">m</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">m</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">i</span> <a href="../../.././Init/Core.html#Iff">↔</a> <span class="fn">∃ <span class="fn">j</span> ∈ <span class="fn"><a href="../../.././Mathlib/Order/Interval/Set/Defs.html#Set.Icc">Set.Icc</a> <span class="fn">n</span> <span class="fn">i</span></span>, <span class="fn"><span class="fn">u</span> <span class="fn">j</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span></span></div></div></div></div><div class="decl" id="MeasureTheory.hitting_lt_iff"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L175-L185">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting_lt_iff"><span class="name">MeasureTheory</span>.<span class="name">hitting_lt_iff</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/ConditionallyCompleteLattice/Defs.html#ConditionallyCompleteLinearOrder">ConditionallyCompleteLinearOrder</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ω</span> : <span class="fn">Ω</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/RelClasses.html#WellFoundedLT">WellFoundedLT</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">m</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">i</span> : <span class="fn">ι</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hi</span> : <span class="fn">i</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">m</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">m</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#LT.lt">&lt;</a> <span class="fn">i</span> <a href="../../.././Init/Core.html#Iff">↔</a> <span class="fn">∃ <span class="fn">j</span> ∈ <span class="fn"><a href="../../.././Mathlib/Order/Interval/Set/Defs.html#Set.Ico">Set.Ico</a> <span class="fn">n</span> <span class="fn">i</span></span>, <span class="fn"><span class="fn">u</span> <span class="fn">j</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span></span></div></div></div></div><div class="decl" id="MeasureTheory.hitting_eq_hitting_of_exists"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L187-L200">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting_eq_hitting_of_exists"><span class="name">MeasureTheory</span>.<span class="name">hitting_eq_hitting_of_exists</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/ConditionallyCompleteLattice/Defs.html#ConditionallyCompleteLinearOrder">ConditionallyCompleteLinearOrder</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ω</span> : <span class="fn">Ω</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">m₁ </span><span class="fn">m₂</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn">m₁</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">m₂</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h'</span> : <span class="fn">∃ <span class="fn">j</span> ∈ <span class="fn"><a href="../../.././Mathlib/Order/Interval/Set/Defs.html#Set.Icc">Set.Icc</a> <span class="fn">n</span> <span class="fn">m₁</span></span>, <span class="fn"><span class="fn">u</span> <span class="fn">j</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">m₁</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">m₂</span> <span class="fn">ω</span></span></div></div></div></div><div class="decl" id="MeasureTheory.hitting_mono"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L202-L212">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting_mono"><span class="name">MeasureTheory</span>.<span class="name">hitting_mono</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/ConditionallyCompleteLattice/Defs.html#ConditionallyCompleteLinearOrder">ConditionallyCompleteLinearOrder</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ω</span> : <span class="fn">Ω</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">m₁ </span><span class="fn">m₂</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hm</span> : <span class="fn">m₁</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">m₂</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">m₁</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn"><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">m₂</span> <span class="fn">ω</span></span></div></div></div></div><div class="decl" id="MeasureTheory.hitting_isStoppingTime"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L216-L231">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting_isStoppingTime"><span class="name">MeasureTheory</span>.<span class="name">hitting_isStoppingTime</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">m</span> : <span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">Ω</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/ConditionallyCompleteLattice/Defs.html#ConditionallyCompleteLinearOrder">ConditionallyCompleteLinearOrder</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/RelClasses.html#WellFoundedLT">WellFoundedLT</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Data/Countable/Defs.html#Countable">Countable</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/Metrizable/Basic.html#TopologicalSpace.PseudoMetrizableSpace">TopologicalSpace.PseudoMetrizableSpace</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><a href="../../.././Mathlib/Probability/Process/Filtration.html#MeasureTheory.Filtration">Filtration</a> <span class="fn">ι</span> <span class="fn">m</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n </span><span class="fn">n'</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hu</span> : <span class="fn"><a href="../../.././Mathlib/Probability/Process/Adapted.html#MeasureTheory.Adapted">Adapted</a> <span class="fn">f</span> <span class="fn">u</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hs</span> : <span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSet">MeasurableSet</a> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Probability/Process/Stopping.html#MeasureTheory.IsStoppingTime">IsStoppingTime</a> <span class="fn">f</span> <span class="fn">(<a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">n'</span>)</span></span></div></div><p>A discrete hitting time is a stopping time.</p></div></div><div class="decl" id="MeasureTheory.stoppedValue_hitting_mem"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L233-L240">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.stoppedValue_hitting_mem"><span class="name">MeasureTheory</span>.<span class="name">stoppedValue_hitting_mem</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/ConditionallyCompleteLattice/Defs.html#ConditionallyCompleteLinearOrder">ConditionallyCompleteLinearOrder</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/RelClasses.html#WellFoundedLT">WellFoundedLT</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">n </span><span class="fn">m</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ω</span> : <span class="fn">Ω</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn">∃ <span class="fn">j</span> ∈ <span class="fn"><a href="../../.././Mathlib/Order/Interval/Set/Defs.html#Set.Icc">Set.Icc</a> <span class="fn">n</span> <span class="fn">m</span></span>, <span class="fn"><span class="fn">u</span> <span class="fn">j</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Probability/Process/Stopping.html#MeasureTheory.stoppedValue">stoppedValue</a> <span class="fn">u</span> <span class="fn">(<a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">n</span> <span class="fn">m</span>)</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span></div></div></div></div><div class="decl" id="MeasureTheory.isStoppingTime_hitting_isStoppingTime"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L242-L264">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.isStoppingTime_hitting_isStoppingTime"><span class="name">MeasureTheory</span>.<span class="name">isStoppingTime_hitting_isStoppingTime</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">m</span> : <span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">Ω</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/ConditionallyCompleteLattice/Defs.html#ConditionallyCompleteLinearOrder">ConditionallyCompleteLinearOrder</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/RelClasses.html#WellFoundedLT">WellFoundedLT</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Data/Countable/Defs.html#Countable">Countable</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/Order/Basic.html#OrderTopology">OrderTopology</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/Bases.html#FirstCountableTopology">FirstCountableTopology</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/Defs/Basic.html#TopologicalSpace">TopologicalSpace</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Topology/Metrizable/Basic.html#TopologicalSpace.PseudoMetrizableSpace">TopologicalSpace.PseudoMetrizableSpace</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSpace">MeasurableSpace</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/MeasureTheory/Constructions/BorelSpace/Basic.html#BorelSpace">BorelSpace</a> <span class="fn">β</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">f</span> : <span class="fn"><a href="../../.././Mathlib/Probability/Process/Filtration.html#MeasureTheory.Filtration">Filtration</a> <span class="fn">ι</span> <span class="fn">m</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">τ</span> : <span class="fn"><span class="fn">Ω</span> → <span class="fn">ι</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hτ</span> : <span class="fn"><a href="../../.././Mathlib/Probability/Process/Stopping.html#MeasureTheory.IsStoppingTime">IsStoppingTime</a> <span class="fn">f</span> <span class="fn">τ</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hτbdd</span> : <span class="fn">∀ (<span class="fn">x</span> : <span class="fn">Ω</span>), <span class="fn"><span class="fn">τ</span> <span class="fn">x</span></span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">N</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hs</span> : <span class="fn"><a href="../../.././Mathlib/MeasureTheory/MeasurableSpace/Defs.html#MeasurableSet">MeasurableSet</a> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hf</span> : <span class="fn"><a href="../../.././Mathlib/Probability/Process/Adapted.html#MeasureTheory.Adapted">Adapted</a> <span class="fn">f</span> <span class="fn">u</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Probability/Process/Stopping.html#MeasureTheory.IsStoppingTime">IsStoppingTime</a> <span class="fn">f</span> <span class="fn">fun (<span class="fn">x</span> : <span class="fn">Ω</span>) =&gt; <span class="fn"><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <span class="fn">(<span class="fn">τ</span> <span class="fn">x</span>)</span> <span class="fn">N</span> <span class="fn">x</span></span></span></span></div></div><p>The hitting time of a discrete process with the starting time indexed by a stopping time
+is a stopping time.</p></div></div><div class="decl" id="MeasureTheory.hitting_eq_sInf"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L270-L277">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting_eq_sInf"><span class="name">MeasureTheory</span>.<span class="name">hitting_eq_sInf</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/CompleteLattice/Defs.html#CompleteLattice">CompleteLattice</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">ω</span> : <span class="fn">Ω</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <a href="../../.././Mathlib/Order/Notation.html#Bot.bot">⊥</a> <a href="../../.././Mathlib/Order/Notation.html#Top.top">⊤</a> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><a href="../../.././Mathlib/Order/SetNotation.html#InfSet.sInf">sInf</a> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">{</a><span class="fn">i</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">:</a> <span class="fn">ι</span> <a href="../../.././Mathlib/Data/Set/Defs.html#setOf">|</a> <span class="fn"><span class="fn">u</span> <span class="fn">i</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span><a href="../../.././Mathlib/Data/Set/Defs.html#setOf">}</a></span></div></div></div></div><div class="decl" id="MeasureTheory.hitting_bot_le_iff"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/Probability/Process/HittingTime.lean#L286-L293">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting_bot_le_iff"><span class="name">MeasureTheory</span>.<span class="name">hitting_bot_le_iff</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Ω</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">β</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ι</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/ConditionallyCompleteLattice/Defs.html#ConditionallyCompleteLinearOrderBot">ConditionallyCompleteLinearOrderBot</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Order/RelClasses.html#WellFoundedLT">WellFoundedLT</a> <span class="fn">ι</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">u</span> : <span class="fn"><span class="fn">ι</span> → <span class="fn"><span class="fn">Ω</span> → <span class="fn">β</span></span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">s</span> : <span class="fn"><a href="../../.././Mathlib/Data/Set/Defs.html#Set">Set</a> <span class="fn">β</span></span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">i </span><span class="fn">n</span> : <span class="fn">ι</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">ω</span> : <span class="fn">Ω</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">hx</span> : <span class="fn">∃ <span class="fn">j</span> ≤ <span class="fn">n</span>, <span class="fn"><span class="fn">u</span> <span class="fn">j</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/Probability/Process/HittingTime.html#MeasureTheory.hitting">hitting</a> <span class="fn">u</span> <span class="fn">s</span> <a href="../../.././Mathlib/Order/Notation.html#Bot.bot">⊥</a> <span class="fn">n</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">i</span> <a href="../../.././Init/Core.html#Iff">↔</a> <span class="fn">∃ <span class="fn">j</span> ≤ <span class="fn">i</span>, <span class="fn"><span class="fn">u</span> <span class="fn">j</span> <span class="fn">ω</span></span> <a href="../../.././Init/Prelude.html#Membership.mem">∈</a> <span class="fn">s</span></span></div></div></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

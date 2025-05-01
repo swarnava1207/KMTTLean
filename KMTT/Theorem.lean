@@ -1,7 +1,16 @@
 import Mathlib
+import KMTT.Matrices
 open Matrix
 
 /-!
+This file contains the three main lemmas needed to prove the matrix-tree theorem.
+* The first lemma is the `Cauchy-Binet formula`, which states that the determinant of a product of
+two matrices can be expressed as a sum over certain minors of the factors.
+* The second lemma says that the `Incidence matrix` of a graph multiplied by its transpose
+  equals the `Laplacian matrix` of the graph.
+* The third lemma states that the `Minor of the Incidence matrix` of a graph multiplied by its transpose
+  equals the `Minor of the Laplacian matrix` of the graph.
+
 # Matrix Identities and Cauchy-Binet Formula
 
 This file develops key lemmas about determinants of block matrices over ℚ and states a version of
@@ -15,12 +24,10 @@ involving group actions on embeddings.
 * `Matrix.Cauchy_Binet` : Cauchy-Binet formula for general rings
 * `Function.Embedding.ModPerm` : Choice of `m` elements from `n` up to permutation
 * `inv_scalar`, `inv_rat` : Invertibility of scaled identity matrices
+- `inc_incT_eq_lap`: Proves that `Inc * Incᵀ = Laplacian` matrix.
 -/
 
 variable {m n : ℕ} (A : Matrix (Fin n) (Fin m) ℚ) (B : Matrix (Fin m) (Fin n) ℚ)
-
-/-- Abbreviation for the identity matrix over ℚ of size `m`. -/
-abbrev I {m : ℕ} : Matrix (Fin m) (Fin m) ℚ := 1
 
 /-- A scaled identity matrix `a • I` is invertible when `a ≠ 0`. -/
 instance inv_scalar (a : ℚ) (ha : a ≠ 0) : Invertible (a • (1 : Matrix (Fin m) (Fin m) ℚ)) where
@@ -41,7 +48,7 @@ This is a determinant equality based on block matrix factorization and is used i
 related to the matrix-tree theorem.
 -/
 lemma toprove_cauchybinet (a : ℚ) (ha : a ≠ 0) :
-    a^m * (a • I + A * B).det = a^n * (a • I + B * A).det := by
+    a^m * (a • 1 + A * B).det = a^n * (a • 1 + B * A).det := by
   let M : Matrix (Fin n ⊕ Fin m) (Fin n ⊕ Fin m) ℚ :=
     fromBlocks (a • 1) (-a • A) B (a • 1)
 
@@ -67,10 +74,10 @@ lemma toprove_cauchybinet (a : ℚ) (ha : a ≠ 0) :
   have det_scale : ∀ (M : Matrix (Fin m) (Fin m) ℚ), det ((1 / a) • M) = (1 / a)^m * det M :=
     fun M => by rw [det_smul]; simp
 
-  rw [←det_M₁, ←det_M₂]
+  rw [← det_M₁, det_M₂]
 
 
--- The following part of the file is contributed by Eric Wieser through Zulip
+/- `The following part of the file is contributed by Eric Wieser through Zulip` -/
 -- === Group actions for Cauchy-Binet ===
 
 variable {m n R : Type*}
@@ -119,3 +126,34 @@ theorem Matrix.Cauchy_Binet (A : Matrix m n R) (B : Matrix n m R) :
             rw [← Int.cast_mul, Int.units_coe_mul_self, Int.cast_one, one_mul]) := by
   -- Proof omitted
   sorry
+
+
+-- Proves that the product of the incidence matrix `Inc` and its transpose `Incᵀ` equals the Laplacian matrix of the graph `G`.
+lemma inc_incT_eq_lap {n : ℕ} (G : SimpleGraph (Fin n))[DecidableRel G.Adj]
+  : G.Inc * G.Inc.transpose = (G.lapMatrix ℚ : Matrix (Fin n) (Fin n) ℚ) := by
+  apply Matrix.ext; intro i j
+  simp only [Matrix.mul_apply, Matrix.transpose_apply, SimpleGraph.Inc]
+  by_cases h_diag : i = j
+  · simp [h_diag]
+    have h₁ : G.lapMatrix ℚ j j = G.degree j := by
+      simp [SimpleGraph.lapMatrix]
+      simp [SimpleGraph.degMatrix]
+    rw [h₁]
+    apply inc_incT_diag_degree
+  · by_cases h:G.Adj i j
+    · let h' := adj_minus_one G h_diag h
+      simp[h',Finset.sum_ite_eq]
+      have h_lap_adj : G.lapMatrix ℚ i j = -1 := by
+          simp [SimpleGraph.lapMatrix, SimpleGraph.degMatrix, h_diag, h, SimpleGraph.adjMatrix]
+      rw[h_lap_adj]
+      sorry -- Proof needs completion: requires showing the sum of the incidence matrix entries equals -1
+    · let h' := not_adj_zero G h_diag h
+      simp [h']
+      have h_lap_nonadj : G.lapMatrix ℚ i j = 0 := by
+          simp [SimpleGraph.lapMatrix, SimpleGraph.degMatrix, h_diag, h, SimpleGraph.adjMatrix]
+      rw[h_lap_nonadj]
+
+-- Theorem showing that the product of the Minor of the incidence matrix and its transpose equals the minor of the Laplacian matrix.
+lemma inc_minor_incT_eq_lap_minor {n : ℕ} (G : SimpleGraph (Fin (n + 1)))[DecidableRel G.Adj]
+  : G.IncMinor * G.IncMinor.transpose = (G.Lapminor : Matrix (Fin n) (Fin n) ℚ) := by
+    sorry

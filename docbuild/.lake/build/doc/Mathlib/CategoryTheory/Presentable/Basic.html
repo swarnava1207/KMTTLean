@@ -1,0 +1,302 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>Mathlib.CategoryTheory.Presentable.Basic</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="Mathlib.CategoryTheory.Presentable.Basic";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span>Documentation</span></h1><h2 class="header_filename break_within"><span class="name">Mathlib</span>.<span class="name">CategoryTheory</span>.<span class="name">Presentable</span>.<span class="name">Basic</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/CategoryTheory/Presentable/Basic.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="../../.././Init.html">Init</a></li><li><a href="../../.././Mathlib/CategoryTheory/Adjunction/Limits.html">Mathlib.CategoryTheory.Adjunction.Limits</a></li><li><a href="../../.././Mathlib/CategoryTheory/Presentable/IsCardinalFiltered.html">Mathlib.CategoryTheory.Presentable.IsCardinalFiltered</a></li><li><a href="../../.././Mathlib/SetTheory/Cardinal/HasCardinalLT.html">Mathlib.SetTheory.Cardinal.HasCardinalLT</a></li><li><a href="../../.././Mathlib/CategoryTheory/Limits/Preserves/Ulift.html">Mathlib.CategoryTheory.Limits.Preserves.Ulift</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-Mathlib.CategoryTheory.Presentable.Basic" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.Functor.IsCardinalAccessible"><span class="name">CategoryTheory</span>.<span class="name">Functor</span>.<span class="name">IsCardinalAccessible</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.Functor.preservesColimitsOfShape_of_isCardinalAccessible"><span class="name">CategoryTheory</span>.<span class="name">Functor</span>.<span class="name">preservesColimitsOfShape_of_isCardinalAccessible</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.Functor.preservesColimitsOfShape_of_isCardinalAccessible_of_essentiallySmall"><span class="name">CategoryTheory</span>.<span class="name">Functor</span>.<span class="name">preservesColimitsOfShape_of_isCardinalAccessible_of_essentiallySmall</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.Functor.isCardinalAccessible_of_le"><span class="name">CategoryTheory</span>.<span class="name">Functor</span>.<span class="name">isCardinalAccessible_of_le</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.Functor.isCardinalAccessible_of_natIso"><span class="name">CategoryTheory</span>.<span class="name">Functor</span>.<span class="name">isCardinalAccessible_of_natIso</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.IsCardinalPresentable"><span class="name">CategoryTheory</span>.<span class="name">IsCardinalPresentable</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.preservesColimitsOfShape_of_isCardinalPresentable"><span class="name">CategoryTheory</span>.<span class="name">preservesColimitsOfShape_of_isCardinalPresentable</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.preservesColimitsOfShape_of_isCardinalPresentable_of_essentiallySmall"><span class="name">CategoryTheory</span>.<span class="name">preservesColimitsOfShape_of_isCardinalPresentable_of_essentiallySmall</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.isCardinalPresentable_of_le"><span class="name">CategoryTheory</span>.<span class="name">isCardinalPresentable_of_le</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.isCardinalPresentable_of_iso"><span class="name">CategoryTheory</span>.<span class="name">isCardinalPresentable_of_iso</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.isCardinalPresentable_of_equivalence"><span class="name">CategoryTheory</span>.<span class="name">isCardinalPresentable_of_equivalence</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.isCardinalPresentable_of_isEquivalence"><span class="name">CategoryTheory</span>.<span class="name">isCardinalPresentable_of_isEquivalence</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.isCardinalPresentable_iff_of_isEquivalence"><span class="name">CategoryTheory</span>.<span class="name">isCardinalPresentable_iff_of_isEquivalence</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.HasCardinalFilteredColimits"><span class="name">CategoryTheory</span>.<span class="name">HasCardinalFilteredColimits</span></a></div><div class="nav_link"><a class="break_within" href="#CategoryTheory.instHasCardinalFilteredColimitsOfHasColimitsOfSize"><span class="name">CategoryTheory</span>.<span class="name">instHasCardinalFilteredColimitsOfHasColimitsOfSize</span></a></div></nav><main>
+<div class="mod_doc"><h1 class="markdown-heading" id="Presentable-objects">Presentable objects <a class="hover-link" href="#Presentable-objects">#</a></h1><p>A functor <code>F : C ⥤ D</code> is <code>κ</code>-accessible (<code><a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.Functor.IsCardinalAccessible">Functor.IsCardinalAccessible</a></code>)
+if it commutes with colimits of shape <code>J</code> where <code>J</code> is any <code>κ</code>-filtered category
+(that is essentially small relative to the universe <code>w</code> such that <code>κ : Cardinal.{w}</code>.).
+We also introduce another typeclass <code>Functor.IsAccessible</code> saying that there exists
+a regular cardinal <code>κ</code> such that <code><a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.Functor.IsCardinalAccessible">Functor.IsCardinalAccessible</a></code>.</p><p>An object <code>X</code> of a category is <code>κ</code>-presentable (<code><a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.IsCardinalPresentable">IsCardinalPresentable</a></code>)
+if the functor <code>Hom(X, _)</code> (i.e. <code>coyoneda.obj (op X)</code>) is <code>κ</code>-accessible.
+Similar as for accessible functors, we define a type class <code>IsAccessible</code>.</p><h2 class="markdown-heading" id="References">References <a class="hover-link" href="#References">#</a></h2><ul>
+<li>[Adámek, J. and Rosický, J., <em>Locally presentable and accessible categories</em>][Adamek_Rosicky_1994]</li>
+</ul></div><div class="decl" id="CategoryTheory.Functor.IsCardinalAccessible"><div class="class"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/CategoryTheory/Presentable/Basic.lean#L42-L50">source</a></div><div class="decl_header"><span class="decl_kind">class</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.Functor.IsCardinalAccessible"><span class="name">CategoryTheory</span>.<span class="name">Functor</span>.<span class="name">IsCardinalAccessible</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₁, u₁}</a> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">D</span> : <a href="../../.././foundational_types.html">Type</a> u₂}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₂, u₂}</a> <span class="fn">D</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><a href="../../.././Mathlib/CategoryTheory/Functor/Basic.html#CategoryTheory.Functor">Functor</a> <span class="fn">C</span> <span class="fn">D</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">κ</span> : <a href="../../.././Mathlib/SetTheory/Cardinal/Defs.html#Cardinal">Cardinal.{w}</a>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Logic/Basic.html#Fact">Fact</a> <span class="fn"><span class="fn">κ</span>.<a href="../../.././Mathlib/SetTheory/Cardinal/Regular.html#Cardinal.IsRegular">IsRegular</a></span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>A functor <code>F : C ⥤ D</code> is <code>κ</code>-accessible (with <code>κ</code> a regular cardinal)
+if it preserves colimits of shape <code>J</code> where <code>J</code> is any <code>κ</code>-filtered category.
+In the mathematical literature, some assumptions are often made on the
+categories <code>C</code> or <code>D</code> (e.g. the existence of <code>κ</code>-filtered colimits,
+see <code><a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.HasCardinalFilteredColimits">HasCardinalFilteredColimits</a></code> below), but here we do not
+make such assumptions.</p><ul class="structure_fields" id="CategoryTheory.Functor.IsCardinalAccessible.mk"><li id="CategoryTheory.Functor.IsCardinalAccessible.preservesColimitOfShape" class="structure_field"><div class="structure_field_info">preservesColimitOfShape<span class="decl_args">
+<span class="fn">(<span class="fn">J</span> : <a href="../../.././foundational_types.html">Type</a> w)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.SmallCategory">SmallCategory</a> <span class="fn">J</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Presentable/IsCardinalFiltered.html#CategoryTheory.IsCardinalFiltered">IsCardinalFiltered</a> <span class="fn">J</span> <span class="fn">κ</span></span>]</span></span>
+</span> : <span class="fn"><a href="../../.././Mathlib/CategoryTheory/Limits/Preserves/Basic.html#CategoryTheory.Limits.PreservesColimitsOfShape">Limits.PreservesColimitsOfShape</a> <span class="fn">J</span> <span class="fn">F</span></span></div></li></ul><details class="instances"><summary>Instances</summary><ul id="instances-list-CategoryTheory.Functor.IsCardinalAccessible" class="instances-list"></ul></details></div></div><div class="decl" id="CategoryTheory.Functor.preservesColimitsOfShape_of_isCardinalAccessible"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/CategoryTheory/Presentable/Basic.lean#L52-L55">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.Functor.preservesColimitsOfShape_of_isCardinalAccessible"><span class="name">CategoryTheory</span>.<span class="name">Functor</span>.<span class="name">preservesColimitsOfShape_of_isCardinalAccessible</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₁, u₁}</a> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">D</span> : <a href="../../.././foundational_types.html">Type</a> u₂}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₂, u₂}</a> <span class="fn">D</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><a href="../../.././Mathlib/CategoryTheory/Functor/Basic.html#CategoryTheory.Functor">Functor</a> <span class="fn">C</span> <span class="fn">D</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">κ</span> : <a href="../../.././Mathlib/SetTheory/Cardinal/Defs.html#Cardinal">Cardinal.{w}</a>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Logic/Basic.html#Fact">Fact</a> <span class="fn"><span class="fn">κ</span>.<a href="../../.././Mathlib/SetTheory/Cardinal/Regular.html#Cardinal.IsRegular">IsRegular</a></span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.Functor.IsCardinalAccessible">IsCardinalAccessible</a></span> <span class="fn">κ</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">J</span> : <a href="../../.././foundational_types.html">Type</a> w)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.SmallCategory">SmallCategory</a> <span class="fn">J</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Presentable/IsCardinalFiltered.html#CategoryTheory.IsCardinalFiltered">IsCardinalFiltered</a> <span class="fn">J</span> <span class="fn">κ</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/CategoryTheory/Limits/Preserves/Basic.html#CategoryTheory.Limits.PreservesColimitsOfShape">Limits.PreservesColimitsOfShape</a> <span class="fn">J</span> <span class="fn">F</span></span></div></div></div></div><div class="decl" id="CategoryTheory.Functor.preservesColimitsOfShape_of_isCardinalAccessible_of_essentiallySmall"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/CategoryTheory/Presentable/Basic.lean#L57-L63">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.Functor.preservesColimitsOfShape_of_isCardinalAccessible_of_essentiallySmall"><span class="name">CategoryTheory</span>.<span class="name">Functor</span>.<span class="name">preservesColimitsOfShape_of_isCardinalAccessible_of_essentiallySmall</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₁, u₁}</a> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">D</span> : <a href="../../.././foundational_types.html">Type</a> u₂}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₂, u₂}</a> <span class="fn">D</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><a href="../../.././Mathlib/CategoryTheory/Functor/Basic.html#CategoryTheory.Functor">Functor</a> <span class="fn">C</span> <span class="fn">D</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">κ</span> : <a href="../../.././Mathlib/SetTheory/Cardinal/Defs.html#Cardinal">Cardinal.{w}</a>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Logic/Basic.html#Fact">Fact</a> <span class="fn"><span class="fn">κ</span>.<a href="../../.././Mathlib/SetTheory/Cardinal/Regular.html#Cardinal.IsRegular">IsRegular</a></span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.Functor.IsCardinalAccessible">IsCardinalAccessible</a></span> <span class="fn">κ</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">J</span> : <a href="../../.././foundational_types.html">Type</a> u₃)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₃, u₃}</a> <span class="fn">J</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/EssentiallySmall.html#CategoryTheory.EssentiallySmall">EssentiallySmall.{w, v₃, u₃}</a> <span class="fn">J</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Presentable/IsCardinalFiltered.html#CategoryTheory.IsCardinalFiltered">IsCardinalFiltered</a> <span class="fn">J</span> <span class="fn">κ</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/CategoryTheory/Limits/Preserves/Basic.html#CategoryTheory.Limits.PreservesColimitsOfShape">Limits.PreservesColimitsOfShape</a> <span class="fn">J</span> <span class="fn">F</span></span></div></div></div></div><div class="decl" id="CategoryTheory.Functor.isCardinalAccessible_of_le"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/CategoryTheory/Presentable/Basic.lean#L66-L71">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.Functor.isCardinalAccessible_of_le"><span class="name">CategoryTheory</span>.<span class="name">Functor</span>.<span class="name">isCardinalAccessible_of_le</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₁, u₁}</a> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">D</span> : <a href="../../.././foundational_types.html">Type</a> u₂}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₂, u₂}</a> <span class="fn">D</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><a href="../../.././Mathlib/CategoryTheory/Functor/Basic.html#CategoryTheory.Functor">Functor</a> <span class="fn">C</span> <span class="fn">D</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">κ</span> : <a href="../../.././Mathlib/SetTheory/Cardinal/Defs.html#Cardinal">Cardinal.{w}</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Logic/Basic.html#Fact">Fact</a> <span class="fn"><span class="fn">κ</span>.<a href="../../.././Mathlib/SetTheory/Cardinal/Regular.html#Cardinal.IsRegular">IsRegular</a></span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.Functor.IsCardinalAccessible">IsCardinalAccessible</a></span> <span class="fn">κ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">κ'</span> : <a href="../../.././Mathlib/SetTheory/Cardinal/Defs.html#Cardinal">Cardinal.{w}</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Logic/Basic.html#Fact">Fact</a> <span class="fn"><span class="fn">κ'</span>.<a href="../../.././Mathlib/SetTheory/Cardinal/Regular.html#Cardinal.IsRegular">IsRegular</a></span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn">κ</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">κ'</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.Functor.IsCardinalAccessible">IsCardinalAccessible</a></span> <span class="fn">κ'</span></span></div></div></div></div><div class="decl" id="CategoryTheory.Functor.isCardinalAccessible_of_natIso"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/CategoryTheory/Presentable/Basic.lean#L75-L78">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.Functor.isCardinalAccessible_of_natIso"><span class="name">CategoryTheory</span>.<span class="name">Functor</span>.<span class="name">isCardinalAccessible_of_natIso</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₁, u₁}</a> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">D</span> : <a href="../../.././foundational_types.html">Type</a> u₂}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₂, u₂}</a> <span class="fn">D</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">F </span><span class="fn">G</span> : <span class="fn"><a href="../../.././Mathlib/CategoryTheory/Functor/Basic.html#CategoryTheory.Functor">Functor</a> <span class="fn">C</span> <span class="fn">D</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn">F</span> <a href="../../.././Mathlib/CategoryTheory/Iso.html#CategoryTheory.Iso">≅</a> <span class="fn">G</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">κ</span> : <a href="../../.././Mathlib/SetTheory/Cardinal/Defs.html#Cardinal">Cardinal.{w}</a>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Logic/Basic.html#Fact">Fact</a> <span class="fn"><span class="fn">κ</span>.<a href="../../.././Mathlib/SetTheory/Cardinal/Regular.html#Cardinal.IsRegular">IsRegular</a></span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn"><span class="fn">F</span>.<a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.Functor.IsCardinalAccessible">IsCardinalAccessible</a></span> <span class="fn">κ</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">G</span>.<a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.Functor.IsCardinalAccessible">IsCardinalAccessible</a></span> <span class="fn">κ</span></span></div></div></div></div><div class="decl" id="CategoryTheory.IsCardinalPresentable"><div class="def"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/CategoryTheory/Presentable/Basic.lean#L86-L89">source</a></div><div class="attributes">@[reducible, inline]</div>
+<div class="decl_header"><span class="decl_kind">abbrev</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.IsCardinalPresentable"><span class="name">CategoryTheory</span>.<span class="name">IsCardinalPresentable</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₁, u₁}</a> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">X</span> : <span class="fn">C</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">κ</span> : <a href="../../.././Mathlib/SetTheory/Cardinal/Defs.html#Cardinal">Cardinal.{w}</a>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Logic/Basic.html#Fact">Fact</a> <span class="fn"><span class="fn">κ</span>.<a href="../../.././Mathlib/SetTheory/Cardinal/Regular.html#Cardinal.IsRegular">IsRegular</a></span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>An object <code>X</code> in a category is <code>κ</code>-presentable (for <code>κ</code> a regular cardinal)
+when the functor <code>Hom(X, _)</code> preserves colimits indexed by
+<code>κ</code>-filtered categories.</p><details><summary>Equations</summary><ul class="equations"><li class="equation"><span class="fn"><a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.IsCardinalPresentable">CategoryTheory.IsCardinalPresentable</a> <span class="fn">X</span> <span class="fn">κ</span></span> <a href="../../.././Init/Prelude.html#Eq">=</a> <span class="fn"><span class="fn"><span class="fn">(<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Yoneda.html#CategoryTheory.coyoneda">CategoryTheory.coyoneda</a>.<a href="../../.././Mathlib/Combinatorics/Quiver/Prefunctor.html#Prefunctor.obj">obj</a></span> <span class="fn">(<a href="../../.././Mathlib/Data/Opposite.html#Opposite.op">Opposite.op</a> <span class="fn">X</span>)</span>)</span>.<a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.Functor.IsCardinalAccessible">IsCardinalAccessible</a></span> <span class="fn">κ</span></span></li></ul></details><details id="instances-for-list-CategoryTheory.IsCardinalPresentable" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="CategoryTheory.preservesColimitsOfShape_of_isCardinalPresentable"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/CategoryTheory/Presentable/Basic.lean#L91-L94">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.preservesColimitsOfShape_of_isCardinalPresentable"><span class="name">CategoryTheory</span>.<span class="name">preservesColimitsOfShape_of_isCardinalPresentable</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₁, u₁}</a> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">X</span> : <span class="fn">C</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">κ</span> : <a href="../../.././Mathlib/SetTheory/Cardinal/Defs.html#Cardinal">Cardinal.{w}</a>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Logic/Basic.html#Fact">Fact</a> <span class="fn"><span class="fn">κ</span>.<a href="../../.././Mathlib/SetTheory/Cardinal/Regular.html#Cardinal.IsRegular">IsRegular</a></span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.IsCardinalPresentable">IsCardinalPresentable</a> <span class="fn">X</span> <span class="fn">κ</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">J</span> : <a href="../../.././foundational_types.html">Type</a> w)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.SmallCategory">SmallCategory</a> <span class="fn">J</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Presentable/IsCardinalFiltered.html#CategoryTheory.IsCardinalFiltered">IsCardinalFiltered</a> <span class="fn">J</span> <span class="fn">κ</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/CategoryTheory/Limits/Preserves/Basic.html#CategoryTheory.Limits.PreservesColimitsOfShape">Limits.PreservesColimitsOfShape</a> <span class="fn">J</span> <span class="fn">(<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Yoneda.html#CategoryTheory.coyoneda">coyoneda</a>.<a href="../../.././Mathlib/Combinatorics/Quiver/Prefunctor.html#Prefunctor.obj">obj</a></span> <span class="fn">(<a href="../../.././Mathlib/Data/Opposite.html#Opposite.op">Opposite.op</a> <span class="fn">X</span>)</span>)</span></span></div></div></div></div><div class="decl" id="CategoryTheory.preservesColimitsOfShape_of_isCardinalPresentable_of_essentiallySmall"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/CategoryTheory/Presentable/Basic.lean#L96-L100">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.preservesColimitsOfShape_of_isCardinalPresentable_of_essentiallySmall"><span class="name">CategoryTheory</span>.<span class="name">preservesColimitsOfShape_of_isCardinalPresentable_of_essentiallySmall</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₁, u₁}</a> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">X</span> : <span class="fn">C</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">κ</span> : <a href="../../.././Mathlib/SetTheory/Cardinal/Defs.html#Cardinal">Cardinal.{w}</a>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Logic/Basic.html#Fact">Fact</a> <span class="fn"><span class="fn">κ</span>.<a href="../../.././Mathlib/SetTheory/Cardinal/Regular.html#Cardinal.IsRegular">IsRegular</a></span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.IsCardinalPresentable">IsCardinalPresentable</a> <span class="fn">X</span> <span class="fn">κ</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">J</span> : <a href="../../.././foundational_types.html">Type</a> u₃)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₃, u₃}</a> <span class="fn">J</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/EssentiallySmall.html#CategoryTheory.EssentiallySmall">EssentiallySmall.{w, v₃, u₃}</a> <span class="fn">J</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Presentable/IsCardinalFiltered.html#CategoryTheory.IsCardinalFiltered">IsCardinalFiltered</a> <span class="fn">J</span> <span class="fn">κ</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/CategoryTheory/Limits/Preserves/Basic.html#CategoryTheory.Limits.PreservesColimitsOfShape">Limits.PreservesColimitsOfShape</a> <span class="fn">J</span> <span class="fn">(<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Yoneda.html#CategoryTheory.coyoneda">coyoneda</a>.<a href="../../.././Mathlib/Combinatorics/Quiver/Prefunctor.html#Prefunctor.obj">obj</a></span> <span class="fn">(<a href="../../.././Mathlib/Data/Opposite.html#Opposite.op">Opposite.op</a> <span class="fn">X</span>)</span>)</span></span></div></div></div></div><div class="decl" id="CategoryTheory.isCardinalPresentable_of_le"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/CategoryTheory/Presentable/Basic.lean#L103-L106">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.isCardinalPresentable_of_le"><span class="name">CategoryTheory</span>.<span class="name">isCardinalPresentable_of_le</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₁, u₁}</a> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">X</span> : <span class="fn">C</span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">κ</span> : <a href="../../.././Mathlib/SetTheory/Cardinal/Defs.html#Cardinal">Cardinal.{w}</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Logic/Basic.html#Fact">Fact</a> <span class="fn"><span class="fn">κ</span>.<a href="../../.././Mathlib/SetTheory/Cardinal/Regular.html#Cardinal.IsRegular">IsRegular</a></span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.IsCardinalPresentable">IsCardinalPresentable</a> <span class="fn">X</span> <span class="fn">κ</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">κ'</span> : <a href="../../.././Mathlib/SetTheory/Cardinal/Defs.html#Cardinal">Cardinal.{w}</a>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Logic/Basic.html#Fact">Fact</a> <span class="fn"><span class="fn">κ'</span>.<a href="../../.././Mathlib/SetTheory/Cardinal/Regular.html#Cardinal.IsRegular">IsRegular</a></span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn">κ</span> <a href="../../.././Init/Prelude.html#LE.le">≤</a> <span class="fn">κ'</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.IsCardinalPresentable">IsCardinalPresentable</a> <span class="fn">X</span> <span class="fn">κ'</span></span></div></div></div></div><div class="decl" id="CategoryTheory.isCardinalPresentable_of_iso"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/CategoryTheory/Presentable/Basic.lean#L110-L111">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.isCardinalPresentable_of_iso"><span class="name">CategoryTheory</span>.<span class="name">isCardinalPresentable_of_iso</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₁, u₁}</a> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">X </span><span class="fn">Y</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn">X</span> <a href="../../.././Mathlib/CategoryTheory/Iso.html#CategoryTheory.Iso">≅</a> <span class="fn">Y</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">κ</span> : <a href="../../.././Mathlib/SetTheory/Cardinal/Defs.html#Cardinal">Cardinal.{w}</a>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Logic/Basic.html#Fact">Fact</a> <span class="fn"><span class="fn">κ</span>.<a href="../../.././Mathlib/SetTheory/Cardinal/Regular.html#Cardinal.IsRegular">IsRegular</a></span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.IsCardinalPresentable">IsCardinalPresentable</a> <span class="fn">X</span> <span class="fn">κ</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.IsCardinalPresentable">IsCardinalPresentable</a> <span class="fn">Y</span> <span class="fn">κ</span></span></div></div></div></div><div class="decl" id="CategoryTheory.isCardinalPresentable_of_equivalence"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/CategoryTheory/Presentable/Basic.lean#L115-L131">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.isCardinalPresentable_of_equivalence"><span class="name">CategoryTheory</span>.<span class="name">isCardinalPresentable_of_equivalence</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₁, u₁}</a> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">X</span> : <span class="fn">C</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">κ</span> : <a href="../../.././Mathlib/SetTheory/Cardinal/Defs.html#Cardinal">Cardinal.{w}</a>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Logic/Basic.html#Fact">Fact</a> <span class="fn"><span class="fn">κ</span>.<a href="../../.././Mathlib/SetTheory/Cardinal/Regular.html#Cardinal.IsRegular">IsRegular</a></span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C'</span> : <a href="../../.././foundational_types.html">Type</a> u₃}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₃, u₃}</a> <span class="fn">C'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.IsCardinalPresentable">IsCardinalPresentable</a> <span class="fn">X</span> <span class="fn">κ</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn">C</span> <a href="../../.././Mathlib/CategoryTheory/Equivalence.html#CategoryTheory.Equivalence">≌</a> <span class="fn">C'</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.IsCardinalPresentable">IsCardinalPresentable</a> <span class="fn">(<span class="fn"><span class="fn"><span class="fn">e</span>.<a href="../../.././Mathlib/CategoryTheory/Equivalence.html#CategoryTheory.Equivalence.functor">functor</a></span>.<a href="../../.././Mathlib/Combinatorics/Quiver/Prefunctor.html#Prefunctor.obj">obj</a></span> <span class="fn">X</span>)</span> <span class="fn">κ</span></span></div></div></div></div><div class="decl" id="CategoryTheory.isCardinalPresentable_of_isEquivalence"><div class="instance"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/CategoryTheory/Presentable/Basic.lean#L133-L137">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.isCardinalPresentable_of_isEquivalence"><span class="name">CategoryTheory</span>.<span class="name">isCardinalPresentable_of_isEquivalence</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₁, u₁}</a> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">X</span> : <span class="fn">C</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">κ</span> : <a href="../../.././Mathlib/SetTheory/Cardinal/Defs.html#Cardinal">Cardinal.{w}</a>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Logic/Basic.html#Fact">Fact</a> <span class="fn"><span class="fn">κ</span>.<a href="../../.././Mathlib/SetTheory/Cardinal/Regular.html#Cardinal.IsRegular">IsRegular</a></span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C'</span> : <a href="../../.././foundational_types.html">Type</a> u₃}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₃, u₃}</a> <span class="fn">C'</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.IsCardinalPresentable">IsCardinalPresentable</a> <span class="fn">X</span> <span class="fn">κ</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><a href="../../.././Mathlib/CategoryTheory/Functor/Basic.html#CategoryTheory.Functor">Functor</a> <span class="fn">C</span> <span class="fn">C'</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">F</span>.<a href="../../.././Mathlib/CategoryTheory/Equivalence.html#CategoryTheory.Functor.IsEquivalence">IsEquivalence</a></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.IsCardinalPresentable">IsCardinalPresentable</a> <span class="fn">(<span class="fn"><span class="fn">F</span>.<a href="../../.././Mathlib/Combinatorics/Quiver/Prefunctor.html#Prefunctor.obj">obj</a></span> <span class="fn">X</span>)</span> <span class="fn">κ</span></span></div></div></div></div><div class="decl" id="CategoryTheory.isCardinalPresentable_iff_of_isEquivalence"><div class="theorem"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/CategoryTheory/Presentable/Basic.lean#L139-L149">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.isCardinalPresentable_iff_of_isEquivalence"><span class="name">CategoryTheory</span>.<span class="name">isCardinalPresentable_iff_of_isEquivalence</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₁, u₁}</a> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">X</span> : <span class="fn">C</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">κ</span> : <a href="../../.././Mathlib/SetTheory/Cardinal/Defs.html#Cardinal">Cardinal.{w}</a>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Logic/Basic.html#Fact">Fact</a> <span class="fn"><span class="fn">κ</span>.<a href="../../.././Mathlib/SetTheory/Cardinal/Regular.html#Cardinal.IsRegular">IsRegular</a></span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C'</span> : <a href="../../.././foundational_types.html">Type</a> u₃}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₃, u₃}</a> <span class="fn">C'</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">F</span> : <span class="fn"><a href="../../.././Mathlib/CategoryTheory/Functor/Basic.html#CategoryTheory.Functor">Functor</a> <span class="fn">C</span> <span class="fn">C'</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">F</span>.<a href="../../.././Mathlib/CategoryTheory/Equivalence.html#CategoryTheory.Functor.IsEquivalence">IsEquivalence</a></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.IsCardinalPresentable">IsCardinalPresentable</a> <span class="fn">(<span class="fn"><span class="fn">F</span>.<a href="../../.././Mathlib/Combinatorics/Quiver/Prefunctor.html#Prefunctor.obj">obj</a></span> <span class="fn">X</span>)</span> <span class="fn">κ</span></span> <a href="../../.././Init/Core.html#Iff">↔</a> <span class="fn"><a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.IsCardinalPresentable">IsCardinalPresentable</a> <span class="fn">X</span> <span class="fn">κ</span></span></div></div></div></div><div class="decl" id="CategoryTheory.HasCardinalFilteredColimits"><div class="class"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/CategoryTheory/Presentable/Basic.lean#L157-L161">source</a></div><div class="decl_header"><span class="decl_kind">class</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.HasCardinalFilteredColimits"><span class="name">CategoryTheory</span>.<span class="name">HasCardinalFilteredColimits</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₁, u₁}</a> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">κ</span> : <a href="../../.././Mathlib/SetTheory/Cardinal/Defs.html#Cardinal">Cardinal.{w}</a>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Logic/Basic.html#Fact">Fact</a> <span class="fn"><span class="fn">κ</span>.<a href="../../.././Mathlib/SetTheory/Cardinal/Regular.html#Cardinal.IsRegular">IsRegular</a></span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Prop</a></div></div><p>A category has <code>κ</code>-filtered colimits if it has colimits of shape <code>J</code>
+for any <code>κ</code>-filtered category <code>J</code>.</p><ul class="structure_fields" id="CategoryTheory.HasCardinalFilteredColimits.mk"><li id="CategoryTheory.HasCardinalFilteredColimits.hasColimitsOfShape" class="structure_field"><div class="structure_field_info">hasColimitsOfShape<span class="decl_args">
+<span class="fn">(<span class="fn">J</span> : <a href="../../.././foundational_types.html">Type</a> w)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.SmallCategory">SmallCategory</a> <span class="fn">J</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Presentable/IsCardinalFiltered.html#CategoryTheory.IsCardinalFiltered">IsCardinalFiltered</a> <span class="fn">J</span> <span class="fn">κ</span></span>]</span></span>
+</span> : <span class="fn"><a href="../../.././Mathlib/CategoryTheory/Limits/HasLimits.html#CategoryTheory.Limits.HasColimitsOfShape">Limits.HasColimitsOfShape</a> <span class="fn">J</span> <span class="fn">C</span></span></div></li></ul><details class="instances"><summary>Instances</summary><ul id="instances-list-CategoryTheory.HasCardinalFilteredColimits" class="instances-list"></ul></details></div></div><div class="decl" id="CategoryTheory.instHasCardinalFilteredColimitsOfHasColimitsOfSize"><div class="instance"><div class="gh_link"><a href="https://github.com/leanprover-community/mathlib4/blob/0cc1f970691e01afdf9d8bb9f8307cd7b6aca12a/Mathlib/CategoryTheory/Presentable/Basic.lean#L165-L165">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.instHasCardinalFilteredColimitsOfHasColimitsOfSize"><span class="name">CategoryTheory</span>.<span class="name">instHasCardinalFilteredColimitsOfHasColimitsOfSize</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">C</span> : <a href="../../.././foundational_types.html">Type</a> u₁)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Category/Basic.html#CategoryTheory.Category">Category.{v₁, u₁}</a> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">κ</span> : <a href="../../.././Mathlib/SetTheory/Cardinal/Defs.html#Cardinal">Cardinal.{w}</a>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/Logic/Basic.html#Fact">Fact</a> <span class="fn"><span class="fn">κ</span>.<a href="../../.././Mathlib/SetTheory/Cardinal/Regular.html#Cardinal.IsRegular">IsRegular</a></span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><a href="../../.././Mathlib/CategoryTheory/Limits/HasLimits.html#CategoryTheory.Limits.HasColimitsOfSize">Limits.HasColimitsOfSize.{w, w, v₁, u₁}</a> <span class="fn">C</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><a href="../../.././Mathlib/CategoryTheory/Presentable/Basic.html#CategoryTheory.HasCardinalFilteredColimits">HasCardinalFilteredColimits</a> <span class="fn">C</span> <span class="fn">κ</span></span></div></div></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>
